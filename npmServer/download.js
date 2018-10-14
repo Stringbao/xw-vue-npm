@@ -13,7 +13,7 @@ function gitDownload(projectName){
     projectName = path.join(path.dirname(__dirname), 'tempFolder', projectName);
     fsExtra.removeSync(projectName);
     
-    let projectUrl = "Stringbao/VUETest";
+    let projectUrl = "Stringbao/xw-vue-git";
 
     //loading进度圈
     const spinner = ora(`Download`).start();
