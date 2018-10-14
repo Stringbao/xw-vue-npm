@@ -1,6 +1,6 @@
 {
   "name": "le-vue",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -9,8 +9,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "vue-le": "bin/index",
-    "vue-init": "bin/index-init"
+    "le": "bin/index",
+    "le-init": "bin/index-init"
   },
   "keywords": [],
   "author": "string_bao <string_bao@163.com>",
