@@ -1,6 +1,6 @@
 {
   "name": "le-vue",
-  "version": "1.0.5",
+  "version": "1.0.8",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -10,8 +10,7 @@
   },
   "bin": {
     "le": "bin/index",
-    "le-init": "bin/index-init",
-    "le-server": "bin/index-server"
+    "le-init": "bin/index-init"
   },
   "keywords": [],
   "author": "string_bao <string_bao@163.com>",
