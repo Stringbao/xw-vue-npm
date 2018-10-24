@@ -1,8 +1,6 @@
 
 
-
-
 module.exports = (app)=>{
-    app.use('/fsapi',require('./fsapi.js'));
-    // app.use('/person',require('./api/person'));
+    app.use('/fs',require('./api/fs/index.js'));
+    // app.use('/ejs',require('./api/ejs/index.js'));
 }

@@ -1,8 +1,8 @@
 
 const express = require("express");
 const app = express();
-const ejsapi  = require("./ejsapi.js");
-const fsapi = require("./fsapi.js");
+const ejsapi  = require("./api/ejs/ejsapi.js");
+const fsapi = require("./api/fs/fsapi.js");
 
 // ejsapi.renderEjsTemplate("a.ejs");
 
