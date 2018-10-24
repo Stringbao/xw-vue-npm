@@ -17,14 +17,14 @@ const api = {
      * @return success
      */
     deleteFolder:path=>{
-        console.log(1111,path);
+        console.log(fs.existsSync(path));
         if(fs.existsSync(path)) {
             fs.readdirSync(path).forEach(function(file) {
                 var curPath = path + "/" + file;
                 if(fs.statSync(curPath).isDirectory()) { // recurse
-                    //deleteFolderRecursive(curPath);
+                    // deleteFolderRecursive(curPath);
                 } else { // delete file
-                    //fs.unlinkSync(curPath);
+                    // fs.unlinkSync(curPath);
                 }
             });
             //fs.rmdirSync(path);
@@ -36,9 +36,8 @@ const api = {
      * @return 如果存在那么覆盖，如果不存在则创建
      */
     mkdirsSync:dirname=>{
-        console.log(dirname,22222);
+        api.deleteFolder(dirname);
         if(fs.existsSync(dirname)){
-            api.deleteFolder(dirname);
             return true;
         }else{
             if(api.mkdirsSync(path.dirname(dirname))) {
