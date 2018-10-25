@@ -1,11 +1,6 @@
 
 const express = require("express");
 const app = express();
-const ejsapi  = require("./api/ejs/ejsapi.js");
-const fsapi = require("./api/fs/fsapi.js");
-
-// ejsapi.renderEjsTemplate("a.ejs");
-
 
 //这个包非常重要，是为了解决nodejs里面post参数接受异常的问题
 var bodyParser = require('body-parser');

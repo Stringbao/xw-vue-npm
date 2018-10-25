@@ -1,11 +1,13 @@
 
 
-var express = require('express');
-var controller = require('./fsapi.js');
+const express = require('express');
+const controller = require('./fsapi.js');
 
-var router = express.Router();
+const router = express.Router();
 
 router.get("/deleteFolder",controller.deleteFolder);
-router.get("/createFolder",controller.mkdirsSync);
+router.post("/createFolder",controller.createFolder);
+router.post("/createFile",controller.createFile);
+router.post("/createModule",controller.createModule);
 
 module.exports = router;
