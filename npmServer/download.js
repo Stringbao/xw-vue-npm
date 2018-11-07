@@ -27,7 +27,7 @@ function gitDownload(projectName){
                 } else {
                     spinner.stop();
                     log.success("Download Success");
-                    resolve(projectName)
+                    resolve(projectName);
                 }
             })
     })

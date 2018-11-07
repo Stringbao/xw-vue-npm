@@ -11,6 +11,7 @@ const child_process = require('child_process')
 const log = require('../npmServer/log');
 const gitDownload = require('../npmServer/download');
 const server = require('../gitServer/index');
+console.log(server);
 
 program.usage('<project-name>').parse(process.argv);
 
@@ -36,7 +37,7 @@ async function goCopy() {
     fsExtra.copySync(target, projectPath);
     log.success("项目download Success");
     // 服务
-    // new server(projectPath).init(8765);
+    server(projectPath);
 }
 goCopy();
 

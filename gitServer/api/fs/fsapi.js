@@ -57,6 +57,12 @@ const fsTool = {
 }
 
 const api = {
+    writeFile:(path,data)=>{
+        fsTool.writeFile(path,data);
+    },
+    readFile:(path)=>{
+        return fsTool.readFile(path);
+    },
     deleteFolder:(req,res)=>{
         let filepath = req.query.path;
         let options = {res:res};
