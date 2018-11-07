@@ -1,9 +1,6 @@
 
 const fs = require("fs-extra");
 const path = require("path");
-const resEntity = require("../responseEntity");
-const _global = require("../globals");
-const ejsTool = require("../ejs/ejsapi");
 
 const fsTool = {
     /**
@@ -53,60 +50,16 @@ const fsTool = {
      */
     writeFile:(path,data)=>{
         fs.outputFileSync(path, data);
+    },
+    /**
+     * @description 读取客户端项目地址(绝对路径)
+     * @returns string
+     */
+    getClientPath:()=>{
+        let _path = path.join(__dirname,"../../projectPath.txt");
+        return fsTool.readFile(_path);
     }
 }
 
-const api = {
-    writeFile:(path,data)=>{
-        fsTool.writeFile(path,data);
-    },
-    readFile:(path)=>{
-        return fsTool.readFile(path);
-    },
-    deleteFolder:(req,res)=>{
-        let filepath = req.query.path;
-        let options = {res:res};
-        if(!filepath){
-            options.status = "201";
-            options.msg = "不允许直接删除根目录!";
-        }
-        fsTool.deleteFolder(filepath);
-        return resEntity.setEneity(options);
-    },
-    createFolder:(req,res)=>{
-        const filepath = req.body.path;
-        fsTool.createFolder(filepath);
-        return resEntity.setEneity({res:res});
-    },
-    createFile:(req,res)=>{
-        const filepath = _global.viewPath + req.body.path;
-        fsTool.createFile(filepath);
-        return resEntity.setEneity({res:res});
-    },
-    createModule:(req,res)=>{
-        const moduleName = req.body.moduleName;
-        let viewPath = _global.viewPath + moduleName;
-        let storePath = _global.storePath + moduleName;
-        let apiPath = _global.apiPath + moduleName;
-        
-        fsTool.createFile(viewPath);
-        fsTool.createFile(storePath);
-        fsTool.createFile(apiPath);
 
-        //ejs模板写入创建好的文件
-        //读取模板文件
-        let ejsPath = _global.rootPath + "/ejs/test.ejs";
-        let ejsStr = fsTool.readFile(ejsPath);
-        let ejsData = {
-            data:{name:"1111",items:[{age:1},{age:2}]}
-        };
-        let data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
-
-        console.log(1111,data);
-        fsTool.writeFile(viewPath,data);
-
-        return resEntity.setEneity({res:res});
-    }
-}
-
-module.exports = api;
+module.exports = fsTool;

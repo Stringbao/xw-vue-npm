@@ -21,10 +21,9 @@ require('./routes.js')(app);
  */
 const init = (projectPath)=>{
     app.listen(3000,d=>{
-        const _path = path.join(__dirname,"./projectPath.txt");
-        const _clientPath = fs.readFile(_path);
+        const _clientPath = fs.getClientPath();
+        const _serverPath = path.join(__dirname,"./projectPath.txt");
         if(!projectPath){
-            console.log(_clientPath);
             if(_clientPath == ""){
                 console.log("项目没有创建,直接启动服务失败!");
                 process.exit();
@@ -33,8 +32,8 @@ const init = (projectPath)=>{
                 console.log("server is running in 3000 port");
             }
         }else{
-            fs.writeFile(_path,projectPath);
-            console.log(_path,"写入客户端绝对路径成功!");
+            fs.writeFile(_serverPath,projectPath);
+            console.log(fs.getClientPath(),"路径写入成功!");
             console.log("server is running in 3000 port");
         }
     })
