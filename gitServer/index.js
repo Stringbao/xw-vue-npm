@@ -39,6 +39,6 @@ const init = (projectPath)=>{
     })
 }
 
-// init();
+init();
 
 module.exports = init;

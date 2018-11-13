@@ -1,53 +1,60 @@
 
 const fsTool = require("../fs/fsapi");
 const resEntity = require("../responseEntity");
-const _config = require("../config");
+const _config = require("../pathConfig");
 const ejsTool = require("../ejs/ejsapi");
 
-const api = {
-    writeFile:(path,data)=>{
-        fsTool.writeFile(path,data);
-    },
-    deleteFolder:(req,res)=>{
-        let filepath = req.query.path;
-        let options = {res:res};
-        if(!filepath){
-            options.status = "201";
-            options.msg = "不允许直接删除根目录!";
-        }
-        fsTool.deleteFolder(filepath);
-        return resEntity.setEneity(options);
-    },
-    createFolder:(req,res)=>{
-        const filepath = req.body.path;
-        fsTool.createFolder(filepath);
-        return resEntity.setEneity({res:res});
-    },
-    createFile:(req,res)=>{
-        const filepath = _global.viewPath + req.body.path;
-        fsTool.createFile(filepath);
-        return resEntity.setEneity({res:res});
-    },
-    createModule:(req,res)=>{
-        const moduleName = req.body.moduleName;
-        let viewPath = _global.viewPath + moduleName;
-        let storePath = _global.storePath + moduleName;
-        let apiPath = _global.apiPath + moduleName;
-        
+const createTool = {
+    createView(name,data){
+        let viewPath = _config.viewPath.view + "/"+name + "/list.vue";
+        let listEjsPath = _config.viewPath.listEjs;
+
         fsTool.createFile(viewPath);
-        fsTool.createFile(storePath);
+
+        let ejsStr = fsTool.readFile(listEjsPath);
+        let ejsData = {
+            data:{name:"abccccccc",items:[{age:1},{age:2}]}
+        };
+        let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
+
+        fsTool.writeFile(viewPath,_data);
+    },
+    createApi(name,data){
+        let apiPath = _config.apiPath.api + "/"+ name + "/api.js";
+        let apiEjsPath = _config.apiPath.ejs;
+
         fsTool.createFile(apiPath);
 
-        //ejs模板写入创建好的文件
-        //读取模板文件
-        let ejsPath = _global.rootPath + "/ejs/test.ejs";
+        let ejsStr = fsTool.readFile(apiEjsPath);
+        let ejsData = {
+            data:{name:"nnnnnnn",items:[{age:444444},{age:555555}]}
+        };
+        let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
+
+        fsTool.writeFile(apiPath,_data);
+    },
+    createStore(name,data){
+        let storePath = _config.storePath.store + "/"+ name + "/store.js";
+        let ejsPath = _config.storePath.ejs;
+
+        fsTool.createFile(storePath);
+
         let ejsStr = fsTool.readFile(ejsPath);
         let ejsData = {
-            data:{name:"1111",items:[{age:1},{age:2}]}
+            data:{name:",,,,,lasljdaklsd",items:[{age:77777},{age:'dasdasdsad'}]}
         };
-        let data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
+        let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
 
-        fsTool.writeFile(viewPath,data);
+        fsTool.writeFile(storePath,_data);
+    }
+}
+
+const api = {
+    createModule:(req,res)=>{
+        const moduleName = req.body.moduleName;
+        createTool.createView(moduleName,{});
+        createTool.createApi(moduleName,{});
+        createTool.createStore(moduleName,{});
 
         return resEntity.setEneity({res:res});
     }
