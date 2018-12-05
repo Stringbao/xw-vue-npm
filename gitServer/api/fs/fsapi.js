@@ -49,13 +49,14 @@ const fsTool = {
      * @return 每次写入都会覆盖掉原有的内容
      */
     writeFile:(path,data)=>{
-        fs.outputFileSync(path, data);
+        let str = fsTool.readFile(path);
+        fs.outputFileSync(path, str?str + "\r\n" + data:data);
     },
     /**
-     * @description 读取客户端项目地址(绝对路径)
+     * @description 读取客户端项目地址,多个项目(绝对路径)
      * @returns string
      */
-    getClientPath:()=>{
+    getProjectsPath:()=>{
         let _path = path.join(__dirname,"../../projectPath.txt");
         return fsTool.readFile(_path);
     }

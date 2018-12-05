@@ -20,8 +20,8 @@ require('./routes.js')(app);
  * @returns 
  */
 const init = (projectPath)=>{
-    app.listen(3000,d=>{
-        const _clientPath = fs.getClientPath();
+    app.listen(9998,d=>{
+        const _clientPath = fs.getProjectsPath();
         const _serverPath = path.join(__dirname,"./projectPath.txt");
         if(!projectPath){
             if(_clientPath == ""){
@@ -29,12 +29,12 @@ const init = (projectPath)=>{
                 process.exit();
             }else{
                 console.log("项目已经成功创建,直接启动,path:"+_clientPath);
-                console.log("server is running in 3000 port");
+                console.log("server is running in 9998 port");
             }
         }else{
             fs.writeFile(_serverPath,projectPath);
-            console.log(fs.getClientPath(),"路径写入成功!");
-            console.log("server is running in 3000 port");
+            console.log(fs.getProjectsPath(),"路径写入成功!");
+            console.log("server is running in 9998 port");
         }
     })
 }
