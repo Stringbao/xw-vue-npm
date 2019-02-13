@@ -23,6 +23,7 @@ const init = (projectPath)=>{
     app.listen(9998,d=>{
         const _clientPath = fs.getProjectsPath();
         const _serverPath = path.join(__dirname,"./projectPath.txt");
+        console.log(projectPath);
         if(!projectPath){
             if(_clientPath == ""){
                 console.log("项目没有创建,直接启动服务失败!");
@@ -38,7 +39,10 @@ const init = (projectPath)=>{
         }
     })
 }
-
+/**
+ * 发布到生产环境后需要注释init方法, 项目下载完毕后会直接启动node服务
+ * 测试环境需要打开init方法，直接启动node服务
+ */
 init();
 
 module.exports = init;

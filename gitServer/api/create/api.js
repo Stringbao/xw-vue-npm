@@ -5,18 +5,31 @@ const _config = require("../pathConfig");
 const ejsTool = require("../ejs/ejsapi");
 
 const createTool = {
+    getRelativeCompPath(projectPath,name){
+        let commonUtilPath = "/core/tool/commonUtil.js";
+        let fullPath = "src/pages/"+name;
+        let length = fullPath.split('/').length - 1;
+        let res = [];
+        for(let i=0;i<length;i++){
+            res.push("..");
+        }
+        let path = res.join('/') + commonUtilPath;
+        console.log(path);
+        return path;
+    },
     createView(projectPath,name,data){
-        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+name + "/list.vue";
+        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ name + "/list.vue";
         let listEjsPath = projectPath + "/" + _config.viewPath.listEjs;
 
         fsTool.createFile(viewPath);
 
         let ejsStr = fsTool.readFile(listEjsPath);
         let ejsData = {
-            data:{name:"abccccccc",items:[{age:1},{age:2}]}
+            //CommonUtil注入
+            data:{name:"CommonUtil",filePath:this.getRelativeCompPath(projectPath,name)}
         };
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
-
+        console.log(viewPath,01);
         fsTool.writeFile(viewPath,_data);
     },
     createApi(projectPath,name,data){
