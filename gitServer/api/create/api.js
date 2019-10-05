@@ -3,6 +3,7 @@ const fsTool = require("../fs/fsapi");
 const resEntity = require("../responseEntity");
 const _config = require("../pathConfig");
 const ejsTool = require("../ejs/ejsapi");
+const path = require("path");
 
 const createTool = {
     getRelativeCompPath(projectPath,name){
@@ -17,19 +18,18 @@ const createTool = {
         console.log(path);
         return path;
     },
-    createView(projectPath,name,data){
-        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ name + "/list.vue";
-        let listEjsPath = projectPath + "/" + _config.viewPath.listEjs;
-
+    createView(projectPath, moduleName, data){
+        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/list.vue";
+        let listEjsPath = path.resolve(__dirname, _config.viewPath.listEjs);
         fsTool.createFile(viewPath);
-
+        console.log("模块"+moduleName + "->View->list路径:",viewPath);
+        console.log("ejs view 模块路径：",listEjsPath);
         let ejsStr = fsTool.readFile(listEjsPath);
         let ejsData = {
             //CommonUtil注入
-            data:{name:"CommonUtil",filePath:this.getRelativeCompPath(projectPath,name)}
+            data:{name:"CommonUtil",filePath:this.getRelativeCompPath(projectPath,moduleName)}
         };
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
-        console.log(viewPath,01);
         fsTool.writeFile(viewPath,_data);
     },
     createApi(projectPath,name,data){
@@ -63,12 +63,22 @@ const createTool = {
 }
 
 const api = {
-    createModule:(req,res)=>{
+    createModuleFolder:(req,res)=>{
         let moduleName = req.body.moduleName;
         let projectPath = req.body.projectPath;
-        createTool.createView(projectPath,moduleName,{});
-        createTool.createApi(projectPath,moduleName,{});
-        createTool.createStore(projectPath,moduleName,{});
+        fsTool.createFolder(projectPath + "/src/pages/" + moduleName);
+        fsTool.createFolder(projectPath + "/src/api/" + moduleName);
+        fsTool.createFolder(projectPath + "/src/store/" + moduleName);
+        fsTool.createFolder(projectPath + "/src/service/" + moduleName);
+        return resEntity.setEneity({res:res});
+    },
+    createModuleFile:(req,res)=>{
+        let moduleName = req.body.moduleName;
+        let projectPath = req.body.projectPath;
+        let data = req.body.data;
+        createTool.createView(projectPath,moduleName,data);
+        // createTool.createApi(projectPath,moduleName,{});
+        // createTool.createStore(projectPath,moduleName,{});
 
         return resEntity.setEneity({res:res});
     },

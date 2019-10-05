@@ -23,7 +23,7 @@ const init = (projectPath)=>{
     app.listen(9998,d=>{
         const _clientPath = fs.getProjectsPath();
         const _serverPath = path.join(__dirname,"./projectPath.txt");
-        console.log(projectPath);
+        console.log(projectPath,_serverPath);
         if(!projectPath){
             if(_clientPath == ""){
                 console.log("项目没有创建,直接启动服务失败!");

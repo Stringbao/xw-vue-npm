@@ -1,0 +1,417 @@
+<template>
+    <div class="form_content">
+			<div class="searchContent">
+				<ul class="clearfix">
+					<li>
+						<span>商品名称:</span>
+						<input type="text"/>
+					</li>
+					<li>
+						<span>商品编码:</span>
+						<input type="text"/>
+					</li>
+					<li>
+						<span>状态:</span>
+						<input type="text"/>
+					</li>
+					<li>
+						<span>商品名称:</span>
+						<input type="text"/>
+					</li>
+					<li>
+						<span>商品编码:</span>
+						<input type="text"/>
+					</li>
+					<li>
+						<span>状态:</span>
+						<input type="text"/>
+					</li>
+				</ul>
+				<div class="btnGruop">
+					<input type="button" class="search" value="搜索" />
+					<input type="button" class="edit" value="编辑" />
+				    <input type="button" id="add" class="add" value="新建"/>
+				</div>
+			</div>
+			
+			<!--列表-->
+			<div class="tableList">
+				<p class="tableName">详细列表</p>
+				<div></div>
+			</div>
+	
+			<!--弹出框-->
+			<div id="dialogBox" class="dialogBox" style="display:none">
+				<div class="container">
+					<p class="dialog_title">
+						<span>编辑</span>
+						<span id="closeBtn" class="closeBtn">×</span>
+					</p>
+					<div class="detail">
+							<ul class="form">
+					<li>
+						<span class="labelName">姓 名:</span>
+						<input type="text" value="zxl"/>
+					</li>
+					<li>
+						<span class="labelName">日 期:</span>
+						<input id="d11" type="text" onClick="WdatePicker()"/>
+					</li>
+					<li>
+						<span class="labelName">省 份:</span>
+						<select>
+							<option>北京</option>
+							<option>上海</option>
+							<option>山西</option>
+						</select>
+					</li>
+					<li>
+						<span class="labelName">运 动:</span>	 
+						<div class="checkboxList">
+                            <input type="checkbox" name="checkbox1" value="checkbox复选1"/> 								
+                            <span>跑步</span>
+                            <input type="checkbox" name="checkbox1" value="checkbox复选2"/> 								
+                            <span>举重</span>
+                            <input type="checkbox" name="checkbox1" value="checkbox复选3"/>
+                            <span>写代码</span>
+						</div>
+					</li>
+					<li>
+						<span class="labelName">爱 好 组:</span>	 
+						<div class="checkboxList">
+							<input type="checkbox" name="checkbox1" value="checkbox复选1"/> 								<span>唱歌</span>
+							<input type="checkbox" name="checkbox1" value="checkbox复选2"/> 								<span>跳舞</span>
+							<input type="checkbox" name="checkbox1" value="checkbox复选3"/><span>写代码</span>
+						</div>
+					</li>
+					<li>
+						<span class="labelName">性 别:</span>
+						<div class="radioGroup">
+							<div class="radioList">
+								<input type="radio" value="男" name="radio1"/>
+								<span>男</span>
+								<input type="radio" value="女" name="radio1"/>
+								<span>女</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<span class="labelName">学 历:</span>
+						<div class="radioGroup">
+							<div class="radioList">
+								<input type="radio" value="本科" name="radio2"/>
+								<span>本科</span>
+								<input type="radio" value="研究生" name="radio2"/>
+								<span>研究生</span>
+							</div>
+						</div>
+					</li>
+					<li>
+						<span class="labelName">简介:</span>
+						<textarea></textarea>
+					</li>
+					<li>
+						<span class="labelName">上传:</span>
+						<input type="file" value="请选择文件" />
+					</li>
+					<li class="btnGroup">
+						<button>提 交1111</button>
+						<button id="cancel" class="cancel">取 消</button>
+					</li>
+				</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+</template>
+<script>
+import <%= data.name %> from '<%= data.filePath %>';
+
+export default {
+    name:"",
+    data(){
+        return {}
+    },
+    computed:{
+
+    },
+    methods:{
+
+    },
+    mounted(){
+        
+    }
+}
+</script>
+<style scoped>
+    ul,li{
+	    list-style: none;
+	    font-size: 16px;
+    }
+
+    body.in{
+        overflow-y:hidden;
+    }
+
+    .form_content{
+        width: 100%;
+        height: 100%;
+    }
+
+    .form_content .form{
+        width: 100%;
+        margin: 0 auto;
+        padding:10px 20px;
+    }
+
+    .form_content .form li{
+        margin: 10px 0;
+        text-align: left;
+        line-height: 28px;
+    }
+
+    .form_content .form .labelName{
+        display: inline-block;
+        width: 20%;
+        text-align: right;
+        margin-right: 10px;  
+        font-size: 14px;
+        color: #606266;
+        padding: 0 12px 0 0;
+        box-sizing: border-box;
+    }
+
+    .form_content .form input[type="text"],input[type="file"],select{
+        width: 40%;
+        height: 28px;
+        line-height: 28px;
+        vertical-align: top;
+        padding: 0 5px;
+        border-radius: 3px;
+        border: 1px solid #ddd;
+        outline: none;
+        color: #606266;
+        font-size: 14px;
+        display: inline-block;
+    }
+
+    .form_content .form input[type="file"]{
+        border: none;
+        outline: none;
+    }
+
+    .form_content .form input[type="checkbox"],input[type="radio"]{
+        width: 14px;
+        height: 14px;
+        vertical-align: sub;
+            margin: 0 3px 0 0;
+    }
+
+    .form_content .form span{
+        margin-right: 5px;
+    }
+
+    .form_content .form textarea{
+        width: 70%;
+        min-height: 50px;
+        resize: none;
+        outline: none;
+        vertical-align: top;
+        border: 1px solid #ddd;
+    }
+
+    .form_content .form .btnGroup{
+        text-align: right;
+        margin-top: 40px;
+        margin-bottom: 50px;
+    }
+
+    .form_content .form .btnGroup button{
+        border: 1px solid #409eff;
+        color: #fff;
+        background-color: #409eff;
+        border-radius: 3px;
+        padding: 0px 16px;
+        font-size: 14px;
+        outline: none;
+        padding: 6px 20px;
+        line-height: normal;
+    }
+
+    .form_content .form .btnGroup button.cancel{
+            background-color: #fff;
+        border: 1px solid #ddd;
+        color: #606266;
+    }
+
+    /*dialog*/
+    .form_content .dialogBox{
+        width: 100%;
+        height: 100%;
+        background:rgba(0,0,0,0.5) ;
+        position: absolute;
+        top: 0;
+        left: 0;
+        overflow-y: hidden;
+    }
+
+    .form_content .dialogBox .container{
+        /*width: 50%;*/ 
+        width: 600px;
+        max-height:570px;
+        overflow-y:scroll;
+        background-color: #fff; 
+        padding: 0;
+        margin: 50px auto;
+        background: #fff;
+        border-radius: 2px;
+        -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.3);
+        box-shadow: 0 1px 3px rgba(0,0,0,.3);
+        box-sizing: border-box;
+    }
+
+    .form_content .dialogBox .container .dialog_title{
+        width: 600px;
+        height: 54px;
+        line-height: 54px;
+        font-size: 18px;
+        padding: 0 20px;
+        margin-bottom: 0;
+        background-color: #f7f7f7;
+        text-align: center;
+        position: absolute;
+    }
+
+    .form_content .dialogBox .container .closeBtn{
+        float: right; 
+        font-size: 24px;
+        vertical-align: top;
+        cursor: pointer;
+    }
+
+    .form_content .dialogBox .container .detail{
+        width: 100%;
+        margin-top: 54px;
+    }
+
+    .form_content .dialogBox .container div{
+        text-align: left;
+        font-size: 14px;
+        width: 70%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .form_content .dialogBox .container .btnGroup input{
+            -webkit-appearance: button;
+        cursor: pointer;
+        background-color: #f4364c;
+        border: none;
+        color: #fff;
+        border-radius: 3px;
+        padding: 5px 10px;
+    }
+
+
+    body{
+        background-color: #f5f5fa;
+    }
+
+    .form_content h3{
+        padding: 0 30px;
+    }
+
+    .form_content .searchContent{
+        width: 92%;
+        margin: 0 auto 20px;
+        padding: 25px 0;
+        padding-top: 35px;
+        background-color: #fff;
+        margin-bottom: 30px;
+        background-color: #fff;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        border-radius: 3px;
+        margin-top: 20px;
+    }
+
+    .form_content .searchContent ul{
+        padding: 0;
+    }
+
+    .form_content .searchContent ul li{
+        width: 30%;
+        float: left;
+        padding-left: 60px;
+        margin: 10px 0;
+    }
+
+    .form_content .searchContent ul li span{
+        float: left;
+        height: 28px;
+        min-width: 80px;
+        line-height: 28px;
+        width: 35%;
+        text-align: right;
+        padding-right: 10px;
+    }
+
+    .form_content .searchContent ul li input[type="text"]{
+        width: 63%;
+        min-width: 120px;
+        border: 1px solid #dcdfe6;
+        border-radius: 4px;
+        outline: none;
+        padding: 0 5px;
+        height: 28px;
+        line-height: 28px;
+    }
+
+    .form_content .searchContent .btnGruop{
+        text-align: right;
+            padding: 0 25px;
+    }
+
+    .form_content .searchContent .btnGruop input{
+        padding: 2px 10px;
+        border-radius: 3px;
+        border: none;
+        background-color: #409eff;
+        color: #fff;
+        outline: none;
+    }
+
+    .form_content .tableList{
+        width: 92%;
+        min-height: 400px;
+        margin: 0 auto 20px;
+        padding-bottom: 60px;
+        background-color: #fff;
+        margin-bottom: 30px;
+        background-color: #fff;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+        -moz-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        -webkit-box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+        border-radius: 3px;
+    }
+
+    .form_content .tableList .tableName{
+        padding: 20px 25px;
+        position: relative;
+        font-size: 18px;
+        font-weight: 300;
+        margin: 0;
+    }
+
+    ::-webkit-scrollbar {/*滚动条整体样式*/
+        width: 0px;     /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+</style>
