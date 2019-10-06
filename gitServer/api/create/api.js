@@ -26,8 +26,12 @@ const createTool = {
         console.log("ejs view 模块路径：",listEjsPath);
         let ejsStr = fsTool.readFile(listEjsPath);
         let ejsData = {
-            //CommonUtil注入
-            data:{name:"CommonUtil",filePath:this.getRelativeCompPath(projectPath,moduleName)}
+            data:{
+                //CommonUtil注入
+                commonUtil:{name:"commonUtil",filePath:this.getRelativeCompPath(projectPath,moduleName)},
+                btn:data.btn,
+                cols:data.cols
+            }
         };
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
         fsTool.writeFile(viewPath,_data);

@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('./api/fs/fsapi.js');
 
 //这个包非常重要，是为了解决nodejs里面post参数接受异常的问题
-var bodyParser = require('body-parser');
+let bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 

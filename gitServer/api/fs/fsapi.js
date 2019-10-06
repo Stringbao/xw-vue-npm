@@ -31,7 +31,11 @@ const fsTool = {
      * @return sucess
      */
     createFile:(path)=>{
-        fs.ensureFileSync(path);
+        fsTool.deleteFile(path);
+        fs.createFileSync(path);
+    },
+    deleteFile:(path)=>{
+        fs.removeSync(path);
     },
     /**
      * @method fsapi
