@@ -2,12 +2,144 @@
     <div class="le_comps_core_css">
         <h4 class="le_page_name"><%= data.btn.pageName %></h4>
         <div class='le_list_search_pannel clearfix'>
-            <div class="col1">
-                <le-input labelWidth="120" label="订单编号:" v-model="searchModel.orderCode"></le-input>
+            <%_ data.cols.forEach(function(row){ -%>
+            <div class="<%= 'col' + data.btn.colsCount %>"><%_ %>
+            <%_ row.forEach(function(col){ -%>
+                <%_ if(col.fieldType == "text"){ -%>
+                <le-input<%  _%>
+                    <%_ if(col.placeholder && col.placeholder != ''){ -%>
+                        <%_  %> placeholder = "<%= col.placeholder %>" <%_  -%>
+                    <%_ } -%>
+                    <%_ if(col.labelWidth && col.labelWidth != ''){ -%>
+                        <%_  %> labelWidth="<% col.labelWidth %>"<%_  -%>
+                    <%_ } -%>
+                    <%_ if(col.label && col.label != ''){ -%>
+                        <%_  %> label="<%= col.label %>:"<%_  -%>
+                    <%_ } -%>
+                    <%_ if(col.key && col.key != ''){ -%>
+                        <%_  %> v-model="searchModel.<%= col.key %>"<%_  -%>
+                    <%_ } -%>></le-input>
+                <%_ } -%>
+                <%_ if(col.fieldType == "select"){ -%>
+                <le-local-select<%  _%>
+                            <%_ if(col.placeholder && col.placeholder != ''){ _%>
+                                <%_  %> placeholder = "<%= col.placeholder %>"<%  -%>
+                            <%_ } _%>
+                            <%_ if(col.labelWidth && col.labelWidth != ''){ -%>
+                                <%_  %> labelWidth="<%= col.labelWidth %>"<%  -%>
+                            <%_ } _%>
+                            <%_ if(col.label && col.label != ''){ -%>
+                                <%_  %> label="<%= col.label %>:"<%  -%>
+                            <%_ } _%>
+                            <%_ if(col.key && col.key != ''){ -%>
+                                <%_  %> v-model="searchModel.<%=col.key%>"<%  -%>
+                            <%_ } _%>
+                            <%_ if(col.dataSource && col.dataSource != ''){ -%>
+                                <%_  %> :data-source="<%= col.dataSource %>"<%  -%>
+                            <%_ } _%>
+                            <%_ if(col.displayName && col.displayName != ''){ -%>
+                                <%_  %> display-name="<%= col.displayName %>"<%  -%>
+                            <%_ } _%>
+                            <%_ if(col.displayValue && col.displayValue != ''){ -%>
+                                <%_  %> display-value="<%= col.displayValue %>"<%  -%>
+                            <%_ } _%>></le-local-select>
+                <%_ } -%>
+                <%_ if(col.fieldType == "radioList"){ -%>
+                <le-radio-list<%  _%>
+                        <%_ if(col.labelWidth && col.labelWidth != ''){ _%>
+                            <%_  %> labelWidth="<%= col.labelWidth %>"<%  -%>
+                        <%_ } _%>
+                        <%_ if(col.label && col.label != ''){ -%>
+                            <%_  %> label="<%= col.label %>:"<%  -%>
+                        <%_ } _%>
+                        <%_ if(col.key && col.key != ''){ -%>
+                            <%_  %> v-model="searchModel.<%=col.key%>"<%  -%>
+                        <%_ } _%>
+                        <%_ if(col.dataSource && col.dataSource != ''){ -%>
+                            <%_  %> :data-source="<%= col.dataSource %>"<%  -%>
+                        <%_ } _%>
+                        <%_ if(col.displayName && col.displayName != ''){ -%>
+                            <%_  %> display-name="<%= col.displayName %>"<%  -%>
+                        <%_ } _%>
+                        <%_ if(col.displayValue && col.displayValue != ''){ -%>
+                            <%_  %> display-value="<%= col.displayValue %>"<%  -%>
+                        <%_ } _%>></le-radio-list>
+                <%_ } -%>
+                <%_ if(col.fieldType == "checkboxList"){ -%>
+                <le-checkbox-list<%  _%>
+                    <%_ if(col.labelWidth && col.labelWidth != ''){ _%>
+                        <%_  %> labelWidth="<%= col.labelWidth %>"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.label && col.label != ''){ -%>
+                        <%_  %> label="<%= col.label %>:"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.key && col.key != ''){ -%>
+                        <%_  %> v-model="searchModel.<%=col.key%>"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.dataSource && col.dataSource != ''){ -%>
+                        <%_  %> :data-source="<%= col.dataSource %>"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.displayName && col.displayName != ''){ -%>
+                        <%_  %> display-name="<%= col.displayName %>"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.displayValue && col.displayValue != ''){ -%>
+                        <%_  %> display-value="<%= col.displayValue %>"<%  -%>
+                    <%_ } _%>></le-checkbox-list>
+                <%_ } -%>
+                <%_ if(col.fieldType == "datepicker"){ -%>
+                <le-date-picker<%  _%>
+                    <%_ if(col.placeholder && col.placeholder != ''){ _%>
+                        <%_  %> placeholder = "<%= col.placeholder %>"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.labelWidth && col.labelWidth != ''){ -%>
+                        <%_  %> labelWidth="<%= col.labelWidth %>"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.label && col.label != ''){ -%>
+                        <%_  %> label="<%= col.label %>:"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.key && col.key != ''){ -%>
+                        <%_  %> v-model="searchModel.<%=col.key%>"<%  -%>
+                    <%_ } _%>></le-date-picker>
+                <%_ } -%>
+                <%_ if(col.fieldType == "timepicker"){ -%>
+                <le-time-picker<%  _%>
+                    <%_ if(col.placeholder && col.placeholder != ''){ _%>
+                        <%_  %> placeholder = "<%= col.placeholder %>"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.labelWidth && col.labelWidth != ''){ -%>
+                        <%_  %> labelWidth="<%= col.labelWidth %>"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.label && col.label != ''){ -%>
+                        <%_  %> label="<%= col.label %>:"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.key && col.key != ''){ -%>
+                        <%_  %> v-model="searchModel.<%=col.key%>"<%  -%>
+                    <%_ } _%>></le-time-picker>
+                <%_ } _%>
+                <%_ if(col.fieldType == "dateTimepicker"){ -%>
+                <le-date-time-picker<%  _%>
+                    <%_ if(col.placeholder && col.placeholder != ''){ _%>
+                        <%_  %> placeholder = "<%= col.placeholder %>"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.labelWidth && col.labelWidth != ''){ -%>
+                        <%_  %> labelWidth="<%= col.labelWidth %>"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.label && col.label != ''){ -%>
+                        <%_  %> label="<%= col.label %>:"<%  -%>
+                    <%_ } _%>
+                    <%_ if(col.key && col.key != ''){ -%>
+                        <%_  %> v-model="searchModel.<%=col.key%>"<%  -%>
+                    <%_ } _%>
+                ></le-date-time-picker>
+                <%_ } _%>
+            <%_ }) _%>
             </div>
+        <%_ _%><% }) -%>
         </div>
         <div class="le_search_btn_group cleatfix">
-            <le-button type="create" value="新建" @click="add"></le-button>
+        <%_ data.btn.btns.forEach(function(item){ -%>
+            <le-button type="<%= item.btnType %>" value="<%= item.btnName %>" @click="<%= item.btnHandle %>"></le-button>
+        <%_ }) _%>
         </div>
         <div class='le_table_container'>
             <table-list title="<%= data.btn.pageName %>" ref='black_list_table' :options='tableOptions'></table-list>
@@ -20,13 +152,69 @@ import <%= data.commonUtil.name %> from '<%= data.commonUtil.filePath %>';
 export default {
     name:"",
     data(){
-        return {}
+        return {
+            // 搜索条件
+            searchModel:{
+                <%_ data.cols.forEach(function(row){ -%>
+                    <%_ row.forEach(function(col){ -%>
+                        <%_ if(col.key && col.key != ""){ -%>
+                            <%_ %>                <%= col.key %> : "",
+                        <%_ } -%>
+                    <%_ }) -%>
+                <%_ }) -%>
+            },
+            // 表格的配置
+            optionsTable:{
+                showCk:false,
+                actions:[
+                    // 表格内按钮
+                    // Example：{key:"update",val:"修改",action:this.editItem},
+                ],
+                map:[
+                    // 表格列
+                    // Example： {key:'databaseName',val:'数据库',},
+                ],
+                getUrl:()=>{
+                    // 表格数据来源的接口地址
+                    // Example： return "/mplatform/conditionTableRelate/queryConditionTableRelate.jhtml?" + Util.object.toQueryString(this.searchModel)
+                    return "";
+                },
+                pageOption:{
+                    // 后台标示页码的key
+                    sizeKey:"",
+                    // 后台标示当前页的key
+                    indexKey:"",
+                    // 当前页的value
+                    index:1,
+                    // 页码的value
+                    size:10
+                },
+                analysis:(data)=>{	
+                    // 处理数据源
+                    if(data && data.rows){
+                        return {
+                            data:data.rows,
+                            count:data.total,
+                        }
+                    }else{
+                        return {
+                            data:[],
+                            count:0
+                        }
+                    }
+                }
+            }
+        }
     },
     computed:{
 
     },
     methods:{
-
+        <%_ data.btn.btns.forEach(function(item){ -%>
+        <%= item.btnHandle %>(){
+            // <%= item.btnName %>按钮操作事件
+        },
+        <%_ }) -%>
     },
     mounted(){
         
