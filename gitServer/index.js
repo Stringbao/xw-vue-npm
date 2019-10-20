@@ -2,11 +2,6 @@
 const express = require("express");
 const app = express();
 const path = require('path');
-
-var session = require('express-session');
-var mysql = require('mysql');
-var MySQLStore = require('express-mysql-session')(session);
-
 const fs = require('./api/fs/fsapi.js');
 
 //这个包非常重要，是为了解决nodejs里面post参数接受异常的问题
@@ -15,6 +10,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 
 require('./routes.js')(app);
+
+app.set('view options', { pretty: true });
 
 /**
  * @description 启动nodejs服务，分为2种情况:
@@ -49,79 +46,5 @@ const init = (projectPath)=>{
  * 测试环境需要打开init方法，直接启动node服务
  */
 init();
-
-let mysqlConfig = {
-    host:"www.coolvis.com",
-    user:"robot_task",
-    password:"testuser",
-    database:"abcd1234!",
-    useConnectionPooling: true
-}
-
-const db = mysql.createConnection(mysqlConfig);
-var sessionStore = new MySQLStore({},db);
-
-db.connect(err=>{
-    console.log("连接数据库成功");
-})
-
-app.get("/insertAddress",(req,res)=>{
-    let data = {
-        cityNo: "1185",
-        countyNo: "10393",
-        deliverStreet: "百善镇市中心街道1号",
-        delivercity: "北京市",
-        delivercounty: "昌平区",
-        delivermobile: "18693145225",
-        delivername: "18693145225",
-        deliverprovice: "北京市",
-        delivertele: "",
-        isDefault: "1",
-        provinceNo: "010",
-        towerShip: "百善镇",
-        townshipNo: "117909",
-        type: "SH",
-        zip: "100000"
-    }
-    let sql = "INSERT INTO delivery_address SET ?";
-    let cd = {
-        name:data.delivername,
-        mobile:data.delivermobile,
-        province:data.deliverprovice,
-        provinceNo:data.provinceNo,
-        city:data.delivercity,
-        cityNo:data.countyNo,
-        county:data.delivercounty,
-        countyNo:data.countyNo,
-        town:data.towerShip,
-        townNo:data.townshipNo,
-        street:data.deliverStreet,
-        isDefault:"1",
-        zip: "100000",
-        type:"SH",
-        delivertele: "",
-        streetNo:"",
-        telephone:"",
-        sysCode:"",
-        taskId:"",
-    }
-    db.query(sql,cd,(err,result)=>{
-        if(err){
-            console.log(err);
-        }else{
-            console.log(result);
-            let querySQL = "SELECT * FROM delivery_address";
-            db.query(sql,(error,res)=>{
-                if(error){
-                    console.log(error);
-                }else{
-                    console.log(res);
-                }
-            })
-        }
-        
-    })
-})
-
 
 module.exports = init;

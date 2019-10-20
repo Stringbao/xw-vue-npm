@@ -38,7 +38,7 @@ const createTool = {
         return _array;
     },
     createView(projectPath, moduleName, data){
-        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/list.vue";
+        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/" + data.btn.subModulePath + "/" + data.btn.pageName;
         let listEjsPath = path.resolve(__dirname, _config.viewPath.listEjs);
         fsTool.createFile(viewPath);
         console.log("模块"+moduleName + "->View->list路径:",viewPath);
@@ -50,7 +50,8 @@ const createTool = {
                 //CommonUtil注入
                 commonUtil:{name:"commonUtil",filePath:this.getRelativeCompPath(projectPath,moduleName)},
                 btn:data.btn,
-                cols:this.groupBy(data.cols.cols,data.btn.colsCount)
+                cols:this.groupBy(data.cols.cols,data.btn.colsCount),
+                tableOptions:data.tableOptions
             }
         };
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);

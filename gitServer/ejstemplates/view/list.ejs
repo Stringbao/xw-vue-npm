@@ -1,6 +1,6 @@
 <template>
     <div class="le_comps_core_css">
-        <h4 class="le_page_name"><%= data.btn.pageName %></h4>
+        <h4 class="le_page_name"><%= data.btn.tableTitle %></h4>
         <div class='le_list_search_pannel clearfix'>
             <%_ data.cols.forEach(function(row){ -%>
             <div class="<%= 'col' + data.btn.colsCount %>"><%_ %>
@@ -142,7 +142,7 @@
         <%_ }) _%>
         </div>
         <div class='le_table_container'>
-            <table-list title="<%= data.btn.pageName %>" ref='black_list_table' :options='tableOptions'></table-list>
+            <table-list title="<%= data.btn.tableTitle %>" ref='black_list_table' :options='tableOptions'></table-list>
         </div>
     </div>
 </template>
@@ -164,46 +164,7 @@ export default {
                 <%_ }) -%>
             },
             // 表格的配置
-            optionsTable:{
-                showCk:false,
-                actions:[
-                    // 表格内按钮
-                    // Example：{key:"update",val:"修改",action:this.editItem},
-                ],
-                map:[
-                    // 表格列
-                    // Example： {key:'databaseName',val:'数据库',},
-                ],
-                getUrl:()=>{
-                    // 表格数据来源的接口地址
-                    // Example： return "/mplatform/conditionTableRelate/queryConditionTableRelate.jhtml?" + Util.object.toQueryString(this.searchModel)
-                    return "";
-                },
-                pageOption:{
-                    // 后台标示页码的key
-                    sizeKey:"",
-                    // 后台标示当前页的key
-                    indexKey:"",
-                    // 当前页的value
-                    index:1,
-                    // 页码的value
-                    size:10
-                },
-                analysis:(data)=>{	
-                    // 处理数据源
-                    if(data && data.rows){
-                        return {
-                            data:data.rows,
-                            count:data.total,
-                        }
-                    }else{
-                        return {
-                            data:[],
-                            count:0
-                        }
-                    }
-                }
-            }
+            optionsTable:<%- JSON.stringify(data.tableOptions) %>
         }
     },
     computed:{
