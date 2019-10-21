@@ -5,7 +5,7 @@
             <%_ data.cols.forEach(function(row){ -%>
             <div class="<%= 'col' + data.btn.colsCount %>"><%_ %>
             <%_ row.forEach(function(col){ -%>
-                <%_ if(col.fieldType == "text"){ -%>
+                <%_ if(col.type == "text"){ -%>
                 <le-input<%  _%>
                     <%_ if(col.placeholder && col.placeholder != ''){ -%>
                         <%_  %> placeholder = "<%= col.placeholder %>" <%_  -%>
@@ -20,7 +20,7 @@
                         <%_  %> v-model="searchModel.<%= col.key %>"<%_  -%>
                     <%_ } -%>></le-input>
                 <%_ } -%>
-                <%_ if(col.fieldType == "select"){ -%>
+                <%_ if(col.type == "select"){ -%>
                 <le-local-select<%  _%>
                             <%_ if(col.placeholder && col.placeholder != ''){ _%>
                                 <%_  %> placeholder = "<%= col.placeholder %>"<%  -%>
@@ -44,7 +44,7 @@
                                 <%_  %> display-value="<%= col.displayValue %>"<%  -%>
                             <%_ } _%>></le-local-select>
                 <%_ } -%>
-                <%_ if(col.fieldType == "radioList"){ -%>
+                <%_ if(col.type == "radioList"){ -%>
                 <le-radio-list<%  _%>
                         <%_ if(col.labelWidth && col.labelWidth != ''){ _%>
                             <%_  %> labelWidth="<%= col.labelWidth %>"<%  -%>
@@ -65,7 +65,7 @@
                             <%_  %> display-value="<%= col.displayValue %>"<%  -%>
                         <%_ } _%>></le-radio-list>
                 <%_ } -%>
-                <%_ if(col.fieldType == "checkboxList"){ -%>
+                <%_ if(col.type == "checkboxList"){ -%>
                 <le-checkbox-list<%  _%>
                     <%_ if(col.labelWidth && col.labelWidth != ''){ _%>
                         <%_  %> labelWidth="<%= col.labelWidth %>"<%  -%>
@@ -86,7 +86,7 @@
                         <%_  %> display-value="<%= col.displayValue %>"<%  -%>
                     <%_ } _%>></le-checkbox-list>
                 <%_ } -%>
-                <%_ if(col.fieldType == "datepicker"){ -%>
+                <%_ if(col.type == "datepicker"){ -%>
                 <le-date-picker<%  _%>
                     <%_ if(col.placeholder && col.placeholder != ''){ _%>
                         <%_  %> placeholder = "<%= col.placeholder %>"<%  -%>
@@ -101,7 +101,7 @@
                         <%_  %> v-model="searchModel.<%=col.key%>"<%  -%>
                     <%_ } _%>></le-date-picker>
                 <%_ } -%>
-                <%_ if(col.fieldType == "timepicker"){ -%>
+                <%_ if(col.type == "timepicker"){ -%>
                 <le-time-picker<%  _%>
                     <%_ if(col.placeholder && col.placeholder != ''){ _%>
                         <%_  %> placeholder = "<%= col.placeholder %>"<%  -%>
@@ -116,7 +116,7 @@
                         <%_  %> v-model="searchModel.<%=col.key%>"<%  -%>
                     <%_ } _%>></le-time-picker>
                 <%_ } _%>
-                <%_ if(col.fieldType == "dateTimepicker"){ -%>
+                <%_ if(col.type == "dateTimepicker"){ -%>
                 <le-date-time-picker<%  _%>
                     <%_ if(col.placeholder && col.placeholder != ''){ _%>
                         <%_  %> placeholder = "<%= col.placeholder %>"<%  -%>
@@ -142,8 +142,12 @@
         <%_ }) _%>
         </div>
         <div class='le_table_container'>
-            <table-list title="<%= data.btn.tableTitle %>" ref='black_list_table' :options='<%= data.btn.tableOptionsName %>'></table-list>
+            <table-list title="<%= data.btn.tableTitle %>" ref='black_list_table' :options='<%= data.tableOptionsName %>'></table-list>
         </div>
+
+        <le-dialog>
+
+        </le-dialog>
     </div>
 </template>
 <script>
@@ -164,7 +168,7 @@ export default {
                 <%_ }) -%>
             },
             // 表格的配置
-            '<%= data.btn.tableTitle %>':<%- JSON.stringify(data.tableOptions) %>
+            <%= data.tableOptionsName %>:<%- JSON.stringify(data.tableOptions) %>
         }
     },
     computed:{
