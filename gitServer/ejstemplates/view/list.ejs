@@ -142,7 +142,7 @@
         <%_ }) _%>
         </div>
         <div class='le_table_container'>
-            <table-list title="<%= data.btn.tableTitle %>" ref='black_list_table' :options='tableOptions'></table-list>
+            <table-list title="<%= data.btn.tableTitle %>" ref='black_list_table' :options='<%= data.btn.tableOptionsName %>'></table-list>
         </div>
     </div>
 </template>
@@ -164,7 +164,7 @@ export default {
                 <%_ }) -%>
             },
             // 表格的配置
-            optionsTable:<%- JSON.stringify(data.tableOptions) %>
+            '<%= data.btn.tableTitle %>':<%- JSON.stringify(data.tableOptions) %>
         }
     },
     computed:{

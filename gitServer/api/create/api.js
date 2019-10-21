@@ -51,7 +51,8 @@ const createTool = {
                 commonUtil:{name:"commonUtil",filePath:this.getRelativeCompPath(projectPath,moduleName)},
                 btn:data.btn,
                 cols:this.groupBy(data.cols.cols,data.btn.colsCount),
-                tableOptions:data.tableOptions
+                tableOptions:data.tableOptions,
+                tableOptionsName:data.btn.pageName.split('.')[0] + "_table_options"
             }
         };
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
