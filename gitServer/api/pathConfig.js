@@ -7,6 +7,7 @@ let ConfigClass = {
         view:"/src/pages",
         listEjs:"../../ejstemplates/view/list.ejs",
         saveEjs:"../ejstemplates/view/save.ejs",
+        viewFolderPath:"../../ejstemplates/view/"
     },
     apiPath:{
         api:"/src/api",

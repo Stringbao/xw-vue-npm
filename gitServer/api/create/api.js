@@ -39,6 +39,7 @@ const createTool = {
     },
     createView(projectPath, moduleName, data){
         let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/" + data.btn.subModulePath + "/" + data.btn.pageName;
+
         let listEjsPath = path.resolve(__dirname, _config.viewPath.listEjs);
         fsTool.createFile(viewPath);
         console.log("模块"+moduleName + "->View->list路径:",viewPath);
@@ -52,7 +53,10 @@ const createTool = {
                 btn:data.btn,
                 cols:this.groupBy(data.cols.cols,data.btn.colsCount),
                 tableOptions:data.tableOptions,
-                tableOptionsName:data.btn.pageName.split('.')[0] + "_table_options"
+                tableOptionsName:data.btn.pageName.split('.')[0] + "_table_options",
+                hasDialog:data.hasDialog ? data.hasDialog : "0",
+                form:data.form ? data.form : [],
+                viewFolderPath: path.resolve(__dirname, _config.viewPath.viewFolderPath)
             }
         };
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
