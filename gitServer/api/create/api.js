@@ -4,54 +4,22 @@ const resEntity = require("../responseEntity");
 const _config = require("../pathConfig");
 const ejsTool = require("../ejs/ejsapi");
 const path = require("path");
+const business = require("./business.js");
 
 const createTool = {
-
-    getRelativeCompPath(projectPath,name){
-        let commonUtilPath = "/core/tool/commonUtil.js";
-        let fullPath = "src/pages/"+name;
-        let length = fullPath.split('/').length - 1;
-        let res = [];
-        for(let i=0;i<length;i++){
-            res.push("..");
-        }
-        let path = res.join('/') + commonUtilPath;
-        console.log(path);
-        return path;
-    },
-    /**
-     * 将数组根据指定的长度进行切割
-     * @param {array} cols 
-     * @param {number} limitNum 
-     */
-    groupBy(cols,limitNum){
-        if(!cols instanceof Array){
-            return cols
-        }
-        let _len = cols.length;
-        let _limit = _len % limitNum === 0 ? _len / limitNum : Math.floor( (_len / limitNum) + 1 );
-        let _array = [];
-        for (let i = 0; i < _limit; i++) {
-            let temp = cols.slice(i*limitNum, i*limitNum+limitNum);
-            _array.push(JSON.parse(JSON.stringify(temp)));
-        }
-        return _array;
-    },
     createView(projectPath, moduleName, data){
         let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/" + data.btn.subModulePath + "/" + data.btn.pageName;
-
         let listEjsPath = path.resolve(__dirname, _config.viewPath.listEjs);
         fsTool.createFile(viewPath);
         console.log("模块"+moduleName + "->View->list路径:",viewPath);
         console.log("ejs view 模块路径：",listEjsPath);
         let ejsStr = fsTool.readFile(listEjsPath);
-        // console.log("列的数据:"+JSON.stringify(this.getCols(data.cols.cols,data.btn.colsCount)));
         let ejsData = {
             data:{
                 //CommonUtil注入
-                commonUtil:{name:"commonUtil",filePath:this.getRelativeCompPath(projectPath,moduleName)},
+                commonUtil:{name:"commonUtil",filePath:business.getRelativeCompPath(projectPath,moduleName)},
                 btn:data.btn,
-                cols:this.groupBy(data.cols.cols,data.btn.colsCount),
+                cols:business.groupBy(data.cols.cols,data.btn.colsCount),
                 tableOptions:data.tableOptions,
                 tableOptionsName:data.btn.pageName.split('.')[0] + "_table_options",
                 hasDialog:data.hasDialog ? data.hasDialog : "0",
