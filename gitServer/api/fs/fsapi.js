@@ -50,11 +50,19 @@ const fsTool = {
      * @method fsapi
      * @param {path} 文件路径 a/b.vue
      * @param {data} 内容 字符串
-     * @return 每次写入都会覆盖掉原有的内容
+     * @return
      */
     writeFile:(path,data)=>{
         let str = fsTool.readFile(path);
         fs.outputFileSync(path, str?str + "\r\n" + data:data);
+    },
+    readJson(){
+        return fs.readJsonSync(path.join(__dirname,"../../data.json"));
+    },
+    writeJSON:(data)=>{
+        let _json = fs.readJson(path.join(__dirname,"../../data.json"));
+        _json.data.push(data);
+        fs.writeJsonSync(_json);
     },
     /**
      * @description 读取客户端项目地址,多个项目(绝对路径)
