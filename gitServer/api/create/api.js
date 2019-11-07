@@ -85,7 +85,7 @@ const api = {
     getProjectsPath:(req,res)=>{
         return resEntity.setEneity({res:res,data:fsTool.getProjectsPath()});
     },
-    savePage:(req,res) => {
+    savePage:(req,res) => { 
         let _data = req.body;
         let jsonDataPath = path.resolve(__dirname,"./data.json");
         let _dataJson = {
