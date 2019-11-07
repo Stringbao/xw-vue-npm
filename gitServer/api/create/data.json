@@ -1,709 +1,11 @@
 [
 	{
 		"subName": "person",
-		"pagePath": "children",
-		"pageName": "childrenList",
+		"pagePath": "personA",
+		"pageName": "personAList2",
 		"pageOption": {
-			"fileName": "childrenList",
-			"path": "children",
-			"type": "1",
-			"searchOpts": {
-				"search": {
-					"btn": [
-						{
-							"btnName": "搜索",
-							"buttonTypes": [
-								{
-									"code": "search",
-									"name": "搜索"
-								},
-								{
-									"code": "create",
-									"name": "新增"
-								},
-								{
-									"code": "download",
-									"name": "下载"
-								},
-								{
-									"code": "update",
-									"name": "更新"
-								},
-								{
-									"code": "remove",
-									"name": "删除"
-								},
-								{
-									"code": "approve",
-									"name": "审核"
-								},
-								{
-									"code": "reject",
-									"name": "拒绝"
-								},
-								{
-									"code": "start",
-									"name": "启用"
-								},
-								{
-									"code": "stop",
-									"name": "停用"
-								},
-								{
-									"code": "info",
-									"name": "详情"
-								},
-								{
-									"code": "reset",
-									"name": "重置"
-								},
-								{
-									"code": "up",
-									"name": "上架"
-								},
-								{
-									"code": "down",
-									"name": "下架"
-								},
-								{
-									"code": "publish",
-									"name": "发布"
-								},
-								{
-									"code": "cancelPublish",
-									"name": "取消发布"
-								},
-								{
-									"code": "import",
-									"name": "导入"
-								},
-								{
-									"code": "export",
-									"name": "导出"
-								},
-								{
-									"code": "review",
-									"name": "批量操作"
-								},
-								{
-									"code": "copy",
-									"name": "复制"
-								},
-								{
-									"code": "setting",
-									"name": "设置"
-								},
-								{
-									"code": "decorate",
-									"name": "装修"
-								},
-								{
-									"code": "prevPage",
-									"name": "上一页"
-								},
-								{
-									"code": "nextPage",
-									"name": "下一页"
-								},
-								{
-									"code": "confirm",
-									"name": "确定"
-								},
-								{
-									"code": "save",
-									"name": "保存"
-								},
-								{
-									"code": "back",
-									"name": "返回"
-								},
-								{
-									"code": "cancel",
-									"name": "取消"
-								},
-								{
-									"code": "choose",
-									"name": "请选择XXXX"
-								},
-								{
-									"code": "holdSave",
-									"name": "暂存"
-								},
-								{
-									"code": "prev",
-									"name": "上一步"
-								},
-								{
-									"code": "next",
-									"name": "下一步"
-								},
-								{
-									"code": "default",
-									"name": "默认"
-								},
-								{
-									"code": "warning",
-									"name": "警告"
-								}
-							],
-							"btnType": "search",
-							"btnHandle": "search"
-						},
-						{
-							"btnName": "下载",
-							"btnType": "download",
-							"btnHandle": "download",
-							"buttonTypes": [
-								{
-									"code": "search",
-									"name": "搜索"
-								},
-								{
-									"code": "create",
-									"name": "新增"
-								},
-								{
-									"code": "download",
-									"name": "下载"
-								},
-								{
-									"code": "update",
-									"name": "更新"
-								},
-								{
-									"code": "remove",
-									"name": "删除"
-								},
-								{
-									"code": "approve",
-									"name": "审核"
-								},
-								{
-									"code": "reject",
-									"name": "拒绝"
-								},
-								{
-									"code": "start",
-									"name": "启用"
-								},
-								{
-									"code": "stop",
-									"name": "停用"
-								},
-								{
-									"code": "info",
-									"name": "详情"
-								},
-								{
-									"code": "reset",
-									"name": "重置"
-								},
-								{
-									"code": "up",
-									"name": "上架"
-								},
-								{
-									"code": "down",
-									"name": "下架"
-								},
-								{
-									"code": "publish",
-									"name": "发布"
-								},
-								{
-									"code": "cancelPublish",
-									"name": "取消发布"
-								},
-								{
-									"code": "import",
-									"name": "导入"
-								},
-								{
-									"code": "export",
-									"name": "导出"
-								},
-								{
-									"code": "review",
-									"name": "批量操作"
-								},
-								{
-									"code": "copy",
-									"name": "复制"
-								},
-								{
-									"code": "setting",
-									"name": "设置"
-								},
-								{
-									"code": "decorate",
-									"name": "装修"
-								},
-								{
-									"code": "prevPage",
-									"name": "上一页"
-								},
-								{
-									"code": "nextPage",
-									"name": "下一页"
-								},
-								{
-									"code": "confirm",
-									"name": "确定"
-								},
-								{
-									"code": "save",
-									"name": "保存"
-								},
-								{
-									"code": "back",
-									"name": "返回"
-								},
-								{
-									"code": "cancel",
-									"name": "取消"
-								},
-								{
-									"code": "choose",
-									"name": "请选择XXXX"
-								},
-								{
-									"code": "holdSave",
-									"name": "暂存"
-								},
-								{
-									"code": "prev",
-									"name": "上一步"
-								},
-								{
-									"code": "next",
-									"name": "下一步"
-								},
-								{
-									"code": "default",
-									"name": "默认"
-								},
-								{
-									"code": "warning",
-									"name": "警告"
-								}
-							]
-						}
-					],
-					"cols": [
-						{
-							"fieldTypes": [
-								{
-									"name": "text",
-									"code": "text"
-								},
-								{
-									"name": "select",
-									"code": "select"
-								},
-								{
-									"name": "radioList",
-									"code": "radioList"
-								},
-								{
-									"name": "checkboxList",
-									"code": "checkboxList"
-								},
-								{
-									"name": "datepicker",
-									"code": "datepicker"
-								},
-								{
-									"name": "timepicker",
-									"code": "timepicker"
-								},
-								{
-									"name": "dateTimepicker",
-									"code": "dateTimepicker"
-								}
-							],
-							"type": "text",
-							"key": "childrenName",
-							"label": "childrenName",
-							"labelWidth": "123",
-							"url": "",
-							"dataSource": "",
-							"displayName": "",
-							"displayValue": "",
-							"placeholder": "childrenName"
-						},
-						{
-							"fieldTypes": [
-								{
-									"name": "text",
-									"code": "text"
-								},
-								{
-									"name": "select",
-									"code": "select"
-								},
-								{
-									"name": "radioList",
-									"code": "radioList"
-								},
-								{
-									"name": "checkboxList",
-									"code": "checkboxList"
-								},
-								{
-									"name": "datepicker",
-									"code": "datepicker"
-								},
-								{
-									"name": "timepicker",
-									"code": "timepicker"
-								},
-								{
-									"name": "dateTimepicker",
-									"code": "dateTimepicker"
-								}
-							],
-							"type": "select",
-							"key": "childrenAge",
-							"label": "childrenAge",
-							"labelWidth": "123",
-							"url": "/get/getChildrenAgeList",
-							"dataSource": "childrenList",
-							"displayName": "code",
-							"displayValue": "name",
-							"placeholder": "childrenAge"
-						}
-					]
-				},
-				"tableOptions": {
-					"showCk": true,
-					"map": [
-						{
-							"key": "shop",
-							"val": "商城"
-						},
-						{
-							"key": "accessField",
-							"val": "封禁纬度"
-						}
-					],
-					"pageOption": {
-						"sizeKey": "pageSize",
-						"indexKey": "pageNum",
-						"index": 1,
-						"size": 10
-					},
-					"actions": [
-						{
-							"key": "update",
-							"val": "编辑"
-						}
-					]
-				}
-			},
-			"dialog": {
-				"hasDialog": "1",
-				"form": {
-					"cols": [
-						{
-							"type": "select",
-							"key": "childrenSex",
-							"label": "childrenSex",
-							"labelWidth": "123",
-							"placeholder": "childrenSex",
-							"url": "/get/getChildrenSex",
-							"dataSource": "childrenSexList",
-							"displayName": "code",
-							"displayValue": "name",
-							"tip": "tips",
-							"on": "0",
-							"required": "",
-							"valifyType": "",
-							"msg": "",
-							"selectDataSource": {
-								"typeDatsSource": [
-									{
-										"name": "text",
-										"code": "text"
-									},
-									{
-										"name": "select",
-										"code": "select"
-									},
-									{
-										"name": "radioList",
-										"code": "radioList"
-									},
-									{
-										"name": "checkboxList",
-										"code": "checkboxList"
-									},
-									{
-										"name": "asynTree",
-										"code": "asynTree"
-									},
-									{
-										"name": "textarea",
-										"code": "textarea"
-									},
-									{
-										"name": "upload",
-										"code": "upload"
-									},
-									{
-										"name": "datepicker",
-										"code": "datepicker"
-									},
-									{
-										"name": "timepicker",
-										"code": "timepicker"
-									},
-									{
-										"name": "dateTimepicker",
-										"code": "dateTimepicker"
-									}
-								],
-								"requiredDatsSource": [
-									{
-										"name": "是",
-										"code": "1"
-									},
-									{
-										"name": "否",
-										"code": "0"
-									}
-								],
-								"onDataSource": [
-									{
-										"name": "是",
-										"code": "1"
-									},
-									{
-										"name": "否",
-										"code": "0"
-									}
-								],
-								"valifyDataSource": [
-									{
-										"name": "数字或小数",
-										"code": "decimals"
-									},
-									{
-										"name": "数字",
-										"code": "number"
-									},
-									{
-										"name": "email",
-										"code": "email"
-									},
-									{
-										"name": "url",
-										"code": "url"
-									},
-									{
-										"name": "id",
-										"code": "身份证"
-									},
-									{
-										"name": "phone",
-										"code": "手机号"
-									},
-									{
-										"name": "password",
-										"code": "密码"
-									},
-									{
-										"name": "正整数",
-										"code": "positive"
-									},
-									{
-										"name": "正小数",
-										"code": "positiveDecimals"
-									},
-									{
-										"name": "负小数",
-										"code": "negativeDecimals"
-									},
-									{
-										"name": "负数",
-										"code": "negative"
-									},
-									{
-										"name": "汉字",
-										"code": "characters"
-									}
-								]
-							}
-						},
-						{
-							"type": "text",
-							"key": "childrenPass",
-							"label": "childrenPass",
-							"labelWidth": "123",
-							"placeholder": "childrenPass",
-							"url": "",
-							"dataSource": "",
-							"displayName": "",
-							"displayValue": "",
-							"tip": "",
-							"on": "0",
-							"required": "",
-							"valifyType": "",
-							"msg": "",
-							"selectDataSource": {
-								"typeDatsSource": [
-									{
-										"name": "text",
-										"code": "text"
-									},
-									{
-										"name": "select",
-										"code": "select"
-									},
-									{
-										"name": "radioList",
-										"code": "radioList"
-									},
-									{
-										"name": "checkboxList",
-										"code": "checkboxList"
-									},
-									{
-										"name": "asynTree",
-										"code": "asynTree"
-									},
-									{
-										"name": "textarea",
-										"code": "textarea"
-									},
-									{
-										"name": "upload",
-										"code": "upload"
-									},
-									{
-										"name": "datepicker",
-										"code": "datepicker"
-									},
-									{
-										"name": "timepicker",
-										"code": "timepicker"
-									},
-									{
-										"name": "dateTimepicker",
-										"code": "dateTimepicker"
-									}
-								],
-								"requiredDatsSource": [
-									{
-										"name": "是",
-										"code": "1"
-									},
-									{
-										"name": "否",
-										"code": "0"
-									}
-								],
-								"onDataSource": [
-									{
-										"name": "是",
-										"code": "1"
-									},
-									{
-										"name": "否",
-										"code": "0"
-									}
-								],
-								"valifyDataSource": [
-									{
-										"name": "数字或小数",
-										"code": "decimals"
-									},
-									{
-										"name": "数字",
-										"code": "number"
-									},
-									{
-										"name": "email",
-										"code": "email"
-									},
-									{
-										"name": "url",
-										"code": "url"
-									},
-									{
-										"name": "id",
-										"code": "身份证"
-									},
-									{
-										"name": "phone",
-										"code": "手机号"
-									},
-									{
-										"name": "password",
-										"code": "密码"
-									},
-									{
-										"name": "正整数",
-										"code": "positive"
-									},
-									{
-										"name": "正小数",
-										"code": "positiveDecimals"
-									},
-									{
-										"name": "负小数",
-										"code": "negativeDecimals"
-									},
-									{
-										"name": "负数",
-										"code": "negative"
-									},
-									{
-										"name": "汉字",
-										"code": "characters"
-									}
-								]
-							}
-						}
-					]
-				}
-			}
-		},
-		"routerData": {
-			"routerName": "personchildrenList",
-			"routerPath": "children"
-		},
-		"serverData": {
-			"store": {
-				"state": {
-					"dataSource": [
-						"childrenSexList"
-					],
-					"entity": {}
-				},
-				"action": [
-					"getChildrensexlist"
-				],
-				"mutation": [
-					"setChildrensexlist"
-				]
-			},
-			"API": {
-				"url": [
-					"/get/getChildrenSex"
-				]
-			},
-			"services": [
-				"getChildrensexlist"
-			]
-		}
-	},
-	{
-		"subName": "person",
-		"pagePath": "children",
-		"pageName": "childrenSave",
-		"pageOption": {
-			"fileName": "childrenSave",
-			"path": "children",
+			"fileName": "personAList2",
+			"path": "personA",
 			"type": "1",
 			"searchOpts": {
 				"search": {
@@ -849,8 +151,8 @@
 						},
 						{
 							"btnName": "下载2",
-							"btnType": "download",
-							"btnHandle": "download2",
+							"btnType": "create",
+							"btnHandle": "add2",
 							"buttonTypes": [
 								{
 									"code": "search",
@@ -1019,15 +321,56 @@
 									"code": "dateTimepicker"
 								}
 							],
+							"type": "select",
+							"key": "like",
+							"label": "like",
+							"labelWidth": "12",
+							"url": "/get/getLikeList",
+							"dataSource": "likeList",
+							"displayName": "code",
+							"displayValue": "name",
+							"placeholder": "like"
+						},
+						{
+							"fieldTypes": [
+								{
+									"name": "text",
+									"code": "text"
+								},
+								{
+									"name": "select",
+									"code": "select"
+								},
+								{
+									"name": "radioList",
+									"code": "radioList"
+								},
+								{
+									"name": "checkboxList",
+									"code": "checkboxList"
+								},
+								{
+									"name": "datepicker",
+									"code": "datepicker"
+								},
+								{
+									"name": "timepicker",
+									"code": "timepicker"
+								},
+								{
+									"name": "dateTimepicker",
+									"code": "dateTimepicker"
+								}
+							],
 							"type": "text",
-							"key": "childrenName2",
-							"label": "childrenName2",
-							"labelWidth": "123",
+							"key": "name2",
+							"label": "name2",
+							"labelWidth": "12",
 							"url": "",
 							"dataSource": "",
 							"displayName": "",
 							"displayValue": "",
-							"placeholder": "childrenName2"
+							"placeholder": "name"
 						}
 					]
 				},
@@ -1063,294 +406,1027 @@
 					"cols": [
 						{
 							"type": "select",
-							"key": "childrenSex2",
-							"label": "childrenSex2",
-							"labelWidth": "123",
-							"placeholder": "childrenSex2",
-							"url": "/get/getChildrenSex2",
-							"dataSource": "childrenSexList2",
+							"key": "dialogName",
+							"label": "name",
+							"labelWidth": "12",
+							"placeholder": "dialogName",
+							"url": "/get/dialogNameSelect",
+							"dataSource": "dialogNameList",
 							"displayName": "code",
 							"displayValue": "name",
-							"tip": "tips",
+							"tip": "asd",
 							"on": "0",
 							"required": "",
 							"valifyType": "",
-							"msg": "",
-							"selectDataSource": {
-								"typeDatsSource": [
-									{
-										"name": "text",
-										"code": "text"
-									},
-									{
-										"name": "select",
-										"code": "select"
-									},
-									{
-										"name": "radioList",
-										"code": "radioList"
-									},
-									{
-										"name": "checkboxList",
-										"code": "checkboxList"
-									},
-									{
-										"name": "asynTree",
-										"code": "asynTree"
-									},
-									{
-										"name": "textarea",
-										"code": "textarea"
-									},
-									{
-										"name": "upload",
-										"code": "upload"
-									},
-									{
-										"name": "datepicker",
-										"code": "datepicker"
-									},
-									{
-										"name": "timepicker",
-										"code": "timepicker"
-									},
-									{
-										"name": "dateTimepicker",
-										"code": "dateTimepicker"
-									}
-								],
-								"requiredDatsSource": [
-									{
-										"name": "是",
-										"code": "1"
-									},
-									{
-										"name": "否",
-										"code": "0"
-									}
-								],
-								"onDataSource": [
-									{
-										"name": "是",
-										"code": "1"
-									},
-									{
-										"name": "否",
-										"code": "0"
-									}
-								],
-								"valifyDataSource": [
-									{
-										"name": "数字或小数",
-										"code": "decimals"
-									},
-									{
-										"name": "数字",
-										"code": "number"
-									},
-									{
-										"name": "email",
-										"code": "email"
-									},
-									{
-										"name": "url",
-										"code": "url"
-									},
-									{
-										"name": "id",
-										"code": "身份证"
-									},
-									{
-										"name": "phone",
-										"code": "手机号"
-									},
-									{
-										"name": "password",
-										"code": "密码"
-									},
-									{
-										"name": "正整数",
-										"code": "positive"
-									},
-									{
-										"name": "正小数",
-										"code": "positiveDecimals"
-									},
-									{
-										"name": "负小数",
-										"code": "negativeDecimals"
-									},
-									{
-										"name": "负数",
-										"code": "negative"
-									},
-									{
-										"name": "汉字",
-										"code": "characters"
-									}
-								]
-							}
+							"msg": ""
 						},
 						{
 							"type": "text",
-							"key": "childrenPass2",
-							"label": "childrenPass2",
-							"labelWidth": "123",
-							"placeholder": "childrenPass2",
+							"key": "age",
+							"label": "age",
+							"labelWidth": "12",
+							"placeholder": "age",
 							"url": "",
 							"dataSource": "",
 							"displayName": "",
 							"displayValue": "",
-							"tip": "",
+							"tip": "asd",
 							"on": "0",
 							"required": "",
 							"valifyType": "",
-							"msg": "",
-							"selectDataSource": {
-								"typeDatsSource": [
-									{
-										"name": "text",
-										"code": "text"
-									},
-									{
-										"name": "select",
-										"code": "select"
-									},
-									{
-										"name": "radioList",
-										"code": "radioList"
-									},
-									{
-										"name": "checkboxList",
-										"code": "checkboxList"
-									},
-									{
-										"name": "asynTree",
-										"code": "asynTree"
-									},
-									{
-										"name": "textarea",
-										"code": "textarea"
-									},
-									{
-										"name": "upload",
-										"code": "upload"
-									},
-									{
-										"name": "datepicker",
-										"code": "datepicker"
-									},
-									{
-										"name": "timepicker",
-										"code": "timepicker"
-									},
-									{
-										"name": "dateTimepicker",
-										"code": "dateTimepicker"
-									}
-								],
-								"requiredDatsSource": [
-									{
-										"name": "是",
-										"code": "1"
-									},
-									{
-										"name": "否",
-										"code": "0"
-									}
-								],
-								"onDataSource": [
-									{
-										"name": "是",
-										"code": "1"
-									},
-									{
-										"name": "否",
-										"code": "0"
-									}
-								],
-								"valifyDataSource": [
-									{
-										"name": "数字或小数",
-										"code": "decimals"
-									},
-									{
-										"name": "数字",
-										"code": "number"
-									},
-									{
-										"name": "email",
-										"code": "email"
-									},
-									{
-										"name": "url",
-										"code": "url"
-									},
-									{
-										"name": "id",
-										"code": "身份证"
-									},
-									{
-										"name": "phone",
-										"code": "手机号"
-									},
-									{
-										"name": "password",
-										"code": "密码"
-									},
-									{
-										"name": "正整数",
-										"code": "positive"
-									},
-									{
-										"name": "正小数",
-										"code": "positiveDecimals"
-									},
-									{
-										"name": "负小数",
-										"code": "negativeDecimals"
-									},
-									{
-										"name": "负数",
-										"code": "negative"
-									},
-									{
-										"name": "汉字",
-										"code": "characters"
-									}
-								]
-							}
+							"msg": ""
 						}
 					]
 				}
 			}
 		},
 		"routerData": {
-			"routerName": "personchildrenSave",
-			"routerPath": "children"
+			"routerName": "personpersonAList2",
+			"routerPath": "personA"
 		},
 		"serverData": {
 			"store": {
 				"state": {
 					"dataSource": [
-						"childrenSexList2"
+						"likeList",
+						"dialogNameList"
 					],
-					"entity": {}
+					"entity": [
+						"dialogName"
+					]
 				},
 				"action": [
-					"getChildrensexlist2"
+					"getLikelist",
+					"getDialognamelist"
 				],
 				"mutation": [
-					"setChildrensexlist2"
+					"setLikelist",
+					"setDialognamelist"
 				]
 			},
 			"API": {
 				"url": [
-					"/get/getChildrenSex2"
+					"/get/getLikeList",
+					"/get/dialogNameSelect"
 				]
 			},
 			"services": [
-				"getChildrensexlist2"
+				"getLikelist",
+				"getDialognamelist"
+			]
+		}
+	},
+	{
+		"subName": "person",
+		"pagePath": "personA",
+		"pageName": "personAList2",
+		"pageOption": {
+			"fileName": "personAList2",
+			"path": "personA",
+			"type": "1",
+			"searchOpts": {
+				"search": {
+					"btn": [
+						{
+							"btnName": "搜索",
+							"buttonTypes": [
+								{
+									"code": "search",
+									"name": "搜索"
+								},
+								{
+									"code": "create",
+									"name": "新增"
+								},
+								{
+									"code": "download",
+									"name": "下载"
+								},
+								{
+									"code": "update",
+									"name": "更新"
+								},
+								{
+									"code": "remove",
+									"name": "删除"
+								},
+								{
+									"code": "approve",
+									"name": "审核"
+								},
+								{
+									"code": "reject",
+									"name": "拒绝"
+								},
+								{
+									"code": "start",
+									"name": "启用"
+								},
+								{
+									"code": "stop",
+									"name": "停用"
+								},
+								{
+									"code": "info",
+									"name": "详情"
+								},
+								{
+									"code": "reset",
+									"name": "重置"
+								},
+								{
+									"code": "up",
+									"name": "上架"
+								},
+								{
+									"code": "down",
+									"name": "下架"
+								},
+								{
+									"code": "publish",
+									"name": "发布"
+								},
+								{
+									"code": "cancelPublish",
+									"name": "取消发布"
+								},
+								{
+									"code": "import",
+									"name": "导入"
+								},
+								{
+									"code": "export",
+									"name": "导出"
+								},
+								{
+									"code": "review",
+									"name": "批量操作"
+								},
+								{
+									"code": "copy",
+									"name": "复制"
+								},
+								{
+									"code": "setting",
+									"name": "设置"
+								},
+								{
+									"code": "decorate",
+									"name": "装修"
+								},
+								{
+									"code": "prevPage",
+									"name": "上一页"
+								},
+								{
+									"code": "nextPage",
+									"name": "下一页"
+								},
+								{
+									"code": "confirm",
+									"name": "确定"
+								},
+								{
+									"code": "save",
+									"name": "保存"
+								},
+								{
+									"code": "back",
+									"name": "返回"
+								},
+								{
+									"code": "cancel",
+									"name": "取消"
+								},
+								{
+									"code": "choose",
+									"name": "请选择XXXX"
+								},
+								{
+									"code": "holdSave",
+									"name": "暂存"
+								},
+								{
+									"code": "prev",
+									"name": "上一步"
+								},
+								{
+									"code": "next",
+									"name": "下一步"
+								},
+								{
+									"code": "default",
+									"name": "默认"
+								},
+								{
+									"code": "warning",
+									"name": "警告"
+								}
+							],
+							"btnType": "search",
+							"btnHandle": "search"
+						},
+						{
+							"btnName": "下载2",
+							"btnType": "create",
+							"btnHandle": "add2",
+							"buttonTypes": [
+								{
+									"code": "search",
+									"name": "搜索"
+								},
+								{
+									"code": "create",
+									"name": "新增"
+								},
+								{
+									"code": "download",
+									"name": "下载"
+								},
+								{
+									"code": "update",
+									"name": "更新"
+								},
+								{
+									"code": "remove",
+									"name": "删除"
+								},
+								{
+									"code": "approve",
+									"name": "审核"
+								},
+								{
+									"code": "reject",
+									"name": "拒绝"
+								},
+								{
+									"code": "start",
+									"name": "启用"
+								},
+								{
+									"code": "stop",
+									"name": "停用"
+								},
+								{
+									"code": "info",
+									"name": "详情"
+								},
+								{
+									"code": "reset",
+									"name": "重置"
+								},
+								{
+									"code": "up",
+									"name": "上架"
+								},
+								{
+									"code": "down",
+									"name": "下架"
+								},
+								{
+									"code": "publish",
+									"name": "发布"
+								},
+								{
+									"code": "cancelPublish",
+									"name": "取消发布"
+								},
+								{
+									"code": "import",
+									"name": "导入"
+								},
+								{
+									"code": "export",
+									"name": "导出"
+								},
+								{
+									"code": "review",
+									"name": "批量操作"
+								},
+								{
+									"code": "copy",
+									"name": "复制"
+								},
+								{
+									"code": "setting",
+									"name": "设置"
+								},
+								{
+									"code": "decorate",
+									"name": "装修"
+								},
+								{
+									"code": "prevPage",
+									"name": "上一页"
+								},
+								{
+									"code": "nextPage",
+									"name": "下一页"
+								},
+								{
+									"code": "confirm",
+									"name": "确定"
+								},
+								{
+									"code": "save",
+									"name": "保存"
+								},
+								{
+									"code": "back",
+									"name": "返回"
+								},
+								{
+									"code": "cancel",
+									"name": "取消"
+								},
+								{
+									"code": "choose",
+									"name": "请选择XXXX"
+								},
+								{
+									"code": "holdSave",
+									"name": "暂存"
+								},
+								{
+									"code": "prev",
+									"name": "上一步"
+								},
+								{
+									"code": "next",
+									"name": "下一步"
+								},
+								{
+									"code": "default",
+									"name": "默认"
+								},
+								{
+									"code": "warning",
+									"name": "警告"
+								}
+							]
+						}
+					],
+					"cols": [
+						{
+							"fieldTypes": [
+								{
+									"name": "text",
+									"code": "text"
+								},
+								{
+									"name": "select",
+									"code": "select"
+								},
+								{
+									"name": "radioList",
+									"code": "radioList"
+								},
+								{
+									"name": "checkboxList",
+									"code": "checkboxList"
+								},
+								{
+									"name": "datepicker",
+									"code": "datepicker"
+								},
+								{
+									"name": "timepicker",
+									"code": "timepicker"
+								},
+								{
+									"name": "dateTimepicker",
+									"code": "dateTimepicker"
+								}
+							],
+							"type": "select",
+							"key": "like2",
+							"label": "like2",
+							"labelWidth": "12",
+							"url": "/get/getLikeList2",
+							"dataSource": "likeList2",
+							"displayName": "code",
+							"displayValue": "name",
+							"placeholder": "like"
+						},
+						{
+							"fieldTypes": [
+								{
+									"name": "text",
+									"code": "text"
+								},
+								{
+									"name": "select",
+									"code": "select"
+								},
+								{
+									"name": "radioList",
+									"code": "radioList"
+								},
+								{
+									"name": "checkboxList",
+									"code": "checkboxList"
+								},
+								{
+									"name": "datepicker",
+									"code": "datepicker"
+								},
+								{
+									"name": "timepicker",
+									"code": "timepicker"
+								},
+								{
+									"name": "dateTimepicker",
+									"code": "dateTimepicker"
+								}
+							],
+							"type": "text",
+							"key": "name2",
+							"label": "name2",
+							"labelWidth": "12",
+							"url": "",
+							"dataSource": "",
+							"displayName": "",
+							"displayValue": "",
+							"placeholder": "name"
+						}
+					]
+				},
+				"tableOptions": {
+					"showCk": true,
+					"map": [
+						{
+							"key": "shop",
+							"val": "商城"
+						},
+						{
+							"key": "accessField",
+							"val": "封禁纬度"
+						}
+					],
+					"pageOption": {
+						"sizeKey": "pageSize",
+						"indexKey": "pageNum",
+						"index": 1,
+						"size": 10
+					},
+					"actions": [
+						{
+							"key": "update",
+							"val": "编辑"
+						}
+					]
+				}
+			},
+			"dialog": {
+				"hasDialog": "1",
+				"form": {
+					"cols": [
+						{
+							"type": "select",
+							"key": "dialogName",
+							"label": "name",
+							"labelWidth": "12",
+							"placeholder": "dialogName",
+							"url": "/get/dialogNameSelect",
+							"dataSource": "dialogNameList",
+							"displayName": "code",
+							"displayValue": "name",
+							"tip": "asd",
+							"on": "0",
+							"required": "",
+							"valifyType": "",
+							"msg": ""
+						},
+						{
+							"type": "text",
+							"key": "age",
+							"label": "age",
+							"labelWidth": "12",
+							"placeholder": "age",
+							"url": "",
+							"dataSource": "",
+							"displayName": "",
+							"displayValue": "",
+							"tip": "asd",
+							"on": "0",
+							"required": "",
+							"valifyType": "",
+							"msg": ""
+						}
+					]
+				}
+			}
+		},
+		"routerData": {
+			"routerName": "personpersonAList2",
+			"routerPath": "personA"
+		},
+		"serverData": {
+			"store": {
+				"state": {
+					"dataSource": [
+						"likeList2",
+						"dialogNameList"
+					],
+					"entity": [
+						"dialogName"
+					]
+				},
+				"action": [
+					"getLikelist2",
+					"getDialognamelist"
+				],
+				"mutation": [
+					"setLikelist2",
+					"setDialognamelist"
+				]
+			},
+			"API": {
+				"url": [
+					"/get/getLikeList2",
+					"/get/dialogNameSelect"
+				]
+			},
+			"services": [
+				"getLikelist2",
+				"getDialognamelist"
+			]
+		}
+	},
+	{
+		"subName": "person",
+		"pagePath": "personA",
+		"pageName": "personAList2",
+		"pageOption": {
+			"fileName": "personAList2",
+			"path": "personA",
+			"type": "1",
+			"searchOpts": {
+				"search": {
+					"btn": [
+						{
+							"btnName": "搜索",
+							"buttonTypes": [
+								{
+									"code": "search",
+									"name": "搜索"
+								},
+								{
+									"code": "create",
+									"name": "新增"
+								},
+								{
+									"code": "download",
+									"name": "下载"
+								},
+								{
+									"code": "update",
+									"name": "更新"
+								},
+								{
+									"code": "remove",
+									"name": "删除"
+								},
+								{
+									"code": "approve",
+									"name": "审核"
+								},
+								{
+									"code": "reject",
+									"name": "拒绝"
+								},
+								{
+									"code": "start",
+									"name": "启用"
+								},
+								{
+									"code": "stop",
+									"name": "停用"
+								},
+								{
+									"code": "info",
+									"name": "详情"
+								},
+								{
+									"code": "reset",
+									"name": "重置"
+								},
+								{
+									"code": "up",
+									"name": "上架"
+								},
+								{
+									"code": "down",
+									"name": "下架"
+								},
+								{
+									"code": "publish",
+									"name": "发布"
+								},
+								{
+									"code": "cancelPublish",
+									"name": "取消发布"
+								},
+								{
+									"code": "import",
+									"name": "导入"
+								},
+								{
+									"code": "export",
+									"name": "导出"
+								},
+								{
+									"code": "review",
+									"name": "批量操作"
+								},
+								{
+									"code": "copy",
+									"name": "复制"
+								},
+								{
+									"code": "setting",
+									"name": "设置"
+								},
+								{
+									"code": "decorate",
+									"name": "装修"
+								},
+								{
+									"code": "prevPage",
+									"name": "上一页"
+								},
+								{
+									"code": "nextPage",
+									"name": "下一页"
+								},
+								{
+									"code": "confirm",
+									"name": "确定"
+								},
+								{
+									"code": "save",
+									"name": "保存"
+								},
+								{
+									"code": "back",
+									"name": "返回"
+								},
+								{
+									"code": "cancel",
+									"name": "取消"
+								},
+								{
+									"code": "choose",
+									"name": "请选择XXXX"
+								},
+								{
+									"code": "holdSave",
+									"name": "暂存"
+								},
+								{
+									"code": "prev",
+									"name": "上一步"
+								},
+								{
+									"code": "next",
+									"name": "下一步"
+								},
+								{
+									"code": "default",
+									"name": "默认"
+								},
+								{
+									"code": "warning",
+									"name": "警告"
+								}
+							],
+							"btnType": "search",
+							"btnHandle": "search"
+						},
+						{
+							"btnName": "下载2",
+							"btnType": "create",
+							"btnHandle": "add2",
+							"buttonTypes": [
+								{
+									"code": "search",
+									"name": "搜索"
+								},
+								{
+									"code": "create",
+									"name": "新增"
+								},
+								{
+									"code": "download",
+									"name": "下载"
+								},
+								{
+									"code": "update",
+									"name": "更新"
+								},
+								{
+									"code": "remove",
+									"name": "删除"
+								},
+								{
+									"code": "approve",
+									"name": "审核"
+								},
+								{
+									"code": "reject",
+									"name": "拒绝"
+								},
+								{
+									"code": "start",
+									"name": "启用"
+								},
+								{
+									"code": "stop",
+									"name": "停用"
+								},
+								{
+									"code": "info",
+									"name": "详情"
+								},
+								{
+									"code": "reset",
+									"name": "重置"
+								},
+								{
+									"code": "up",
+									"name": "上架"
+								},
+								{
+									"code": "down",
+									"name": "下架"
+								},
+								{
+									"code": "publish",
+									"name": "发布"
+								},
+								{
+									"code": "cancelPublish",
+									"name": "取消发布"
+								},
+								{
+									"code": "import",
+									"name": "导入"
+								},
+								{
+									"code": "export",
+									"name": "导出"
+								},
+								{
+									"code": "review",
+									"name": "批量操作"
+								},
+								{
+									"code": "copy",
+									"name": "复制"
+								},
+								{
+									"code": "setting",
+									"name": "设置"
+								},
+								{
+									"code": "decorate",
+									"name": "装修"
+								},
+								{
+									"code": "prevPage",
+									"name": "上一页"
+								},
+								{
+									"code": "nextPage",
+									"name": "下一页"
+								},
+								{
+									"code": "confirm",
+									"name": "确定"
+								},
+								{
+									"code": "save",
+									"name": "保存"
+								},
+								{
+									"code": "back",
+									"name": "返回"
+								},
+								{
+									"code": "cancel",
+									"name": "取消"
+								},
+								{
+									"code": "choose",
+									"name": "请选择XXXX"
+								},
+								{
+									"code": "holdSave",
+									"name": "暂存"
+								},
+								{
+									"code": "prev",
+									"name": "上一步"
+								},
+								{
+									"code": "next",
+									"name": "下一步"
+								},
+								{
+									"code": "default",
+									"name": "默认"
+								},
+								{
+									"code": "warning",
+									"name": "警告"
+								}
+							]
+						}
+					],
+					"cols": [
+						{
+							"fieldTypes": [
+								{
+									"name": "text",
+									"code": "text"
+								},
+								{
+									"name": "select",
+									"code": "select"
+								},
+								{
+									"name": "radioList",
+									"code": "radioList"
+								},
+								{
+									"name": "checkboxList",
+									"code": "checkboxList"
+								},
+								{
+									"name": "datepicker",
+									"code": "datepicker"
+								},
+								{
+									"name": "timepicker",
+									"code": "timepicker"
+								},
+								{
+									"name": "dateTimepicker",
+									"code": "dateTimepicker"
+								}
+							],
+							"type": "select",
+							"key": "like2",
+							"label": "like2",
+							"labelWidth": "12",
+							"url": "/get/getLikeList2",
+							"dataSource": "likeList2",
+							"displayName": "code",
+							"displayValue": "name",
+							"placeholder": "like"
+						},
+						{
+							"fieldTypes": [
+								{
+									"name": "text",
+									"code": "text"
+								},
+								{
+									"name": "select",
+									"code": "select"
+								},
+								{
+									"name": "radioList",
+									"code": "radioList"
+								},
+								{
+									"name": "checkboxList",
+									"code": "checkboxList"
+								},
+								{
+									"name": "datepicker",
+									"code": "datepicker"
+								},
+								{
+									"name": "timepicker",
+									"code": "timepicker"
+								},
+								{
+									"name": "dateTimepicker",
+									"code": "dateTimepicker"
+								}
+							],
+							"type": "text",
+							"key": "name2",
+							"label": "name2",
+							"labelWidth": "12",
+							"url": "",
+							"dataSource": "",
+							"displayName": "",
+							"displayValue": "",
+							"placeholder": "name"
+						}
+					]
+				},
+				"tableOptions": {
+					"showCk": true,
+					"map": [
+						{
+							"key": "shop",
+							"val": "商城"
+						},
+						{
+							"key": "accessField",
+							"val": "封禁纬度"
+						}
+					],
+					"pageOption": {
+						"sizeKey": "pageSize",
+						"indexKey": "pageNum",
+						"index": 1,
+						"size": 10
+					},
+					"actions": [
+						{
+							"key": "update",
+							"val": "编辑"
+						}
+					]
+				}
+			},
+			"dialog": {
+				"hasDialog": "1",
+				"form": {
+					"cols": [
+						{
+							"type": "select",
+							"key": "dialogName",
+							"label": "name",
+							"labelWidth": "12",
+							"placeholder": "dialogName",
+							"url": "/get/dialogNameSelect",
+							"dataSource": "dialogNameList",
+							"displayName": "code",
+							"displayValue": "name",
+							"tip": "asd",
+							"on": "0",
+							"required": "",
+							"valifyType": "",
+							"msg": ""
+						},
+						{
+							"type": "text",
+							"key": "age",
+							"label": "age",
+							"labelWidth": "12",
+							"placeholder": "age",
+							"url": "",
+							"dataSource": "",
+							"displayName": "",
+							"displayValue": "",
+							"tip": "asd",
+							"on": "0",
+							"required": "",
+							"valifyType": "",
+							"msg": ""
+						}
+					]
+				}
+			}
+		},
+		"routerData": {
+			"routerName": "personpersonAList2",
+			"routerPath": "personA"
+		},
+		"serverData": {
+			"store": {
+				"state": {
+					"dataSource": [
+						"likeList2",
+						"dialogNameList"
+					],
+					"entity": [
+						"dialogName"
+					]
+				},
+				"action": [
+					"getLikelist2",
+					"getDialognamelist"
+				],
+				"mutation": [
+					"setLikelist2",
+					"setDialognamelist"
+				]
+			},
+			"API": {
+				"url": [
+					"/get/getLikeList2",
+					"/get/dialogNameSelect"
+				]
+			},
+			"services": [
+				"getLikelist2",
+				"getDialognamelist"
 			]
 		}
 	}

@@ -51,7 +51,7 @@ const business = {
         let storeData = {
             state:{
                 dataSource:[],
-                entity:{},
+                entity:[],
             },
             action:[],
             mutation:[]
@@ -63,6 +63,7 @@ const business = {
         let servicesData = [];
         data.map(item => {
             storeData.state.dataSource = this.concatArr(storeData.state.dataSource,item.serverData.store.state.dataSource);
+            storeData.state.entity = this.concatArr(storeData.state.entity,item.serverData.store.state.entity);
             storeData.action = this.concatArr(storeData.action,item.serverData.store.action);
             storeData.mutation = this.concatArr(storeData.mutation,item.serverData.store.mutation);
             routerData.push(item.routerData);

@@ -101,9 +101,7 @@ const api = {
                 "store":{
                     "state":{
                         "dataSource":[],
-                        "entity":{
-
-                        },
+                        "entity":[]
                     },
                     "action":[],
                     "mutation":[]
@@ -114,9 +112,10 @@ const api = {
                 "services":[]
             }
         }
-        _data.page.searchOpts.cols && _data.page.searchOpts.cols.map(item => {
+        _data.page.searchOpts.search.cols && _data.page.searchOpts.search.cols.map(item => {
             // 有datasource就必须要有url否则不添加
             if(item.dataSource && item.dataSource != ""  && item.url && item.url != "") {
+
                 _dataJson.serverData.store.state.dataSource.push(item.dataSource)
                 _dataJson.serverData.store.action.push("get" + business.titleCase(item.dataSource))
                 _dataJson.serverData.store.mutation.push("set" + business.titleCase(item.dataSource));
@@ -131,6 +130,7 @@ const api = {
                     _dataJson.serverData.store.action.push("get" + business.titleCase(item.dataSource))
                     _dataJson.serverData.store.mutation.push("set" + business.titleCase(item.dataSource));
                     _dataJson.serverData.API.url.push(item.url);
+                    _dataJson.serverData.store.state.entity.push(item.key);
                     _dataJson.serverData.services.push("get" + business.titleCase(item.dataSource))
                 }
             })
