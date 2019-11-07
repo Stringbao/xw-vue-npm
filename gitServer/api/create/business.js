@@ -56,25 +56,20 @@ const business = {
             action:[],
             mutation:[]
         }
-        let APIData = {
-            url:[],
-        }
+        let APIData =[]
         let routerData = [];
-        let servicesData = [];
         data.map(item => {
             storeData.state.dataSource = this.concatArr(storeData.state.dataSource,item.serverData.store.state.dataSource);
             storeData.state.entity = this.concatArr(storeData.state.entity,item.serverData.store.state.entity);
             storeData.action = this.concatArr(storeData.action,item.serverData.store.action);
             storeData.mutation = this.concatArr(storeData.mutation,item.serverData.store.mutation);
-            routerData.push(item.routerData);
-            servicesData = this.concatArr(servicesData,item.serverData.services);
-            APIData.url = this.concatArr(APIData.url,item.serverData.API.url);
+            routerData = this.concatArr(routerData,[item.routerData]);
+            APIData = this.concatArr(APIData,item.serverData.API);
         })
-        console.log("storeData" + JSON.stringify(storeData));
-        console.log("routerData:" + JSON.stringify(routerData));
-        console.log("APIData",APIData);
-        console.log("servicesData",servicesData);
-
+        
+        return {
+            storeData,routerData,APIData
+        }
 
     },
     /**
@@ -83,6 +78,7 @@ const business = {
      * @param {Array} pushArr 
      */
     concatArr(arr,pushArr){
+    
         let newArr = [...arr,...pushArr];
         let resultArr = [];
         newArr.forEach(item => {
@@ -92,6 +88,15 @@ const business = {
         })
         return resultArr;
     },
-    
+    getCompName(path,name){
+        if(name){
+            path = path.split("/").join("_");
+            return path + "_" + name;
+        }else{
+            path = path.split("/").join("_");
+            return path;
+        }
+        
+    }
 }
 module.exports = business;

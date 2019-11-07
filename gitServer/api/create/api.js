@@ -88,11 +88,14 @@ const api = {
     savePage:(req,res) => { 
         let _data = req.body;
         let jsonDataPath = path.resolve(__dirname,"./data.json");
+        _data.page.fileName+= ".vue";
         let _dataJson = {
             "subName":_data.moduleName,
             "pagePath":_data.page.path,
             "pageName":_data.page.fileName,
             "pageOption":_data.page,
+            "pageType":_data.page.type,
+            "compName":business.getCompName(_data.page.path,_data.page.fileName),
             "routerData":{
                 "routerName":_data.moduleName + _data.page.fileName,
                 "routerPath":_data.page.path
@@ -106,21 +109,20 @@ const api = {
                     "action":[],
                     "mutation":[]
                 },
-                "API":{
-                    "url":[]
-                },
-                "services":[]
+                "API":[],
             }
         }
         _data.page.searchOpts.search.cols && _data.page.searchOpts.search.cols.map(item => {
             // 有datasource就必须要有url否则不添加
             if(item.dataSource && item.dataSource != ""  && item.url && item.url != "") {
-
                 _dataJson.serverData.store.state.dataSource.push(item.dataSource)
                 _dataJson.serverData.store.action.push("get" + business.titleCase(item.dataSource))
                 _dataJson.serverData.store.mutation.push("set" + business.titleCase(item.dataSource));
-                _dataJson.serverData.API.url.push(item.url);
-                _dataJson.serverData.services.push("get" + business.titleCase(item.dataSource))
+                _dataJson.serverData.API.push({
+                        url:item.url,
+                        compName: business.getCompName(item.url),
+                        servicesName : "get" + business.titleCase(item.dataSource)
+                    });
             }
         })
         if(business.isHasDialog(_data.page.dialog.hasDialog)){
@@ -129,14 +131,31 @@ const api = {
                     _dataJson.serverData.store.state.dataSource.push(item.dataSource)
                     _dataJson.serverData.store.action.push("get" + business.titleCase(item.dataSource))
                     _dataJson.serverData.store.mutation.push("set" + business.titleCase(item.dataSource));
-                    _dataJson.serverData.API.url.push(item.url);
+                    _dataJson.serverData.API.push({
+                        url:item.url,
+                        compName:business.getCompName(item.url),
+                        servicesName : "get" + business.titleCase(item.dataSource)
+                    });
                     _dataJson.serverData.store.state.entity.push(item.key);
-                    _dataJson.serverData.services.push("get" + business.titleCase(item.dataSource))
                 }
             })
         }
         let jsonStr = fsTool.readFile(jsonDataPath);
         let jsonData = JSON.parse(jsonStr!= "" ? jsonStr : "[]");
+        let isRepeat = false;
+        jsonData.forEach(item => {
+            if(item["compName"] == _dataJson["compName"]){
+                isRepeat = true;
+            }
+        })
+        if(isRepeat){
+            return resEntity.setEneity({
+                res,
+                status:1,
+                msg:"该页面已经存在",
+                data:null,
+            });
+        }
         jsonData.push(_dataJson)
         fsTool.writeFile(jsonDataPath,JSON.stringify(jsonData,null,"\t"));
         return resEntity.setEneity({res:res});
