@@ -5,7 +5,6 @@ const _config = require("../pathConfig");
 const ejsTool = require("../ejs/ejsapi");
 const path = require("path");
 const business = require("./business.js");
-
 const createTool = {
     createView(projectPath, moduleName, data){
         let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/" + data.btn.subModulePath + "/" + data.btn.pageName;
@@ -73,8 +72,11 @@ const api = {
     createModuleFile:(req,res)=>{
         let moduleName = req.body.moduleName;
         let projectPath = req.body.projectPath;
-        let data = req.body.data;
-        createTool.createView(projectPath,moduleName,data);
+        let _data = business.dealJsonData(fsTool.readFile(path.resolve(__dirname,"./data.json")));
+        console.log(_data);
+        // let data = req.body.data;
+
+        // createTool.createView(projectPath,moduleName,data);
         // createTool.createApi(projectPath,moduleName,{});
         // createTool.createStore(projectPath,moduleName,{});
 
@@ -82,6 +84,62 @@ const api = {
     },
     getProjectsPath:(req,res)=>{
         return resEntity.setEneity({res:res,data:fsTool.getProjectsPath()});
+    },
+    savePage:(req,res) => {
+        let _data = req.body;
+        let jsonDataPath = path.resolve(__dirname,"./data.json");
+        let _dataJson = {
+            "subName":_data.moduleName,
+            "pagePath":_data.page.path,
+            "pageName":_data.page.fileName,
+            "pageOption":_data.page,
+            "routerData":{
+                "routerName":_data.moduleName + _data.page.fileName,
+                "routerPath":_data.page.path
+            },
+            "serverData":{
+                "store":{
+                    "state":{
+                        "dataSource":[],
+                        "entity":{
+
+                        },
+                    },
+                    "action":[],
+                    "mutation":[]
+                },
+                "API":{
+                    "url":[]
+                },
+                "services":[]
+            }
+        }
+        _data.page.searchOpts.cols && _data.page.searchOpts.cols.map(item => {
+            // 有datasource就必须要有url否则不添加
+            if(item.dataSource && item.dataSource != ""  && item.url && item.url != "") {
+                _dataJson.serverData.store.state.dataSource.push(item.dataSource)
+                _dataJson.serverData.store.action.push("get" + business.titleCase(item.dataSource))
+                _dataJson.serverData.store.mutation.push("set" + business.titleCase(item.dataSource));
+                _dataJson.serverData.API.url.push(item.url);
+                _dataJson.serverData.services.push("get" + business.titleCase(item.dataSource))
+            }
+        })
+        if(business.isHasDialog(_data.page.dialog.hasDialog)){
+            _data.page.dialog.form.cols && _data.page.dialog.form.cols.map(item => {
+                if(item.dataSource && item.dataSource != ""  && item.url && item.url != "") {
+                    _dataJson.serverData.store.state.dataSource.push(item.dataSource)
+                    _dataJson.serverData.store.action.push("get" + business.titleCase(item.dataSource))
+                    _dataJson.serverData.store.mutation.push("set" + business.titleCase(item.dataSource));
+                    _dataJson.serverData.API.url.push(item.url);
+                    _dataJson.serverData.services.push("get" + business.titleCase(item.dataSource))
+                }
+            })
+        }
+        let jsonStr = fsTool.readFile(jsonDataPath);
+        let jsonData = JSON.parse(jsonStr!= "" ? jsonStr : "[]");
+        jsonData.push(_dataJson)
+        fsTool.writeFile(jsonDataPath,JSON.stringify(jsonData,null,"\t"));
+        return resEntity.setEneity({res:res});
     }
 }
 
