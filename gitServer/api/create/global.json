@@ -1,0 +1,23 @@
+{
+	"router": [
+		{
+			"routerName": "personPersonlist",
+			"routerPath": "person/myperson/personList",
+			"type": "1"
+		},
+		{
+			"routerName": "personPersonsave",
+			"routerPath": "person/myperson/personSave",
+			"type": "2"
+		},
+		{
+			"routerName": "person221Asda",
+			"routerPath": "person221/aa/asda",
+			"type": "1"
+		}
+	],
+	"moduleList": [
+		"person",
+		"person221"
+	]
+}

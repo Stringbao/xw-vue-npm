@@ -6,7 +6,7 @@ let ConfigClass = {
     viewPath:{
         view:"/src/pages",
         listEjs:"../../ejstemplates/view/list.ejs",
-        saveEjs:"../ejstemplates/view/save.ejs",
+        saveEjs:"../../ejstemplates/view/save.ejs",
         viewFolderPath:"../../ejstemplates/view/"
     },
     routerPath:{

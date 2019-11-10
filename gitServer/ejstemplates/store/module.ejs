@@ -19,14 +19,34 @@ export default {
             state.selectDataSource.<%= data.state.dataSource[index] %>=val;
         },
     <%_ _%><% }) -%>  
+    setEntity(state,d){
+        state.entity = d
+    },
     },
     actions:{
     <%_ data.action.forEach(function(row,index){ -%>
         <%= row %>({state,commit,dispatch},d){
             Service.<%= row %>(d.context,(t) => {
                 commit("set<%= data.extendField[index] %>",t);
+                d.cb && d.cb(d)
             })
         },
     <%_ _%><% }) -%>  
+    getInfo({state,commit,dispatch},d){
+        Service.getInfo(d.context,d.params,(d) => {
+            commit("setEntity",d.data);
+            d.cb && d.cb(d)
+        })
+    },
+    doCreate({state,commit,dispatch},d){
+        Service.doCreate(d.context,state.entity,(d) => {
+            d.cb && d.cb(d)
+        })
+    },
+    doUpdate(){
+        Service.doUpdate(d.context,state.entity,(d) => {
+            d.cb && d.cb(d)
+        })
+    },
     }
 }

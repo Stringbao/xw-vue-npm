@@ -67,7 +67,9 @@ const business = {
             storeData.state.entity = this.concatArr(storeData.state.entity,item.serverData.store.state.entity);
             storeData.action = this.concatArr(storeData.action,item.serverData.store.action);
             storeData.mutation = this.concatArr(storeData.mutation,item.serverData.store.mutation);
+            item.routerData.type = item.pageType;
             routerData = this.concatArr(routerData,[item.routerData]);
+
             APIData = this.concatArr(APIData,item.serverData.API);
             pageOption = this.concatArr(pageOption,[item.pageOption]);
         })
@@ -105,6 +107,7 @@ const business = {
             path = path.split("/").join("_");
             return path;
         }
+    
         
     }
 }

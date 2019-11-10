@@ -146,7 +146,7 @@
         </div>
         <%_ if(data.hasDialog && data.hasDialog == '1'){ _%>
         <le-dialog v-model = "dialogTag" title = "<%= data.tableTitle %>">
-        <%_ _%><%- include(data.viewFolderPath + "/form",{data:data.form.cols}) %>
+        <%_ _%><%- include(data.viewFolderPath + "/form",{data:data.form.cols,isSavePage:false}) %>
         </le-dialog>
         <%_ } -%>
     </div>
@@ -178,7 +178,7 @@ export default {
         }
     },
     computed:{
-        ...mapState(["dataSource"])
+        ...mapState(["dataSource"<%_ if(data.hasDialog && data.hasDialog == '1'){ -%>,"entity"<%_ } -%>])
     },
     methods:{
         ...mapActions([

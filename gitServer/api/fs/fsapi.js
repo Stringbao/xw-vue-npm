@@ -62,6 +62,9 @@ const fsTool = {
     getProjectsPath:()=>{
         let _path = path.join(__dirname,"../../projectPath.txt");
         return fsTool.readFile(_path);
+    },
+    exists:(path) => {
+        return fs.pathExistsSync(path)
     }
 }
 

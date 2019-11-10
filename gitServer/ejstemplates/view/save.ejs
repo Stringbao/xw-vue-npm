@@ -1,8 +1,67 @@
-import <%= data.name %> from "../../abc";
+<template>
+    <div>
+    <%_ _%><%- include(data.viewFolderPath + "/form",{data:data.form.cols,isSavePage : true}) %>
+    </div>
+</template>
+<script>
+import <%= data.commonUtil.name %> from '<%= data.commonUtil.filePath %>';
+import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapActions,mapMutations } = createNamespacedHelpers('<%= moduleName %>Store');
+export default {
+    name:"<%= data.pageName %>",
+    data(){
+        return {
+           
+        }
+    },
+    computed:{
+        ...mapState(["dataSource","entity"])
+    },
+    mounted(){
+        this.getDetail();
+    },
+    methods:{
+        ...mapActions([
+            "doCreate",
+            "getInfo",
+            "doUpdate",
+        ]),
+        save(){
+            if(this.$route.tag == "create"){
+                this.doCreate({
+                    context:this,
+                    cb:(d)=>{
 
-<% for(let i =0;i<data.items.length;i++){ %>
-    <h1><%= data.items[i].age %></h1>
-<% } %>
+                    }
+                })
+            }
+            if(this.$route.tag == "update"){
+                this.doUpdate({
+                    context:this,
+                    cb:(d) => {
 
+                    }
+                })
+            }
+        },
+        getDetail(){
+            this.getInfo({
+                context:this,
+                params:{
 
-save
+                }
+            })
+        },
+        cancel(){
+            this.$router.go(-1);
+        },
+    },
+    mounted(){
+        
+    }
+}
+</script>
+<style scoped>
+    
+</style>
+    

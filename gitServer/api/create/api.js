@@ -6,8 +6,8 @@ const ejsTool = require("../ejs/ejsapi");
 const path = require("path");
 const business = require("./business.js");
 const createTool = {
-    createView(projectPath, moduleName, data){
-        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/" + data.path + "/" + data.fileName;
+    createListView(projectPath, moduleName, data){
+        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/" + data.path + "/" + data.fileName + ".vue";
         let listEjsPath = path.resolve(__dirname, _config.viewPath.listEjs);
         fsTool.createFile(viewPath);
         let ejsStr = fsTool.readFile(listEjsPath);
@@ -30,7 +30,25 @@ const createTool = {
         };
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
         fsTool.writeFile(viewPath,_data);
-        console.log("写入view成功");
+        console.log("写入listView成功");
+    },
+    createSaveView(projectPath, moduleName, data){
+        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/" + data.path + "/" + data.fileName + ".vue";
+        let saveEjsPath = path.resolve(__dirname, _config.viewPath.saveEjs);
+        fsTool.createFile(viewPath);
+        let ejsStr = fsTool.readFile(saveEjsPath);
+        let ejsData = {
+            data:{
+                //CommonUtil注入
+                commonUtil:{name:"commonUtil",filePath:business.getRelativeCompPath(projectPath,moduleName)},
+                form:data.form ? data.form : [],
+                viewFolderPath: path.resolve(__dirname, _config.viewPath.viewFolderPath),
+            },
+            moduleName,
+        };
+        let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
+        fsTool.writeFile(viewPath,_data);
+        console.log("写入saveView成功");
     },
     createRouter(projectPath, data){
         let routerPath = projectPath + "/" + _config.routerPath.router;
@@ -91,7 +109,8 @@ const createTool = {
             data:data,
             moduleName
         };
-        let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData)
+        let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
+
         fsTool.writeFile(servicePath,_data);
         console.log("写入service成功")
     }
@@ -101,11 +120,38 @@ const api = {
     createModuleFolder:(req,res)=>{
         let moduleName = req.body.moduleName;
         let projectPath = req.body.projectPath;
-        fsTool.createFolder(projectPath + "/src/pages/" + moduleName);
-        fsTool.createFolder(projectPath + "/src/api/" + moduleName);
-        fsTool.createFolder(projectPath + "/src/store/" + moduleName);
-        fsTool.createFolder(projectPath + "/src/service/" + moduleName);
+        let isExist = fsTool.exists(projectPath + "/src/pages/" + moduleName);
+        if(!isExist){
+            fsTool.createFolder(projectPath + "/src/pages/" + moduleName);
+            fsTool.createFolder(projectPath + "/src/api/" + moduleName);
+            fsTool.createFolder(projectPath + "/src/store/" + moduleName);
+            fsTool.createFolder(projectPath + "/src/service/" + moduleName);
+            return resEntity.setEneity({res:res});
+        }else{
+            return resEntity.setEneity({
+                res,
+                status:1,
+                msg:"该模块已经存在",
+                data:null,
+            });
+        }
+        
+    },
+    createGlobalFile(req,res){
+        let projectPath = req.body.projectPath;
+        let globalPath = path.resolve(__dirname,"./global.json")
+        let str = fsTool.readFile(globalPath);
+        let _data = JSON.parse((str && str!="") ? str : "{router:[],moduleList:[]}");
+        console.log(_data);
+        // 创建router
+        createTool.createRouter(projectPath,_data.router);
+        // 创建store的index
+        createTool.createStore(projectPath,_data.moduleList);
+        fsTool.writeFile(globalPath,"");
+
         return resEntity.setEneity({res:res});
+
+
     },
     createModuleFile:(req,res)=>{
         let moduleName = req.body.moduleName;
@@ -113,17 +159,30 @@ const api = {
         let _data = business.dealJsonData(fsTool.readFile(path.resolve(__dirname,"./data.json")));
         // let data = req.body.data;
         _data.pageOption.forEach(item => {
-            createTool.createView(projectPath,moduleName,item);
+            if(item.type == "1"){
+                createTool.createListView(projectPath,moduleName,item);
+            }else{
+                createTool.createSaveView(projectPath,moduleName,item);
+            }
         })
-
-        // FIXME: 渲染router.js 后期抽出去 最后的保存整个项目配置
-        createTool.createRouter(projectPath,_data.routerData);
-        // FIXME: 渲染index.js 后期抽出去 最后的保存整个项目配置
-        createTool.createStore(projectPath,_data.storeModuleNameList);
-
         createTool.createStoreModule(projectPath,moduleName,_data.storeData);
         createTool.createService(projectPath,moduleName,_data.APIData);
         createTool.createApi(projectPath,moduleName,_data.APIData);
+        let jsonDataPath = path.resolve(__dirname,"./global.json");
+        let dataPath = path.resolve(__dirname,"./data.json");
+
+        let jsonStr = fsTool.readFile(jsonDataPath);
+        // 
+        let jsonData = JSON.parse(jsonStr!= "" ? jsonStr : "{}");
+        
+        let _json = {
+            router:jsonData.router ? jsonData.router : [],
+            moduleList:jsonData.moduleList ? jsonData.moduleList : [],
+        }
+        _json.router = business.concatArr(_json.router,_data.routerData);
+        _json.moduleList = business.concatArr(_json.moduleList,_data.storeModuleNameList);
+        fsTool.writeFile(jsonDataPath,JSON.stringify(_json,null,"\t"));       
+        fsTool.writeFile(dataPath,"");
         return resEntity.setEneity({res:res});
     },
     getProjectsPath:(req,res)=>{
@@ -132,17 +191,17 @@ const api = {
     savePage:(req,res) => { 
         let _data = req.body;
         let jsonDataPath = path.resolve(__dirname,"./data.json");
-        _data.page.fileName+= ".vue";
+        
         let _dataJson = {
             "subName":_data.moduleName,
             "pagePath":_data.page.path,
-            "pageName":_data.page.fileName,
+            "pageName":_data.page.fileName + ".vue",
             "pageOption":_data.page,
             "pageType":_data.page.type,
             "compName":business.getCompName(_data.page.path,_data.page.fileName),
             "routerData":{
-                "routerName":_data.moduleName + business.titleCase(_data.page.fileName.split(".")[0]),
-                "routerPath":_data.page.path + "/" + _data.page.fileName,
+                "routerName":_data.moduleName + business.titleCase(_data.page.fileName),
+                "routerPath":_data.moduleName + "/" + _data.page.path + "/" + _data.page.fileName,
             },
             "serverData":{
                 "store":{
@@ -156,21 +215,38 @@ const api = {
                 "API":[],
             }
         }
-        _data.page.searchOpts.search.cols && _data.page.searchOpts.search.cols.map(item => {
-            // 有datasource就必须要有url否则不添加
-            if(item.dataSource && item.dataSource != ""  && item.url && item.url != "") {
-                _dataJson.serverData.store.state.dataSource.push(item.dataSource)
-                _dataJson.serverData.store.action.push("get" + business.titleCase(item.dataSource))
-                _dataJson.serverData.store.mutation.push("set" + business.titleCase(item.dataSource));
-                _dataJson.serverData.API.push({
+        if(_dataJson.pageType == "1"){
+            _data.page.searchOpts.search.cols && _data.page.searchOpts.search.cols.map(item => {
+                // 有datasource就必须要有url否则不添加
+                if(item.dataSource && item.dataSource != ""  && item.url && item.url != "") {
+                    _dataJson.serverData.store.state.dataSource.push(item.dataSource)
+                    _dataJson.serverData.store.action.push("get" + business.titleCase(item.dataSource))
+                    _dataJson.serverData.store.mutation.push("set" + business.titleCase(item.dataSource));
+                    _dataJson.serverData.API.push({
                         url:item.url,
-                        compName: business.getCompName(item.url.split["."][0]),
+                        compName: business.getCompName(item.url.split(".")[0]),
                         servicesName : "get" + business.titleCase(item.dataSource)
                     });
+                }
+            })
+            if(business.isHasDialog(_data.page.dialog.hasDialog)){
+                _data.page.dialog.form.cols && _data.page.dialog.form.cols.map(item => {
+                    if(item.dataSource && item.dataSource != ""  && item.url && item.url != "") {
+                        _dataJson.serverData.store.state.dataSource.push(item.dataSource)
+                        _dataJson.serverData.store.action.push("get" + business.titleCase(item.dataSource))
+                        _dataJson.serverData.store.mutation.push("set" + business.titleCase(item.dataSource));
+                        _dataJson.serverData.API.push({
+                            url:item.url,
+                            compName:business.getCompName(item.url.split(".")[0]),
+                            servicesName : "get" + business.titleCase(item.dataSource)
+                        });
+                        _dataJson.serverData.store.state.entity.push(item.key);
+                    }
+                })
             }
-        })
-        if(business.isHasDialog(_data.page.dialog.hasDialog)){
-            _data.page.dialog.form.cols && _data.page.dialog.form.cols.map(item => {
+        }
+        if(_dataJson.pageType == "2"){
+            _data.page.form.cols && _data.page.form.cols.map(item => {
                 if(item.dataSource && item.dataSource != ""  && item.url && item.url != "") {
                     _dataJson.serverData.store.state.dataSource.push(item.dataSource)
                     _dataJson.serverData.store.action.push("get" + business.titleCase(item.dataSource))
@@ -183,11 +259,28 @@ const api = {
                     _dataJson.serverData.store.state.entity.push(item.key);
                 }
             })
+            _dataJson.serverData.API.push({
+                url:_data.page.savePageInterface.save,
+                compName:business.getCompName(_data.page.savePageInterface.save.split(".")[0]),
+                servicesName:"doCreate",
+            })
+            _dataJson.serverData.API.push({
+                url:_data.page.savePageInterface.detail,
+                compName:business.getCompName(_data.page.savePageInterface.detail.split(".")[0]),
+                servicesName:"getInfo",
+            })
+            _dataJson.serverData.API.push({
+                url:_data.page.savePageInterface.update,
+                compName:business.getCompName(_data.page.savePageInterface.update.split(".")[0]),
+                servicesName:"doUpdate",
+            })
         }
         let jsonStr = fsTool.readFile(jsonDataPath);
         let jsonData = JSON.parse(jsonStr!= "" ? jsonStr : "[]");
         let isRepeat = false;
         jsonData.forEach(item => {
+                console.log(item["compName"]);
+                console.log(_dataJson["compName"]);
             if(item["compName"] == _dataJson["compName"]){
                 isRepeat = true;
             }

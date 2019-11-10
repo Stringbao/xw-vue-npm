@@ -4,12 +4,12 @@ import Vuex from 'vuex';
 Vue.use(Router);
 Vue.use(Vuex);
 <%_ data.forEach(function(row){ -%>
-import <%= row.routerName %> from "../pages/<%= row.routerPath %>/<%= row.routerPath %>"
+import <%= row.routerName %> from "../pages/<%= row.routerPath %>"
 <%_ _%><% }) -%>
 let routers = [
 <%_ data.forEach(function(row){ -%>
     {
-        path:"/<%= row.routerName %>",
+        path:"/<%= row.routerName %><% if(row.type == '2'){ %>/:tag/:id<% } %>",
         name:"<%= row.routerName %>",
         components:<%= row.routerName %>
     },
