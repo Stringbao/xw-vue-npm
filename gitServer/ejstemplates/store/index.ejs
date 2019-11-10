@@ -1,0 +1,12 @@
+import Vuex from 'vuex';
+<%_ data.forEach(function(row){ -%>
+import <%= row %>_store from "./modules/row.js"; 
+<%_ _%><% }) -%>
+export default new Vuex.Store({
+    namespaced:true,
+    modules:{
+    <%_ data.forEach(function(row){ -%>
+        <%= row %>Store:<%= row %>_store,
+    <%_ _%><% }) -%>
+    }
+})

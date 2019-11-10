@@ -7,55 +7,93 @@ const path = require("path");
 const business = require("./business.js");
 const createTool = {
     createView(projectPath, moduleName, data){
-        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/" + data.btn.subModulePath + "/" + data.btn.pageName;
+        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/" + data.path + "/" + data.fileName;
         let listEjsPath = path.resolve(__dirname, _config.viewPath.listEjs);
         fsTool.createFile(viewPath);
-        console.log("模块"+moduleName + "->View->list路径:",viewPath);
-        console.log("ejs view 模块路径：",listEjsPath);
         let ejsStr = fsTool.readFile(listEjsPath);
         let ejsData = {
             data:{
                 //CommonUtil注入
                 commonUtil:{name:"commonUtil",filePath:business.getRelativeCompPath(projectPath,moduleName)},
-                btn:data.btn,
-                cols:business.groupBy(data.cols.cols,data.btn.colsCount),
-                tableOptions:data.tableOptions,
-                tableOptionsName:data.btn.pageName.split('.')[0] + "_table_options",
-                hasDialog:data.hasDialog ? data.hasDialog : "0",
-                form:data.form ? data.form : [],
-                viewFolderPath: path.resolve(__dirname, _config.viewPath.viewFolderPath)
-            }
+                btn:data.searchOpts.search.btn,
+                cols:business.groupBy(data.searchOpts.search.cols,data.searchOpts.search.colsCount),
+                colsCount:data.searchOpts.search.colsCount,
+                tableOptions:data.searchOpts.tableOptions,
+                tableOptionsName:data.fileName.split('.')[0] + "_table_options",
+                hasDialog:data.dialog.hasDialog ? data.dialog.hasDialog : "0",
+                form:data.dialog.form ? data.dialog.form : [],
+                viewFolderPath: path.resolve(__dirname, _config.viewPath.viewFolderPath),
+                tableTitle:data.searchOpts.tableTitle,
+                pageName : business.getCompName(data.path,data.fileName.split('.')[0])
+            },
+            moduleName,
         };
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
         fsTool.writeFile(viewPath,_data);
+        console.log("写入view成功");
     },
-    createApi(projectPath,name,data){
-        let apiPath = projectPath + "/" + _config.apiPath.api + "/"+ name + "/api.js";
-        let apiEjsPath = projectPath + "/" + _config.apiPath.ejs;
-
+    createRouter(projectPath, data){
+        let routerPath = projectPath + "/" + _config.routerPath.router;
+        let routerEjsPath = path.resolve(__dirname, _config.routerPath.ejs);
+        fsTool.createFile(routerPath);
+        let ejsStr = fsTool.readFile(routerEjsPath);
+        let _data = ejsTool.renderEjsTemplate(ejsStr,{
+            data:data
+        });
+        fsTool.writeFile(routerPath,_data);
+        console.log("写入router成功");
+    },
+    createApi(projectPath,moduleName,data){
+        let apiPath = projectPath + "/" + _config.apiPath.api + "/" + moduleName+".js";
+        let apiEjsPath =  path.resolve(__dirname, _config.apiPath.ejs);
         fsTool.createFile(apiPath);
-
         let ejsStr = fsTool.readFile(apiEjsPath);
         let ejsData = {
-            data:{name:"nnnnnnn",items:[{age:444444},{age:555555}]}
+            data:data
         };
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
-
         fsTool.writeFile(apiPath,_data);
+        console.log("写入api成功");
     },
-    createStore(projectPath,name,data){
-        let storePath = projectPath + "/" + _config.storePath.store + "/"+ name + "/store.js";
-        let ejsPath = projectPath + "/" + _config.storePath.ejs;
-
+    /* 创建store index */
+    createStore(projectPath,data){
+        let storePath = projectPath + "/" + _config.storePath.store + "/index.js";
+        let ejsPath = path.resolve(__dirname,_config.storePath.ejs + "index.ejs");
         fsTool.createFile(storePath);
-
         let ejsStr = fsTool.readFile(ejsPath);
         let ejsData = {
-            data:{name:",,,,,lasljdaklsd",items:[{age:77777},{age:'dasdasdsad'}]}
+            data:data
         };
-        let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
-
+        let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData)
         fsTool.writeFile(storePath,_data);
+        console.log("写入store index成功");
+    },
+    // 创建store module
+    createStoreModule(projectPath,moduleName,data){
+        let storePath = projectPath + "/" + _config.storePath.store + "modules/"+moduleName+".js";
+        let ejsPath = path.resolve(__dirname,_config.storePath.ejs + "module.ejs");
+        fsTool.createFile(storePath);
+        let ejsStr = fsTool.readFile(ejsPath);
+        let ejsData = {
+            data:data,
+            moduleName,
+        };
+        let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData)
+        fsTool.writeFile(storePath,_data);
+        console.log("写入storeModule成功")
+    },
+    createService(projectPath,moduleName,data){
+        let servicePath = projectPath + "/" + _config.servicePath.service + "/"+moduleName+".js";
+        let ejsPath = path.resolve(__dirname,_config.servicePath.ejs);
+        fsTool.createFile(servicePath);
+        let ejsStr = fsTool.readFile(ejsPath);
+        let ejsData = {
+            data:data,
+            moduleName
+        };
+        let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData)
+        fsTool.writeFile(servicePath,_data);
+        console.log("写入service成功")
     }
 }
 
@@ -73,13 +111,19 @@ const api = {
         let moduleName = req.body.moduleName;
         let projectPath = req.body.projectPath;
         let _data = business.dealJsonData(fsTool.readFile(path.resolve(__dirname,"./data.json")));
-        console.log(_data);
         // let data = req.body.data;
+        _data.pageOption.forEach(item => {
+            createTool.createView(projectPath,moduleName,item);
+        })
 
-        // createTool.createView(projectPath,moduleName,data);
-        // createTool.createApi(projectPath,moduleName,{});
-        // createTool.createStore(projectPath,moduleName,{});
+        // FIXME: 渲染router.js 后期抽出去 最后的保存整个项目配置
+        createTool.createRouter(projectPath,_data.routerData);
+        // FIXME: 渲染index.js 后期抽出去 最后的保存整个项目配置
+        createTool.createStore(projectPath,_data.storeModuleNameList);
 
+        createTool.createStoreModule(projectPath,moduleName,_data.storeData);
+        createTool.createService(projectPath,moduleName,_data.APIData);
+        createTool.createApi(projectPath,moduleName,_data.APIData);
         return resEntity.setEneity({res:res});
     },
     getProjectsPath:(req,res)=>{
@@ -97,8 +141,8 @@ const api = {
             "pageType":_data.page.type,
             "compName":business.getCompName(_data.page.path,_data.page.fileName),
             "routerData":{
-                "routerName":_data.moduleName + _data.page.fileName,
-                "routerPath":_data.page.path
+                "routerName":_data.moduleName + business.titleCase(_data.page.fileName.split(".")[0]),
+                "routerPath":_data.page.path + "/" + _data.page.fileName,
             },
             "serverData":{
                 "store":{
@@ -120,7 +164,7 @@ const api = {
                 _dataJson.serverData.store.mutation.push("set" + business.titleCase(item.dataSource));
                 _dataJson.serverData.API.push({
                         url:item.url,
-                        compName: business.getCompName(item.url),
+                        compName: business.getCompName(item.url.split["."][0]),
                         servicesName : "get" + business.titleCase(item.dataSource)
                     });
             }
@@ -133,7 +177,7 @@ const api = {
                     _dataJson.serverData.store.mutation.push("set" + business.titleCase(item.dataSource));
                     _dataJson.serverData.API.push({
                         url:item.url,
-                        compName:business.getCompName(item.url),
+                        compName:business.getCompName(item.url.split(".")[0]),
                         servicesName : "get" + business.titleCase(item.dataSource)
                     });
                     _dataJson.serverData.store.state.entity.push(item.key);

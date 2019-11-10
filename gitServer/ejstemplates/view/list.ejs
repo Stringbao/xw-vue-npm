@@ -1,9 +1,9 @@
 <template>
     <div class="le_comps_core_css">
-        <h4 class="le_page_name"><%= data.btn.tableTitle %></h4>
+        <h4 class="le_page_name"><%= data.tableTitle %></h4>
         <div class='le_list_search_pannel clearfix'>
             <%_ data.cols.forEach(function(row){ -%>
-            <div class="<%= 'col' + data.btn.colsCount %>"><%_ %>
+            <div class="<%= 'col' + data.colsCount %>"><%_ %>
             <%_ row.forEach(function(col){ -%>
                 <%_ if(col.type == "text"){ -%>
                 <le-input<%  _%>
@@ -137,25 +137,26 @@
         <%_ _%><% }) -%>
         </div>
         <div class="le_search_btn_group cleatfix">
-        <%_ data.btn.btns.forEach(function(item){ -%>
+        <%_ data.btn.forEach(function(item){ -%>
             <le-button type="<%= item.btnType %>" value="<%= item.btnName %>" @click="<%= item.btnHandle %>"></le-button>
         <%_ }) _%>
         </div>
         <div class='le_table_container'>
-            <table-list title="<%= data.btn.tableTitle %>" ref='black_list_table' :options='<%= data.tableOptionsName %>'></table-list>
+            <table-list title="<%= data.tableTitle %>" ref='black_list_table' :options='<%= data.tableOptionsName %>'></table-list>
         </div>
         <%_ if(data.hasDialog && data.hasDialog == '1'){ _%>
-        <le-dialog v-model = "dialogTag" title = "<%= data.btn.tableTitle %>">
-        <%_ _%><%- include(data.viewFolderPath + "/form",{data:data.form}) %>
+        <le-dialog v-model = "dialogTag" title = "<%= data.tableTitle %>">
+        <%_ _%><%- include(data.viewFolderPath + "/form",{data:data.form.cols}) %>
         </le-dialog>
         <%_ } -%>
     </div>
 </template>
 <script>
 import <%= data.commonUtil.name %> from '<%= data.commonUtil.filePath %>';
-
+import { createNamespacedHelpers } from 'vuex';
+const { mapState, mapActions,mapMutations } = createNamespacedHelpers('<%= moduleName %>Store');
 export default {
-    name:"",
+    name:"<%= data.pageName %>",
     data(){
         return {
             // 搜索条件
@@ -173,14 +174,28 @@ export default {
             dialogTag:false,
             <%_ } -%>
             // 表格的配置
-            <%= data.tableOptionsName %>:<%- JSON.stringify(data.tableOptions) %>
+            <%= data.tableOptionsName %>:<%- JSON.stringify(data.tableOptions,null,"\t") -%>
         }
     },
     computed:{
         ...mapState(["dataSource"])
     },
     methods:{
-        <%_ data.btn.btns.forEach(function(item){ -%>
+        ...mapActions([
+        <%_ data.cols.forEach(function(row){ -%>
+            <%_ row.forEach(function(col){ -%>
+            <%_ if(col.type == "select" || col.type == "radioList" || col.type == "checkboxList"){ -%>
+                "get<%=  col.dataSource -%>",
+            <%_ } -%>
+            <%_ }) -%> 
+        <%_ }) -%>
+        <%_ data.form.cols.forEach(function(col){ -%>
+            <%_ if(col.type == "select" || col.type == "radioList" || col.type == "checkboxList"){ -%>
+                "get<%= col.dataSource -%>",
+            <%_ } -%>
+        <%_ }) -%>
+        ]),
+        <%_ data.btn.forEach(function(item){ -%>
         <%= item.btnHandle %>(){
             // <%= item.btnName %>按钮操作事件
         },

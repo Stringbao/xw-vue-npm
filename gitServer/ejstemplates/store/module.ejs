@@ -1,0 +1,32 @@
+import Service from "../../services/<%= moduleName %>.js";
+export default {
+    namespaced: true,
+    state:{
+        selectDataSource:{
+        <%_ data.state.dataSource.forEach(function(row){ -%>
+            <%= row %>:[],
+        <%_ _%><% }) -%>        
+        },
+        entity:{
+        <%_ data.state.entity.forEach(function(row){ -%>
+            <%= row %>:[],
+        <%_ _%><% }) -%> 
+        }
+    },
+    mutations:{
+    <%_ data.mutation.forEach(function(row,index){ -%>
+        <%= row %>(state,val){
+            state.selectDataSource.<%= data.state.dataSource[index] %>=val;
+        },
+    <%_ _%><% }) -%>  
+    },
+    actions:{
+    <%_ data.action.forEach(function(row,index){ -%>
+        <%= row %>({state,commit,dispatch},d){
+            Service.<%= row %>(d.context,(t) => {
+                commit("set<%= data.extendField[index] %>",t);
+            })
+        },
+    <%_ _%><% }) -%>  
+    }
+}

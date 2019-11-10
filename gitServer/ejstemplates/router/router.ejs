@@ -1,0 +1,22 @@
+import Vue from 'vue';
+import Router from 'vue-router';
+import Vuex from 'vuex';
+Vue.use(Router);
+Vue.use(Vuex);
+<%_ data.forEach(function(row){ -%>
+import <%= row.routerName %> from "../pages/<%= row.routerPath %>/<%= row.routerPath %>"
+<%_ _%><% }) -%>
+let routers = [
+<%_ data.forEach(function(row){ -%>
+    {
+        path:"/<%= row.routerName %>",
+        name:"<%= row.routerName %>",
+        components:<%= row.routerName %>
+    },
+<%_ _%><% }) -%>
+]
+const _router = new Router({
+    routes: routers
+});
+
+export default _router;

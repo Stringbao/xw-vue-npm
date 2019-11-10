@@ -27,7 +27,6 @@ const business = {
             res.push("..");
         }
         let path = res.join('/') + commonUtilPath;
-        console.log(path);
         return path;
     },
     /**
@@ -54,21 +53,31 @@ const business = {
                 entity:[],
             },
             action:[],
-            mutation:[]
+            mutation:[],
+            extendField:[]
         }
         let APIData =[]
         let routerData = [];
+        let pageOption = [];
+        let storeModuleNameList = [];
+        
         data.map(item => {
+            storeModuleNameList = this.concatArr(storeModuleNameList,[item.subName]);
             storeData.state.dataSource = this.concatArr(storeData.state.dataSource,item.serverData.store.state.dataSource);
             storeData.state.entity = this.concatArr(storeData.state.entity,item.serverData.store.state.entity);
             storeData.action = this.concatArr(storeData.action,item.serverData.store.action);
             storeData.mutation = this.concatArr(storeData.mutation,item.serverData.store.mutation);
             routerData = this.concatArr(routerData,[item.routerData]);
             APIData = this.concatArr(APIData,item.serverData.API);
+            pageOption = this.concatArr(pageOption,[item.pageOption]);
+        })
+        storeData.state.dataSource.forEach(item => {
+            storeData.extendField.push(this.titleCase(item));
         })
         
         return {
-            storeData,routerData,APIData
+            storeData,routerData,APIData,pageOption,storeModuleNameList
+
         }
 
     },

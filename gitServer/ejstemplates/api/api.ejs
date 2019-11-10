@@ -1,8 +1,12 @@
-
-api
-
-import <%= data.name %> from "../../abc";
-
-<% for(let i =0;i<data.items.length;i++){ %>
-    <h1><%= data.items[i].age %></h1>
-<% } %>
+let _map = {
+<%_ data.forEach(function(row){ -%>
+    <%= row.compName %>:"<%= row.url %>",
+<%_ _%><% }) -%>
+};
+export default {
+<%_ data.forEach(function(row){ -%>
+    <%= row.servicesName %>(context){
+        return context.ajax.getFetch(_map.<%= row.compName %>);
+    },
+<%_ _%><% }) -%>
+}
