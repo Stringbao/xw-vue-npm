@@ -20,21 +20,18 @@ app.set('view options', { pretty: true });
  * @param {projectPath} projectPath 
  * @returns 
  */
-const init = (projectPath)=>{
+const init = (projectPath,projectName)=>{
     app.listen(9998,d=>{
-        const _clientPath = fs.getProjectsPath();
-        const _serverPath = path.join(__dirname,"./projectPath.txt");
-        console.log(projectPath,_serverPath);
-        if(!projectPath){
-            if(_clientPath == ""){
-                console.log("项目没有创建,直接启动服务失败!");
-                process.exit();
-            }else{
-                console.log("项目已经成功创建,直接启动,path:"+_clientPath);
-                console.log("server is running in 9998 port");
-            }
+        //所有的项目信息
+        const projectsInfo = fs.getProjectsPath();
+        const _serverPath = path.join(__dirname,"./projectPath.json");
+        if(fs.exists(projectPath)){
+            console.log("项目已经成功创建, 直接启动, path:"+projectPath);
         }else{
-            fs.writeFile(_serverPath,projectPath);
+            let info = JSON.parse(projectsInfo);
+            info.push({"projectName":projectName, "projectPath":projectPath});
+
+            fs.writeFile(_serverPath,JSON.stringify(info,null,"\t"));
             console.log(fs.getProjectsPath(),"路径写入成功!");
             console.log("server is running in 9998 port");
         }
@@ -45,6 +42,6 @@ const init = (projectPath)=>{
  * 发布到生产环境后需要注释init方法, 项目下载完毕后会直接启动node服务
  * 测试环境需要打开init方法，直接启动node服务
  */
-init();
+// init("/Users/wupeng/Documents/aaa","aaa");
 
 module.exports = init;

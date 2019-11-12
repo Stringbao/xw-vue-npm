@@ -39,6 +39,6 @@ async function goCopy() {
     log.success("项目download Success");
     // 服务
     console.log(123,projectPath,projectName);
-    // server(projectPath);
+    server(projectPath, projectName);
 }
 goCopy();

@@ -60,8 +60,10 @@ const fsTool = {
      * @returns string
      */
     getProjectsPath:()=>{
-        let _path = path.join(__dirname,"../../projectPath.txt");
-        return fsTool.readFile(_path);
+        let _info = path.join(__dirname,"../../projectPath.json");
+        let str = fsTool.readFile(_info);
+        str == ""?str="[]":str;
+        return str;
     },
     exists:(path) => {
         return fs.pathExistsSync(path)
