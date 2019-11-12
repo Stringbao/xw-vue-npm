@@ -39,34 +39,6 @@ async function goCopy() {
     log.success("项目download Success");
     // 服务
     console.log(123,projectPath,projectName);
-    server(projectPath);
+    // server(projectPath);
 }
 goCopy();
-
-/**
- * Spawns a child process and runs the specified command
- * By default, runs in the CWD and inherits stdio
- * Options are the same as node's child_process.spawn
- * @param {string} cmd
- * @param {array<string>} args
- * @param {object} options
- */
-// function runCommand(cmd, args, options) {
-//     return new Promise((resolve, reject) => {
-//         const spwan = child_process.spawn(
-//             cmd,
-//             args,
-//             Object.assign(
-//                 {
-//                     cwd: process.cwd(),
-//                     stdio: 'inherit',
-//                     shell: true,
-//                 },
-//                 options
-//             )
-//         )
-//         spwan.on('exit', () => {
-//             resolve()
-//         })
-//     })
-// }
