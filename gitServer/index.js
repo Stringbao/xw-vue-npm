@@ -42,6 +42,6 @@ const init = (projectPath,projectName)=>{
  * 发布到生产环境后需要注释init方法, 项目下载完毕后会直接启动node服务
  * 测试环境需要打开init方法，直接启动node服务
  */
-init("/Users/wupeng/Documents/aaa","aaa");
+init("/Users/apple/Documents/aaa","aaa");
 
 module.exports = init;

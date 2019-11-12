@@ -10,6 +10,7 @@ const createTool = {
         let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/" + data.path + "/" + data.fileName + ".vue";
         let listEjsPath = path.resolve(__dirname, _config.viewPath.listEjs);
         fsTool.createFile(viewPath);
+        console.log(viewPath);
         let ejsStr = fsTool.readFile(listEjsPath);
         let ejsData = {
             data:{
@@ -123,9 +124,9 @@ const api = {
         let isExist = fsTool.exists(projectPath + "/src/pages/" + moduleName);
         if(!isExist){
             fsTool.createFolder(projectPath + "/src/pages/" + moduleName);
-            fsTool.createFolder(projectPath + "/src/api/" + moduleName);
-            fsTool.createFolder(projectPath + "/src/store/" + moduleName);
-            fsTool.createFolder(projectPath + "/src/service/" + moduleName);
+            // fsTool.createFolder(projectPath + "/src/api/" + moduleName);
+            // fsTool.createFolder(projectPath + "/src/store/" + moduleName);
+            // fsTool.createFolder(projectPath + "/src/service/" + moduleName);
             return resEntity.setEneity({res:res});
         }else{
             return resEntity.setEneity({
