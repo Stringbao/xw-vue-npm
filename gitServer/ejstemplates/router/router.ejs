@@ -11,7 +11,7 @@ let routers = [
     {
         path:"/<%= row.routerName %><% if(row.type == '2'){ %>/:tag/:id<% } %>",
         name:"<%= row.routerName %>",
-        components:<%= row.routerName %>
+        component:<%= row.routerName %>
     },
 <%_ _%><% }) -%>
 ]

@@ -89,15 +89,36 @@ const business = {
      * @param {Array} pushArr 
      */
     concatArr(arr,pushArr){
-    
         let newArr = [...arr,...pushArr];
         let resultArr = [];
-        newArr.forEach(item => {
-           if(!resultArr.includes(item)){
-               resultArr.push(item);
+        newArr.forEach((item,index) => {
+           if(this.isObj(item)){
+            let __tag = false
+            for(var key in item) {
+                for(let i = 0 ; i < resultArr.length; i++){
+                    if(resultArr[i][key] == item[key]){
+                        __tag = true;
+                        break;
+                    }
+                }
+                if(__tag){
+                    break;
+                }
+            }
+            if(!__tag){
+                resultArr.push(item);
+            }
+           }else{
+                if(!resultArr.includes(item)){
+                    resultArr.push(item);
+                }
            }
         })
         return resultArr;
+    },
+   
+    isObj(obj) {
+        return obj && typeof (obj) == 'object' && Object.prototype.toString.call(obj).toLowerCase() == "[object object]";
     },
     getCompName(path,name){
         if(name){
