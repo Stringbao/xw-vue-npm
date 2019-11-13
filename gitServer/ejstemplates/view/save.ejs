@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-import <%= data.commonUtil.name %> from '<%= data.commonUtil.filePath %>';
+import <%= data.commonUtil.name %> from '@util';
 import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapActions,mapMutations } = createNamespacedHelpers('<%= moduleName %>Store');
 export default {
@@ -25,6 +25,11 @@ export default {
             "doCreate",
             "getInfo",
             "doUpdate",
+    <%_ data.form.cols.forEach(function(col){ -%>
+        <%_ if(col.type == "select" || col.type == "radioList" || col.type == "checkboxList"){ -%>
+            "get<%= col.dataSource -%>",
+        <%_ } -%>
+    <%_ }) -%>
         ]),
         save(){
             if(this.$route.tag == "create"){

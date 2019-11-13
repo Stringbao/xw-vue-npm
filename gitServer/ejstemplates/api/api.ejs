@@ -1,3 +1,6 @@
+import util from "@util";
+let _vue_instance = util.getVueInstance();
+
 let _map = {
 <%_ data.forEach(function(row){ -%>
     <%= row.compName %>:"<%= row.url %>",
@@ -5,8 +8,8 @@ let _map = {
 };
 export default {
 <%_ data.forEach(function(row){ -%>
-    <%= row.servicesName %>(context){
-        return context.ajax.getFetch(_map.<%= row.compName %>);
+    <%= row.servicesName %>(){
+        return _vue_instance.ajax.getFetch(_map.<%= row.compName %>);
     },
 <%_ _%><% }) -%>
 }

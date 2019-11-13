@@ -152,7 +152,7 @@
     </div>
 </template>
 <script>
-import <%= data.commonUtil.name %> from '<%= data.commonUtil.filePath %>';
+import <%= data.commonUtil.name %> from '@util';
 import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapActions,mapMutations } = createNamespacedHelpers('<%= moduleName %>Store');
 export default {

@@ -1,5 +1,5 @@
 const commonUtil = require("./common.js");
-const business = {
+module.exports = {
     /**
      * @description 将数组根据指定的长度进行切割
      * @param {array} cols 
@@ -79,4 +79,3 @@ const business = {
         }
     }
 }
-module.exports = business;

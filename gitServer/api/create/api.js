@@ -9,7 +9,9 @@ const createRouter = require("./createRouter.js");
 const createApi = require("./createApi.js");
 const createService = require("./createService.js");
 const {createStore,createStoreModule} = require("./createStore.js");
-
+console.log("business:",business)
+console.log("commonUtil:",commonUtil);
+console.log("createRouter:",createRouter)
 const api = {
     // 创建模块
     createModuleFolder:(req,res)=>{
