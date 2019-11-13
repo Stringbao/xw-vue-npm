@@ -46,9 +46,7 @@ const api = {
         let projectPath = req.body.projectPath;
         let _data = business.dealJsonData(fsTool.readFile(path.resolve(__dirname,"../../data.json")));
         // let data = req.body.data;
-        console.log(_data);
         _data.pageOption.forEach(item => {
-            console.log(item.type);
             if(item.type == "1"){
                 createListView(projectPath,moduleName,item);
             }else{
