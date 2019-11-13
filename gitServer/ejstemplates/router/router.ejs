@@ -20,10 +20,22 @@ let routers = [
             {
                 path: '/layout',
                 name: 'test',
-                component:() => import('../pages/test.vue')
-            }
+                component:() => import('../pages/test.vue'),
+            },
+            <%_ if(isLayoutModule){ -%>
+                children:[
+                <%_ data.forEach(function(row){ -%>
+                    {
+                        path:"/layout/<%= row.routerName %><% if(row.type == '2'){ %>/:tag/:id<% } %>",
+                        name:"<%= row.routerName %>",
+                        component:<%= row.routerName %>
+                    },
+                <%_ _%><% }) -%>
+                ]
+            <%_ } -%>
         ]
     },
+<%_ if(!isLayoutModule){ -%>
 <%_ data.forEach(function(row){ -%>
     {
         path:"/<%= row.routerName %><% if(row.type == '2'){ %>/:tag/:id<% } %>",
@@ -31,6 +43,7 @@ let routers = [
         component:<%= row.routerName %>
     },
 <%_ _%><% }) -%>
+<%_ } -%>
 ]
 const _router = new Router({
     routes: routers

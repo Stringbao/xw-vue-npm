@@ -30,11 +30,13 @@ const api = {
     // 创建router和store的index等项目级文件
     createGlobalFile(req,res){
         let projectPath = req.body.projectPath;
+        let isLayoutModule = (req.body.isLayout && req.body.isLayout == "1")  ? true:false;
+        console.log(isLayoutModule);
         let globalPath = path.resolve(__dirname,"../../global.json")
         let str = fsTool.readFile(globalPath);
         let _data = JSON.parse((str && str!="") ? str : "{router:[],moduleList:[]}");
         // 创建router
-        createRouter(projectPath,_data.router);
+        createRouter(projectPath,_data.router,isLayoutModule);
         // 创建store的index
         createStore(projectPath,_data.moduleList);
         fsTool.writeFile(globalPath,"");
