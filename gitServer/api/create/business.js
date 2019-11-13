@@ -1,3 +1,4 @@
+const commonUtil = require("./common.js");
 const business = {
     /**
      * @description 将数组根据指定的长度进行切割
@@ -5,19 +6,6 @@ const business = {
      * @param {number} limitNum 
      */
     isHasDialogTag : "1",
-    groupBy(cols,limitNum){
-        if(!cols instanceof Array){
-            return cols
-        }
-        let _len = cols.length;
-        let _limit = _len % limitNum === 0 ? _len / limitNum : Math.floor( (_len / limitNum) + 1 );
-        let _array = [];
-        for (let i = 0; i < _limit; i++) {
-            let temp = cols.slice(i*limitNum, i*limitNum+limitNum);
-            _array.push(JSON.parse(JSON.stringify(temp)));
-        }
-        return _array;
-    },
     getRelativeCompPath(projectPath,name){
         let commonUtilPath = "/core/tool/commonUtil.js";
         let fullPath = "src/pages/"+name;
@@ -28,15 +16,6 @@ const business = {
         }
         let path = res.join('/') + commonUtilPath;
         return path;
-    },
-    /**
-     * @description 一个字符串首字母大写
-     * @param {String} str 
-     */
-    titleCase(str){
-        var temp=[];
-        str=str.toLowerCase();//全部转换为小写
-        return str.substring(0,1).toUpperCase() + str.substring(1);
     },
     isHasDialog(tag){
         return tag == this.isHasDialogTag;
@@ -62,19 +41,18 @@ const business = {
         let storeModuleNameList = [];
         
         data.map(item => {
-            storeModuleNameList = this.concatArr(storeModuleNameList,[item.subName]);
-            storeData.state.dataSource = this.concatArr(storeData.state.dataSource,item.serverData.store.state.dataSource);
-            storeData.state.entity = this.concatArr(storeData.state.entity,item.serverData.store.state.entity);
-            storeData.action = this.concatArr(storeData.action,item.serverData.store.action);
-            storeData.mutation = this.concatArr(storeData.mutation,item.serverData.store.mutation);
+            storeModuleNameList = commonUtil.concatArr(storeModuleNameList,[item.subName]);
+            storeData.state.dataSource = commonUtil.concatArr(storeData.state.dataSource,item.serverData.store.state.dataSource);
+            storeData.state.entity = commonUtil.concatArr(storeData.state.entity,item.serverData.store.state.entity);
+            storeData.action = commonUtil.concatArr(storeData.action,item.serverData.store.action);
+            storeData.mutation = commonUtil.concatArr(storeData.mutation,item.serverData.store.mutation);
             item.routerData.type = item.pageType;
-            routerData = this.concatArr(routerData,[item.routerData]);
-
-            APIData = this.concatArr(APIData,item.serverData.API);
-            pageOption = this.concatArr(pageOption,[item.pageOption]);
+            routerData = commonUtil.concatArr(routerData,[item.routerData]);
+            APIData = commonUtil.concatArr(APIData,item.serverData.API);
+            pageOption = commonUtil.concatArr(pageOption,[item.pageOption]);
         })
         storeData.state.dataSource.forEach(item => {
-            storeData.extendField.push(this.titleCase(item));
+            storeData.extendField.push(commonUtil.titleCase(item));
         })
         
         return {
@@ -84,42 +62,13 @@ const business = {
 
     },
     /**
-     * @description 合并两个数组(并且去掉重复)；
-     * @param {Array} arr 
-     * @param {Array} pushArr 
+     * @description 组合两个名字或者一个名字
+     * @param {String} path 
+     * @param {String} name 
+     * @example 
+     * path = a/a name = b/b => a_a_b_b
+     * path = a/a name = null => a_a
      */
-    concatArr(arr,pushArr){
-        let newArr = [...arr,...pushArr];
-        let resultArr = [];
-        newArr.forEach((item,index) => {
-           if(this.isObj(item)){
-            let __tag = false
-            for(var key in item) {
-                for(let i = 0 ; i < resultArr.length; i++){
-                    if(resultArr[i][key] == item[key]){
-                        __tag = true;
-                        break;
-                    }
-                }
-                if(__tag){
-                    break;
-                }
-            }
-            if(!__tag){
-                resultArr.push(item);
-            }
-           }else{
-                if(!resultArr.includes(item)){
-                    resultArr.push(item);
-                }
-           }
-        })
-        return resultArr;
-    },
-   
-    isObj(obj) {
-        return obj && typeof (obj) == 'object' && Object.prototype.toString.call(obj).toLowerCase() == "[object object]";
-    },
     getCompName(path,name){
         if(name){
             path = path.split("/").join("_");
@@ -128,8 +77,6 @@ const business = {
             path = path.split("/").join("_");
             return path;
         }
-    
-        
     }
 }
 module.exports = business;
