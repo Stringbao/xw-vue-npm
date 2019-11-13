@@ -1,7 +1,8 @@
 const _config = require("../pathConfig");
 const ejsTool = require("../ejs/ejsapi");
+const fsTool = require("../fs/fsapi");
 const path = require("path");
-module.export = (projectPath, data) => {
+module.exports = (projectPath, data) => {
     let routerPath = projectPath + "/" + _config.routerPath.router;
     let routerEjsPath = path.resolve(__dirname, _config.routerPath.ejs);
     fsTool.createFile(routerPath);

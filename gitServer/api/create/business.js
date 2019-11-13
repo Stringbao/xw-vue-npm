@@ -39,7 +39,6 @@ module.exports = {
         let routerData = [];
         let pageOption = [];
         let storeModuleNameList = [];
-        
         data.map(item => {
             storeModuleNameList = commonUtil.concatArr(storeModuleNameList,[item.subName]);
             storeData.state.dataSource = commonUtil.concatArr(storeData.state.dataSource,item.serverData.store.state.dataSource);

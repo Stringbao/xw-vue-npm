@@ -2,7 +2,7 @@ import API from "@api/<%= moduleName %>.js";
 
 export default {
 <%_ data.forEach(function(row){ -%>
-    <%= row.servicesName %>(context,cb){
+    <%= row.servicesName %>(cb){
         API.<%= row.servicesName %>(context)
             .then(x => {
                 cb && cb(x.data);

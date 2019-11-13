@@ -1,0 +1,17 @@
+{
+	"router": [
+		{
+			"routerName": "person2List",
+			"routerPath": "person2/man/List",
+			"type": "1"
+		},
+		{
+			"routerName": "person2",
+			"routerPath": "person2/man/",
+			"type": "1"
+		}
+	],
+	"moduleList": [
+		"person2"
+	]
+}

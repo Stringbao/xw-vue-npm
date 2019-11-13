@@ -1,4 +1,4 @@
-module.export =  {
+module.exports =  {
     isExistItem(arr,checkObj,checkTag){
         if(!this.isArr){
             console.log("arr必须是一个array");
@@ -50,23 +50,18 @@ module.export =  {
     concatArr(arr,pushArr){
         let newArr = [...arr,...pushArr];
         let resultArr = [];
-        newArr.forEach((item,index) => {
+        newArr.forEach((item) => {
            if(this.isObj(item)){
-            let __tag = false
-            for(var key in item) {
-                for(let i = 0 ; i < resultArr.length; i++){
-                    if(resultArr[i][key] == item[key]){
-                        __tag = true;
-                        break;
+               let __tag = false;
+               //遍历所有resultArr，当前的item要和result所有的item进行逐一对比；如果有重复了  则直接跳过并且不添加
+               resultArr.forEach((resultArrItem) => {
+                    if(!__tag){
+                        __tag = this.checkObjIsExist(item,resultArrItem);
                     }
+               })
+                if(!__tag){
+                    resultArr.push(item);
                 }
-                if(__tag){
-                    break;
-                }
-            }
-            if(!__tag){
-                resultArr.push(item);
-            }
            }else{
                 if(!resultArr.includes(item)){
                     resultArr.push(item);
@@ -74,6 +69,38 @@ module.export =  {
            }
         })
         return resultArr;
+    },
+    checkObjIsExist(item,checkItem){
+        let itemLength = this.propertyLength(item);
+        let checkItemLength = this.propertyLength(checkItem);
+        // 判断两个json属性长度是否一致，如果不一致则直接算作不一致
+        if(itemLength == checkItemLength){
+            for(var key in item){
+                if(item.hasOwnProperty(key) && checkItem.hasOwnProperty(key)){     
+                    if(item[key]!==checkItem[key]){
+                        return false;
+                    };
+                }else{
+                   return false;
+                }
+            }
+        }else{
+            return false;
+        }
+        return true;
+    },
+    propertyLength(obj){
+        var count=0;
+        if( obj && typeof obj==="object") {
+            for(var ooo in obj) {
+                if(obj.hasOwnProperty(ooo)) {
+                    count++;
+                }
+            }
+            return count;
+        }else {
+            throw new Error("argunment can not be null;");
+        }
     },
     /**
      * @description 用于判断传入的值是否是一个对象

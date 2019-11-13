@@ -2,7 +2,9 @@ const _config = require("../pathConfig");
 const ejsTool = require("../ejs/ejsapi");
 const path = require("path");
 const business = require("./business.js");
-module.export = {
+const fsTool = require("../fs/fsapi");
+const CommonUtil = require("./common");
+module.exports = {
     createListView(projectPath, moduleName, data){
         let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/" + data.path + "/" + data.fileName + ".vue";
         let listEjsPath = path.resolve(__dirname, _config.viewPath.listEjs);
@@ -11,8 +13,7 @@ module.export = {
         let ejsStr = fsTool.readFile(listEjsPath);
         let ejsData = {
             data:{
-                //CommonUtil注入
-                commonUtil:{name:"commonUtil",filePath:business.getRelativeCompPath(projectPath,moduleName)},
+                
                 btn:data.searchOpts.search.btn,
                 cols:CommonUtil.groupBy(data.searchOpts.search.cols,data.searchOpts.search.colsCount),
                 colsCount:data.searchOpts.search.colsCount,
@@ -37,14 +38,13 @@ module.export = {
         let ejsStr = fsTool.readFile(saveEjsPath);
         let ejsData = {
             data:{
-                //CommonUtil注入
-                commonUtil:{name:"commonUtil",filePath:business.getRelativeCompPath(projectPath,moduleName)},
                 form:data.form ? data.form : [],
                 viewFolderPath: path.resolve(__dirname, _config.viewPath.viewFolderPath),
             },
             moduleName,
         };
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
+
         fsTool.writeFile(viewPath,_data);
         console.log("写入saveView成功");
     },

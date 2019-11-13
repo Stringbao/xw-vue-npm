@@ -4,7 +4,7 @@
     </div>
 </template>
 <script>
-import <%= data.commonUtil.name %> from '@util';
+import CommonUtil from '@util';
 import { createNamespacedHelpers } from 'vuex';
 const { mapState, mapActions,mapMutations } = createNamespacedHelpers('<%= moduleName %>Store');
 export default {
@@ -15,7 +15,7 @@ export default {
         }
     },
     computed:{
-        ...mapState(["dataSource","entity"])
+        ...mapState(["selectDataSource","entity"])
     },
     mounted(){
         this.getDetail();
@@ -57,7 +57,7 @@ export default {
                 }
             })
         },
-        cancel(){
+        goBack(){
             this.$router.go(-1);
         },
     },

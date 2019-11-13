@@ -8,7 +8,7 @@ export default new Vuex.Store({
     namespaced:true,
     modules:{
         login_store:login_store,
-        menus_store:menus_store
+        menus_store:menus_store,
     <%_ data.forEach(function(row){ -%>
         <%= row %>Store:<%= row %>_store,
     <%_ _%><% }) -%>

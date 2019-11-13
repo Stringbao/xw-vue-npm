@@ -42,7 +42,7 @@
                                 <%_  %> v-model="entity.<%=col.key%>"<%  -%>
                             <%_ } _%>
                             <%_ if(col.dataSource && col.dataSource != ''){ -%>
-                                <%_  %> :data-source="dataSource.<%= col.dataSource %>"<%  -%>
+                                <%_  %> :data-source="selectDataSource.<%= col.dataSource %>"<%  -%>
                             <%_ } _%>
                             <%_ if(col.displayName && col.displayName != ''){ -%>
                                 <%_  %> display-name="<%= col.displayName %>"<%  -%>
@@ -69,7 +69,7 @@
                             <%_  %> v-model="entity.<%=col.key%>"<%  -%>
                         <%_ } _%>
                         <%_ if(col.dataSource && col.dataSource != ''){ -%>
-                            <%_  %> :data-source="dataSource.<%= col.dataSource %>"<%  -%>
+                            <%_  %> :data-source="selectDataSource.<%= col.dataSource %>"<%  -%>
                         <%_ } _%>
                         <%_ if(col.displayName && col.displayName != ''){ -%>
                             <%_  %> display-name="<%= col.displayName %>"<%  -%>
@@ -96,7 +96,7 @@
                             <%_  %> v-model="entity.<%=col.key%>"<%  -%>
                         <%_ } _%>
                         <%_ if(col.dataSource && col.dataSource != ''){ -%>
-                            <%_  %> :data-source="dataSource.<%= col.dataSource %>"<%  -%>
+                            <%_  %> :data-source="selectDataSource.<%= col.dataSource %>"<%  -%>
                         <%_ } _%>
                         <%_ if(col.displayName && col.displayName != ''){ -%>
                             <%_  %> display-name="<%= col.displayName %>"<%  -%>
