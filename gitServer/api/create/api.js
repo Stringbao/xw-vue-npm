@@ -2,13 +2,13 @@
 const fsTool = require("../fs/fsapi");
 const resEntity = require("../responseEntity");
 const path = require("path");
-const business = require("./business.js");
-const commonUtil = require("./common.js");
-const createRouter = require("./createRouter.js");
-const createApi = require("./createApi.js");
-const createService = require("./createService.js");
-const {createListView,createSaveView} = require("./createView.js");
-const {createStore,createStoreModule} = require("./createStore.js");
+const business = require("./service/business.js");
+const commonUtil = require("./service/common.js");
+const createRouter = require("./service/createRouter.js");
+const createApi = require("./service/createApi.js");
+const createService = require("./service/createService.js");
+const {createListView,createSaveView} = require("./service/createView.js");
+const {createStore,createStoreModule} = require("./service/createStore.js");
 const api = {
     // 创建模块
     createModuleFolder:(req,res)=>{
@@ -104,6 +104,7 @@ const api = {
                 "API":[],
             }
         }
+        console.log(_dataJson.pageOption);
         if(_dataJson.pageType == "1"){
             _data.page.searchOpts.search.cols && _data.page.searchOpts.search.cols.map(item => {
                 // 有datasource就必须要有url否则不添加

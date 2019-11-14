@@ -174,7 +174,7 @@ export default {
             dialogTag:false,
             <%_ } -%>
             // 表格的配置
-            <%= data.tableOptionsName %>:<%- JSON.stringify(data.tableOptions,null,"\t") -%>
+            <%= data.tableOptionsName %>:<%- data.tableOptions -%>
         }
     },
     computed:{

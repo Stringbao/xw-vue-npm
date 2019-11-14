@@ -1,8 +1,8 @@
-const _config = require("../pathConfig");
-const ejsTool = require("../ejs/ejsapi");
+const _config = require("../../pathConfig");
+const ejsTool = require("../../ejs/ejsapi");
 const path = require("path");
 const business = require("./business.js");
-const fsTool = require("../fs/fsapi");
+const fsTool = require("../../fs/fsapi");
 const CommonUtil = require("./common");
 module.exports = {
     createListView(projectPath, moduleName, data){
@@ -11,9 +11,9 @@ module.exports = {
         fsTool.createFile(viewPath);
         console.log(viewPath);
         let ejsStr = fsTool.readFile(listEjsPath);
+        data.searchOpts.search.colsCount = data.searchOpts.search.colsCount ? data.searchOpts.search.colsCount : 3
         let ejsData = {
             data:{
-                
                 btn:data.searchOpts.search.btn,
                 cols:CommonUtil.groupBy(data.searchOpts.search.cols,data.searchOpts.search.colsCount),
                 colsCount:data.searchOpts.search.colsCount,
@@ -27,6 +27,7 @@ module.exports = {
             },
             moduleName,
         };
+        console.log(ejsData);
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
         fsTool.writeFile(viewPath,_data);
         console.log("写入listView成功");

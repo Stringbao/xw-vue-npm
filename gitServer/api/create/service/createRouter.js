@@ -1,6 +1,6 @@
-const _config = require("../pathConfig");
-const ejsTool = require("../ejs/ejsapi");
-const fsTool = require("../fs/fsapi");
+const _config = require("../../pathConfig");
+const ejsTool = require("../../ejs/ejsapi");
+const fsTool = require("../../fs/fsapi");
 const path = require("path");
 module.exports = (projectPath, data,isLayoutModule) => {
     let routerPath = projectPath + "/" + _config.routerPath.router;
