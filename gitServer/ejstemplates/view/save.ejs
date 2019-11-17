@@ -62,10 +62,8 @@ export default {
         },
     },
     mounted(){
-    <%_ data.form.cols.forEach(function(col){ -%>
-        <%_ if(col.type == "select" || col.type == "radioList" || col.type == "checkboxList"){ -%>
-            this.get<%= col.dataSource -%>()";
-        <%_ } -%>
+    <%_ data.action.forEach(function(actionName){ -%>
+            this.<%= actionName -%>();
     <%_ }) -%>
     }
 }

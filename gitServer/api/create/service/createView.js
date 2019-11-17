@@ -12,22 +12,40 @@ module.exports = {
         fsTool.createFile(viewPath);
         console.log(viewPath);
         let ejsStr = fsTool.readFile(listEjsPath);
-        data.searchOpts.search.colsCount = data.searchOpts.search.colsCount ? data.searchOpts.search.colsCount : 3
+        data.searchOpts.search.colsCount = data.searchOpts.search.colsCount ? data.searchOpts.search.colsCount : 3;
+        let action = [];
+        let colsList = CommonUtil.groupBy(data.searchOpts.search.cols,data.searchOpts.search.colsCount);
+        colsList.forEach(row =>{
+            row.forEach(col => {
+                if(col.type == "select" || col.type == "radioList" || col.type == "checkboxList"){
+                    action.push("get" + CommonUtil.titleCase(col.dataSource));
+                }
+            })
+        })
+        let formList = data.dialog.form ? data.dialog.form : [];
+        formList.cols.forEach(col => {
+            if(col.type == "select" || col.type == "radioList" || col.type == "checkboxList"){
+                action.push("get" + CommonUtil.titleCase(col.dataSource));
+            }
+        })
+        let filterAction = CommonUtil.concatArr([],action);
         let ejsData = {
             data:{
                 btn:data.searchOpts.search.btn,
-                cols:CommonUtil.groupBy(data.searchOpts.search.cols,data.searchOpts.search.colsCount),
+                cols:colsList,
+                action:filterAction,
                 colsCount:data.searchOpts.search.colsCount,
                 tableOptions:data.searchOpts.tableOptions,
                 tableOptionsName:data.fileName.split('.')[0] + "_table_options",
                 hasDialog:data.dialog.hasDialog ? data.dialog.hasDialog : "0",
-                form:data.dialog.form ? data.dialog.form : [],
+                form:formList,
                 viewFolderPath: path.resolve(__dirname, _config.viewPath.viewFolderPath),
                 tableTitle:data.searchOpts.tableTitle,
                 pageName : business.getCompName(data.path,data.fileName.split('.')[0])
             },
             moduleName,
         };
+
         console.log(ejsData);
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
         fsTool.writeFile(viewPath,_data);
@@ -38,9 +56,19 @@ module.exports = {
         let saveEjsPath = path.resolve(__dirname, _config.viewPath.saveEjs);
         fsTool.createFile(viewPath);
         let ejsStr = fsTool.readFile(saveEjsPath);
+        let action = [];
+
+        let formList = data.form ? data.form : [];
+        formList.cols.forEach(col => {
+            if(col.type == "select" || col.type == "radioList" || col.type == "checkboxList"){
+                action.push("get" + CommonUtil.titleCase(col.dataSource));
+            }
+        })
+        let filterAction = CommonUtil.concatArr([],action);
         let ejsData = {
             data:{
-                form:data.form ? data.form : [],
+                form:formList,
+                action:filterAction,
                 viewFolderPath: path.resolve(__dirname, _config.viewPath.viewFolderPath),
                 pageName : business.getCompName(data.path,data.fileName.split('.')[0]),
             },
