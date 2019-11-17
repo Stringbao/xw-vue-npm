@@ -6,7 +6,8 @@ const fsTool = require("../../fs/fsapi");
 const CommonUtil = require("./common");
 module.exports = {
     createListView(projectPath, moduleName, data){
-        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + "/" + data.path + "/" + data.fileName + ".vue";
+        let subPath = data.path ? ("/" + data.path):"";
+        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + subPath + "/" + data.fileName + ".vue";
         let listEjsPath = path.resolve(__dirname, _config.viewPath.listEjs);
         fsTool.createFile(viewPath);
         console.log(viewPath);
@@ -41,6 +42,7 @@ module.exports = {
             data:{
                 form:data.form ? data.form : [],
                 viewFolderPath: path.resolve(__dirname, _config.viewPath.viewFolderPath),
+                pageName : business.getCompName(data.path,data.fileName.split('.')[0]),
             },
             moduleName,
         };

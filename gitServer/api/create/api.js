@@ -46,8 +46,9 @@ const api = {
     createModuleFile:(req,res)=>{
         let moduleName = req.body.moduleName;
         let projectPath = req.body.projectPath;
-        let _data = business.dealJsonData(fsTool.readFile(path.resolve(__dirname,"../../data.json")));
-        // let data = req.body.data;
+        let jsonDataPath = path.resolve(__dirname,"../../global.json");
+        let dataPath = path.resolve(__dirname,"../../data.json");
+        let _data = business.dealJsonData(fsTool.readFile(path.resolve(__dirname,dataPath)));
         _data.pageOption.forEach(item => {
             if(item.type == "1"){
                 createListView(projectPath,moduleName,item);
@@ -58,8 +59,6 @@ const api = {
         createStoreModule(projectPath,moduleName,_data.storeData);
         createService(projectPath,moduleName,_data.APIData);
         createApi(projectPath,moduleName,_data.APIData);
-        let jsonDataPath = path.resolve(__dirname,"../../global.json");
-        let dataPath = path.resolve(__dirname,"../../data.json");
         let jsonStr = fsTool.readFile(jsonDataPath);
         let jsonData = JSON.parse(jsonStr!= "" ? jsonStr : "{}");
         let _json = {
@@ -104,7 +103,6 @@ const api = {
                 "API":[],
             }
         }
-        console.log(_dataJson.pageOption);
         if(_dataJson.pageType == "1"){
             _data.page.searchOpts.search.cols && _data.page.searchOpts.search.cols.map(item => {
                 // 有datasource就必须要有url否则不添加
@@ -178,7 +176,15 @@ const api = {
         jsonData.push(_dataJson)
         fsTool.writeFile(jsonDataPath,JSON.stringify(jsonData,null,"\t"));
         return resEntity.setEneity({res:res});
-    }
+    },
+    resetConfig(req,res){
+        let jsonDataPath = path.resolve(__dirname,"../../global.json");
+        let dataPath = path.resolve(__dirname,"../../data.json");
+        fsTool.writeFile(dataPath,"");
+        fsTool.writeFile(jsonDataPath,"");
+        console.log("清空配置成功");
+        return resEntity.setEneity({res:res});
+     }
 }
 
 module.exports = api;

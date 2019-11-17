@@ -10,6 +10,8 @@ router.post("/createModuleFile",controller.createModuleFile);
 router.get("/getProjects",controller.getProjectsPath);
 router.post("/savePage",controller.savePage);
 router.post("/createGlobalFile",controller.createGlobalFile);
+router.post("/resetConfig",controller.resetConfig);
+
 
 
 module.exports = router;

@@ -1,14 +1,15 @@
 import API from "@api/<%= moduleName %>.js";
+let _vue_instance = CommonUtil.getVueInstance();
 
 export default {
 <%_ data.forEach(function(row){ -%>
     <%= row.servicesName %>(cb){
-        API.<%= row.servicesName %>(context)
+        API.<%= row.servicesName %>()
             .then(x => {
                 cb && cb(x.data);
             })
             .catch(error => {
-                context.alert.showAlert("error",e.data);
+                _vue_instance.alert.showAlert("error",e.data);
             })
     },
 <%_ _%><% }) -%>
