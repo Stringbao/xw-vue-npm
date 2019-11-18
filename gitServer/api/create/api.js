@@ -149,20 +149,30 @@ const api = {
             })
             _dataJson.serverData.API.push({
                 url:_data.page.savePageInterface.save,
-                compName:business.getCompName(_data.page.savePageInterface.save.split(".")[0]),
+                compName:"createAPI",
                 servicesName:"doCreate",
             })
             _dataJson.serverData.API.push({
                 url:_data.page.savePageInterface.detail,
-                compName:business.getCompName(_data.page.savePageInterface.detail.split(".")[0]),
+                compName:"infoAPI",
                 servicesName:"getInfo",
             })
             _dataJson.serverData.API.push({
                 url:_data.page.savePageInterface.update,
-                compName:business.getCompName(_data.page.savePageInterface.update.split(".")[0]),
+                compName:"updateAPI",
                 servicesName:"doUpdate",
             })
         }
+        _dataJson.serverData.API.push({
+            url:"",
+            compName:"removeAPI",
+            servicesName:"doRemove",
+        })
+        _dataJson.serverData.API.push({
+            url:"",
+            compName:"listAPI",
+            servicesName:"doGetList",
+        })
         let jsonStr = fsTool.readFile(jsonDataPath);
         let jsonData = JSON.parse(jsonStr!= "" ? jsonStr : "[]");
         if(commonUtil.isExistItem(jsonData,_dataJson,"compName")){
@@ -177,6 +187,7 @@ const api = {
         fsTool.writeFile(jsonDataPath,JSON.stringify(jsonData,null,"\t"));
         return resEntity.setEneity({res:res});
     },
+    // 重置config文件
     resetConfig(req,res){
         let jsonDataPath = path.resolve(__dirname,"../../global.json");
         let dataPath = path.resolve(__dirname,"../../data.json");
