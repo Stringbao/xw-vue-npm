@@ -1,22 +1,11 @@
 const commonUtil = require("./common.js");
 module.exports = {
+    
+    isHasDialogTag : "1",//1包含 ，2不包含
     /**
-     * @description 将数组根据指定的长度进行切割
-     * @param {array} cols 
-     * @param {number} limitNum 
+     * @description 是否包含dialog判断
+     * @param {String} tag 
      */
-    isHasDialogTag : "1",
-    getRelativeCompPath(projectPath,name){
-        let commonUtilPath = "/core/tool/commonUtil.js";
-        let fullPath = "src/pages/"+name;
-        let length = fullPath.split('/').length - 1;
-        let res = [];
-        for(let i=0;i<length;i++){
-            res.push("..");
-        }
-        let path = res.join('/') + commonUtilPath;
-        return path;
-    },
     isHasDialog(tag){
         return tag == this.isHasDialogTag;
     },

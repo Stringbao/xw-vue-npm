@@ -1,7 +1,13 @@
 module.exports =  {
-    isExistItem(arr,checkObj,checkTag){
+     /**
+      * @description 根据指定字段名「checkTag」对比checkobj是否在arr中有所重复
+      * @param {Array} paddingArr 
+      * @param {Object} checkObj 
+      * @param {String} checkTag 
+      */
+    isExistItem(paddingArr,checkObj,checkTag){
         if(!this.isArr){
-            console.log("arr必须是一个array");
+            console.log("paddingArr必须是一个array");
             return
         }
         if(!this.isObj(checkObj)){
@@ -13,28 +19,33 @@ module.exports =  {
             return 
         }
         let isRepeat = false;
-        arr.forEach(item => {
+        paddingArr.forEach(item => {
             if(item[checkTag] == checkObj[checkTag]){
                 isRepeat = true;
             }
         })
         return isRepeat;
     },
-    groupBy(cols,limitNum){
-        if(!cols instanceof Array){
-            return cols
+   /**
+    * @description 将一维数组根据指定的数字切分成二维数组
+    * @param {Array} paddingArr 
+    * @param {Number} limitNum 
+    */
+    groupBy(paddingArr,limitNum){
+        if(!paddingArr instanceof Array){
+            return paddingArr
         }
-        let _len = cols.length;
+        let _len = paddingArr.length;
         let _limit = _len % limitNum === 0 ? _len / limitNum : Math.floor( (_len / limitNum) + 1 );
-        let _array = [];
+        let _resultArray = [];
         for (let i = 0; i < _limit; i++) {
-            let temp = cols.slice(i*limitNum, i*limitNum+limitNum);
-            _array.push(JSON.parse(JSON.stringify(temp)));
+            let temp = paddingArr.slice(i*limitNum, i*limitNum+limitNum);
+            _resultArray.push(JSON.parse(JSON.stringify(temp)));
         }
-        return _array;
+        return _resultArray;
     },
     /**
-     * @description 一个字符串首字母大写
+     * @description 一个字符串首字母大写，其余小写
      * @param {String} str 
      */
     titleCase(str){
@@ -89,6 +100,10 @@ module.exports =  {
         }
         return true;
     },
+    /**
+     * @description 获取obj的长度
+     * @param {Object} obj 
+     */
     propertyLength(obj){
         var count=0;
         if( obj && typeof obj==="object") {
@@ -116,4 +131,15 @@ module.exports =  {
     isArr(item) {
         return item && typeof (item) == 'object' && Object.prototype.toString.call(item).toLowerCase() == "[object array]";
     },
+    /**
+     * @description 克隆obj
+     * @param { Object } source 
+     */
+    cloneObj(source){
+        if(source){
+            return JSON.parse(JSON.stringify(source));
+        }
+        return null;
+    },
+    
 }

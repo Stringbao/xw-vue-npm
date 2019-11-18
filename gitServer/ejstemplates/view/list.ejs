@@ -164,7 +164,7 @@ export default {
                 <%_ data.cols.forEach(function(row){ -%>
                     <%_ row.forEach(function(col){ -%>
                         <%_ if(col.key && col.key != ""){ -%>
-                            <%_ %>                <%= col.key %> : "",
+                            <%_ %><%= col.key %> : "",
                         <%_ } -%>
                     <%_ }) -%>
                 <%_ }) -%>
@@ -195,7 +195,7 @@ export default {
     },
     mounted(){
         <%_ data.action.forEach(function(actionName){ -%>
-                this.<%=  col.dataSource -%>();
+                this.<%= actionName -%>();
         <%_ }) -%>
     }
 }

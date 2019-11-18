@@ -25,10 +25,8 @@ export default {
             "doCreate",
             "getInfo",
             "doUpdate",
-    <%_ data.form.cols.forEach(function(col){ -%>
-        <%_ if(col.type == "select" || col.type == "radioList" || col.type == "checkboxList"){ -%>
-            "get<%= col.dataSource -%>",
-        <%_ } -%>
+    <%_ data.action.forEach(function(actionName){ -%>
+            "<%= actionName -%>",
     <%_ }) -%>
         ]),
         save(){

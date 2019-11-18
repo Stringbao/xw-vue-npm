@@ -43,10 +43,20 @@ export default {
                 d.cb && d.cb(t)
             })
         },
-        doUpdate(){
+        doUpdate({state,commit,dispatch},d){
             Service.doUpdate(state.entity,(t) => {
                 d.cb && d.cb(t)
             })
         },
+        doRemove({state,commit,dispatch},d){
+            Service.doRemove(state.entity,(t) => {
+                d.cb && d.cb(t)
+            })
+        },
+        doGetList({state,commit,dispatch},d){
+            Service.doRemove(state.entity,(t) => {
+                d.cb && d.cb(t)
+            })
+        }
     }
 }
