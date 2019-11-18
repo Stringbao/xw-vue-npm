@@ -1,0 +1,23 @@
+{
+	"router": [
+		{
+			"routerName": "asdsdasdasdasdasdasdAsdasdas",
+			"routerPath": "asdsdasdasdasdasdasd/asdasd/asdasdas",
+			"type": "1"
+		},
+		{
+			"routerName": "asdsdasdasdasdasdasdAsdsdd",
+			"routerPath": "asdsdasdasdasdasdasd/asdasd/asdsdd",
+			"type": "2"
+		},
+		{
+			"routerName": "ASDASDASDASAsdasdasdas",
+			"routerPath": "ASDASDASDAS/asdasd/ASDASDASDAS",
+			"type": "2"
+		}
+	],
+	"moduleList": [
+		"asdsdasdasdasdasdasd",
+		"ASDASDASDAS"
+	]
+}

@@ -1,0 +1,186 @@
+[
+	[
+		{
+			"subName": "asdsdasdasdasdasdasd",
+			"pagePath": "asdasd",
+			"pageName": "asdasdas.vue",
+			"pageOption": {
+				"fileName": "asdasdas",
+				"path": "asdasd",
+				"type": "1",
+				"searchOpts": {
+					"search": {
+						"btn": [
+							{
+								"btnName": "搜索",
+								"btnType": "search",
+								"btnHandle": "search"
+							}
+						],
+						"cols": []
+					},
+					"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"shop\",val:\"商城\"},\n        {key:\"accessField\",val:\"封禁纬度\"}\n    ],\n    getUrl:() => {\n        return \"/risk/limit/black/user/query/list\";\n    },\n    pageOption:{\n        sizeKey:\"pageSize\",\n        indexKey:\"pageNum\",\n        index:1,\n        size:10\n    },\n    actions:[\n        {\n            key:\"update\",\n            val:\"编辑\",\n            action:this.edit\n        }\n    ]\n}\n                        ",
+					"tableTitle": "asdasd"
+				},
+				"dialog": {
+					"hasDialog": "1",
+					"form": {
+						"cols": []
+					}
+				}
+			},
+			"pageType": "1",
+			"compName": "asdasd_asdasdas",
+			"routerData": {
+				"routerName": "asdsdasdasdasdasdasdAsdasdas",
+				"routerPath": "asdsdasdasdasdasdasd/asdasd/asdasdas"
+			},
+			"serverData": {
+				"store": {
+					"state": {
+						"dataSource": [],
+						"entity": []
+					},
+					"action": [],
+					"mutation": []
+				},
+				"API": [
+					{
+						"url": "removeUrl",
+						"compName": "removeAPI",
+						"servicesName": "doRemove"
+					},
+					{
+						"url": "listUrl",
+						"compName": "listAPI",
+						"servicesName": "doGetList"
+					}
+				]
+			}
+		},
+		{
+			"subName": "asdsdasdasdasdasdasd",
+			"pagePath": "asdasd",
+			"pageName": "asdsdd.vue",
+			"pageOption": {
+				"fileName": "asdsdd",
+				"path": "asdasd",
+				"type": "2",
+				"form": {
+					"cols": []
+				},
+				"savePageInterface": {
+					"save": "asdas",
+					"detail": "asdasd",
+					"update": "sadsdasd"
+				}
+			},
+			"pageType": "2",
+			"compName": "asdasd_asdsdd",
+			"routerData": {
+				"routerName": "asdsdasdasdasdasdasdAsdsdd",
+				"routerPath": "asdsdasdasdasdasdasd/asdasd/asdsdd"
+			},
+			"serverData": {
+				"store": {
+					"state": {
+						"dataSource": [],
+						"entity": []
+					},
+					"action": [],
+					"mutation": []
+				},
+				"API": [
+					{
+						"url": "asdas",
+						"compName": "createAPI",
+						"servicesName": "doCreate"
+					},
+					{
+						"url": "asdasd",
+						"compName": "infoAPI",
+						"servicesName": "getInfo"
+					},
+					{
+						"url": "sadsdasd",
+						"compName": "updateAPI",
+						"servicesName": "doUpdate"
+					},
+					{
+						"url": "removeUrl",
+						"compName": "removeAPI",
+						"servicesName": "doRemove"
+					},
+					{
+						"url": "listUrl",
+						"compName": "listAPI",
+						"servicesName": "doGetList"
+					}
+				]
+			}
+		}
+	],
+	[
+		{
+			"subName": "ASDASDASDAS",
+			"pagePath": "asdasd",
+			"pageName": "ASDASDASDAS.vue",
+			"pageOption": {
+				"fileName": "ASDASDASDAS",
+				"path": "asdasd",
+				"type": "2",
+				"form": {
+					"cols": []
+				},
+				"savePageInterface": {
+					"save": "DASD",
+					"detail": "ASD",
+					"update": "ASD"
+				}
+			},
+			"pageType": "2",
+			"compName": "asdasd_ASDASDASDAS",
+			"routerData": {
+				"routerName": "ASDASDASDASAsdasdasdas",
+				"routerPath": "ASDASDASDAS/asdasd/ASDASDASDAS"
+			},
+			"serverData": {
+				"store": {
+					"state": {
+						"dataSource": [],
+						"entity": []
+					},
+					"action": [],
+					"mutation": []
+				},
+				"API": [
+					{
+						"url": "DASD",
+						"compName": "createAPI",
+						"servicesName": "doCreate"
+					},
+					{
+						"url": "ASD",
+						"compName": "infoAPI",
+						"servicesName": "getInfo"
+					},
+					{
+						"url": "ASD",
+						"compName": "updateAPI",
+						"servicesName": "doUpdate"
+					},
+					{
+						"url": "removeUrl",
+						"compName": "removeAPI",
+						"servicesName": "doRemove"
+					},
+					{
+						"url": "listUrl",
+						"compName": "listAPI",
+						"servicesName": "doGetList"
+					}
+				]
+			}
+		}
+	]
+]
