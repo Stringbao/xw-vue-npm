@@ -1,3 +1,4 @@
+const os = require("os");
 module.exports =  {
      /**
       * @description 根据指定字段名「checkTag」对比checkobj是否在arr中有所重复
@@ -141,5 +142,16 @@ module.exports =  {
         }
         return null;
     },
+    /**
+     * @description 获取当前运行环境
+     */
+    getRunningEnv(){
+        let __Env = os.type();
+        if(__Env === "Windows_NT"){
+            return "Windows"
+        }else{
+            return "Mac"
+        }
+    }
     
 }

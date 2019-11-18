@@ -29,6 +29,11 @@ module.exports = {
             }
         })
         let filterAction = CommonUtil.concatArr([],action);
+        let viewFolderPath = path.resolve(__dirname, _config.viewPath.viewFolderPath);
+        // window的话
+        if(CommonUtil.getRunningEnv() === "Windows"){
+            viewFolderPath = business.getWindowsPath(viewFolderPath);
+        }
         let ejsData = {
             data:{
                 btn:data.searchOpts.search.btn,
@@ -39,7 +44,7 @@ module.exports = {
                 tableOptionsName:data.fileName.split('.')[0] + "_table_options",
                 hasDialog:data.dialog.hasDialog ? data.dialog.hasDialog : "0",
                 form:formList,
-                viewFolderPath: path.resolve(__dirname, _config.viewPath.viewFolderPath),
+                viewFolderPath: viewFolderPath,
                 tableTitle:data.searchOpts.tableTitle,
                 pageName : business.getCompName(data.path,data.fileName.split('.')[0])
             },
@@ -65,11 +70,16 @@ module.exports = {
             }
         })
         let filterAction = CommonUtil.concatArr([],action);
+        let viewFolderPath = path.resolve(__dirname, _config.viewPath.viewFolderPath),
+         // window的话
+         if(CommonUtil.getRunningEnv() === "Windows"){
+            viewFolderPath = business.getWindowsPath(viewFolderPath);
+        }
         let ejsData = {
             data:{
                 form:formList,
                 action:filterAction,
-                viewFolderPath: path.resolve(__dirname, _config.viewPath.viewFolderPath),
+                viewFolderPath: viewFolderPath,
                 pageName : business.getCompName(data.path,data.fileName.split('.')[0]),
             },
             moduleName,

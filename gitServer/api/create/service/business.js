@@ -65,5 +65,19 @@ module.exports = {
             path = path.split("/").join("_");
             return path;
         }
-    }
+    },
+    /**
+     * @description 截取window绝对路径 转换为 ejs可用路径
+     * @param {String} winPath 
+     */
+    getWindowsPath(winPath){
+        let str = winPath.split(":");
+        let resultStr = "";
+        str.forEach((item,index) => {
+            if(index != 0){
+                resultStr += ":"+item;
+            } 
+        })
+        return resultStr.substring(1);
+    },
 }
