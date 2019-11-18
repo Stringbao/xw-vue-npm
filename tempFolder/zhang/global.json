@@ -1,0 +1,23 @@
+{
+	"router": [
+		{
+			"routerName": "test2Man",
+			"routerPath": "test2/person/man",
+			"type": "2"
+		},
+		{
+			"routerName": "test3Man",
+			"routerPath": "test3/person/man",
+			"type": "1"
+		},
+		{
+			"routerName": "test3Save",
+			"routerPath": "test3/person/save",
+			"type": "2"
+		}
+	],
+	"moduleList": [
+		"test2",
+		"test3"
+	]
+}

@@ -15,7 +15,7 @@ const api = {
         let moduleName = req.body.moduleName;
         let projectPath = req.body.projectPath;
         let projectName = req.body.projectName;
-        let tempFolderPath = path.resolve(__dirname,"../../tempFolder/"+ projectName);
+        let tempFolderPath = path.resolve(__dirname,"../../../tempFolder/"+ projectName);
         console.log("tempFolderPath",tempFolderPath);
         let isExist = fsTool.exists(projectPath + "/src/pages/" + moduleName);
         if(!isExist){

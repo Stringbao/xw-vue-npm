@@ -87,14 +87,20 @@ module.exports = {
      * @param {String} dataStr 
      */
     writeDataHistory(moduleName,dataStr){
-        let tempFolderPath = path.resolve(__dirname,"../../../tempFolder/"+moduleName + "/data.json");
+        let tempFolderPath = path.resolve(__dirname,"../../../../tempFolder/"+moduleName + "/data.json");
         if(!fsTool.exists(tempFolderPath)){
             fsTool.createFile(tempFolderPath);
         }
         let _dataJsonHistoryStr = fsTool.readFile(tempFolderPath);
         let _dataJsonHistoryJson = JSON.parse(_dataJsonHistoryStr != "" ? _dataJsonHistoryStr : "[]");
         let __dataJson = JSON.parse((dataStr && dataStr!="") ? dataStr : "[]");
-        _dataJsonHistoryJson.push(__dataJson);
+        let fileStr = {
+        }
+        if(__dataJson.length>0){
+            fileStr.subName = __dataJson[0].subName;
+            fileStr.data = __dataJson;
+        }
+        _dataJsonHistoryJson.push(fileStr);
         fsTool.writeFile(tempFolderPath,JSON.stringify(_dataJsonHistoryJson,null,"\t"))
     },
     /**
@@ -102,7 +108,7 @@ module.exports = {
      * @param {String} dataStr 
      */
     writeGlobalHistory(moduleName,dataStr){
-        let tempFolderPath = path.resolve(__dirname,"../../../tempFolder/"+moduleName + "/global.json");
+        let tempFolderPath = path.resolve(__dirname,"../../../../tempFolder/"+moduleName + "/global.json");
         if(!fsTool.exists(tempFolderPath)){
             fsTool.createFile(tempFolderPath);
         }
