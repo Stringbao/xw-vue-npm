@@ -1,6 +1,8 @@
 const commonUtil = require("./common.js");
+const fsTool = require("../../fs/fsapi");
+const path = require("path");
+
 module.exports = {
-    
     isHasDialogTag : "1",//1包含 ，2不包含
     /**
      * @description 是否包含dialog判断
@@ -14,7 +16,7 @@ module.exports = {
      * @param {String} str
      */
     dealJsonData(str){
-        let data =JSON.parse((str && str!="") ? str : "[]");
+        let data =commonUtil.cloneObj(JSON.parse((str && str!="") ? str : "[]"));
         let storeData = {
             state:{
                 dataSource:[],
@@ -80,4 +82,31 @@ module.exports = {
         })
         return resultStr.substring(1);
     },
+     /**
+     * @description 编写datajson的history
+     * @param {String} dataStr 
+     */
+    writeDataHistory(moduleName,dataStr){
+        let tempFolderPath = path.resolve(__dirname,"../../../tempFolder/"+moduleName + "/data.json");
+        if(!fsTool.exists(tempFolderPath)){
+            fsTool.createFile(tempFolderPath);
+        }
+        let _dataJsonHistoryStr = fsTool.readFile(tempFolderPath);
+        let _dataJsonHistoryJson = JSON.parse(_dataJsonHistoryStr != "" ? _dataJsonHistoryStr : "[]");
+        let __dataJson = JSON.parse((dataStr && dataStr!="") ? dataStr : "[]");
+        _dataJsonHistoryJson.push(__dataJson);
+        fsTool.writeFile(tempFolderPath,JSON.stringify(_dataJsonHistoryJson,null,"\t"))
+    },
+    /**
+     * @description 编写global的history
+     * @param {String} dataStr 
+     */
+    writeGlobalHistory(moduleName,dataStr){
+        let tempFolderPath = path.resolve(__dirname,"../../../tempFolder/"+moduleName + "/global.json");
+        if(!fsTool.exists(tempFolderPath)){
+            fsTool.createFile(tempFolderPath);
+        }
+        fsTool.writeFile(tempFolderPath,dataStr)
+    },
+    
 }

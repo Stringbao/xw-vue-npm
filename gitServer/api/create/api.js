@@ -14,9 +14,17 @@ const api = {
     createModuleFolder:(req,res)=>{
         let moduleName = req.body.moduleName;
         let projectPath = req.body.projectPath;
+        let projectName = req.body.projectName;
+        let tempFolderPath = path.resolve(__dirname,"../../tempFolder/"+ projectName);
+        console.log("tempFolderPath",tempFolderPath);
         let isExist = fsTool.exists(projectPath + "/src/pages/" + moduleName);
         if(!isExist){
+            let isExistHistory = fsTool.exists(tempFolderPath);
             fsTool.createFolder(projectPath + "/src/pages/" + moduleName);
+            if(!isExistHistory){
+                // 创建history文件夹
+                fsTool.createFolder(tempFolderPath);
+            }
             return resEntity.setEneity({res:res});
         }else{
             return resEntity.setEneity({
@@ -30,6 +38,7 @@ const api = {
     // 创建router和store的index等项目级文件
     createGlobalFile(req,res){
         let projectPath = req.body.projectPath;
+        let projectName = req.body.projectName;
         let isLayoutModule = (req.body.isLayout && req.body.isLayout == "1")  ? true:false;
         console.log(isLayoutModule);
         let globalPath = path.resolve(__dirname,"../../global.json")
@@ -39,16 +48,19 @@ const api = {
         createRouter(projectPath,_data.router,isLayoutModule);
         // 创建store的index
         createStore(projectPath,_data.moduleList);
+        business.writeGlobalHistory(projectName,str)
         fsTool.writeFile(globalPath,"");
         return resEntity.setEneity({res:res});
-    },
+    }, 
     // 创建页面级文件
     createModuleFile:(req,res)=>{
         let moduleName = req.body.moduleName;
         let projectPath = req.body.projectPath;
+        let projectName = req.body.projectName;
         let jsonDataPath = path.resolve(__dirname,"../../global.json");
         let dataPath = path.resolve(__dirname,"../../data.json");
-        let _data = business.dealJsonData(fsTool.readFile(path.resolve(__dirname,dataPath)));
+        let dataStr = fsTool.readFile(path.resolve(__dirname,dataPath));
+        let _data = business.dealJsonData(dataStr);
         _data.pageOption.forEach(item => {
             if(item.type == "1"){
                 createListView(projectPath,moduleName,item);
@@ -67,10 +79,14 @@ const api = {
         }
         _json.router = commonUtil.concatArr(_json.router,_data.routerData);
         _json.moduleList = commonUtil.concatArr(_json.moduleList,_data.storeModuleNameList);
-        fsTool.writeFile(jsonDataPath,JSON.stringify(_json,null,"\t"));       
+        fsTool.writeFile(jsonDataPath,JSON.stringify(_json,null,"\t"));
+        business.writeDataHistory(projectName,dataStr);
+
+        // dataStr
         fsTool.writeFile(dataPath,"");
         return resEntity.setEneity({res:res});
     },
+   
     // 获取项目目录
     getProjectsPath:(req,res)=>{
         return resEntity.setEneity({res:res,data:fsTool.getProjectsPath()});
@@ -164,18 +180,18 @@ const api = {
             })
         }
         _dataJson.serverData.API.push({
-            url:"",
+            url:"removeUrl",
             compName:"removeAPI",
             servicesName:"doRemove",
         })
         _dataJson.serverData.API.push({
-            url:"",
+            url:"listUrl",
             compName:"listAPI",
             servicesName:"doGetList",
         })
         let jsonStr = fsTool.readFile(jsonDataPath);
         let jsonData = JSON.parse(jsonStr!= "" ? jsonStr : "[]");
-        if(commonUtil.isExistItem(jsonData,_dataJson,"compName")){
+        if(commonUtil.isExistItem(jsonData,"compName",_dataJson["compName"])){
             return resEntity.setEneity({
                 res,
                 status:1,
@@ -183,7 +199,7 @@ const api = {
                 data:null,
             });
         }
-        jsonData.push(_dataJson)
+        jsonData.push(_dataJson);
         fsTool.writeFile(jsonDataPath,JSON.stringify(jsonData,null,"\t"));
         return resEntity.setEneity({res:res});
     },

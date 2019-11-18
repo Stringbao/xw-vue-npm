@@ -6,27 +6,21 @@ module.exports =  {
       * @param {Object} checkObj 
       * @param {String} checkTag 
       */
-    isExistItem(paddingArr,checkObj,checkTag){
-        if(!this.isArr){
-            console.log("paddingArr必须是一个array");
-            return
-        }
-        if(!this.isObj(checkObj)){
-            console.log("checkObj必须是一个object");
-            return 
-        }
-        if(!checkTag || checkTag == ""){
-            console.log("checkTag不能为空");
-            return 
-        }
-        let isRepeat = false;
-        paddingArr.forEach(item => {
-            if(item[checkTag] == checkObj[checkTag]){
-                isRepeat = true;
-            }
-        })
-        return isRepeat;
-    },
+    // isExistItem(paddingArr,checkObj,checkTag){
+    //     if(!this.isArr){
+    //         console.log("paddingArr必须是一个array");
+    //         return
+    //     }
+    //     if(!this.isObj(checkObj)){
+    //         console.log("checkObj必须是一个object");
+    //         return 
+    //     }
+    //     if(!checkTag || checkTag == ""){
+    //         console.log("checkTag不能为空");
+    //         return 
+    //     }
+    //     return this.isRepeatByItem(paddingArr,checkTag,checkObj[checkTag])
+    // },
    /**
     * @description 将一维数组根据指定的数字切分成二维数组
     * @param {Array} paddingArr 
@@ -152,6 +146,30 @@ module.exports =  {
         }else{
             return "Mac"
         }
+    },
+    /**
+     * @description 判断一个json数组中是否包含指定的值
+     * @param {Array}} paddingArr 
+     * @param {String} checkTag 
+     * @param {String} checkValue 
+     * @returns Boolean
+     */
+    isExistItem(paddingArr,checkTag,checkValue){
+        if(!this.isArr(paddingArr)){
+            console.log("paddingArr应该是一个数组");
+            return;
+        }
+        if(!checkTag || checkTag == ""){
+            console.log("checkTag不能为空");
+            return ;
+        }
+        if(!checkValue || checkValue == ""){
+            console.log("checkValue不能为空");
+            return ;
+        }
+        return paddingArr.some(item => {
+            return item[checkTag] == checkValue;
+        })
     }
     
 }

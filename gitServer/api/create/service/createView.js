@@ -70,7 +70,7 @@ module.exports = {
             }
         })
         let filterAction = CommonUtil.concatArr([],action);
-        let viewFolderPath = path.resolve(__dirname, _config.viewPath.viewFolderPath),
+        let viewFolderPath = path.resolve(__dirname, _config.viewPath.viewFolderPath);
          // window的话
          if(CommonUtil.getRunningEnv() === "Windows"){
             viewFolderPath = business.getWindowsPath(viewFolderPath);
