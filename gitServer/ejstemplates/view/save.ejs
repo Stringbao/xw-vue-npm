@@ -1,5 +1,6 @@
 <template>
-    <div>
+    <div class="le_comps_core_css new_page_width">
+        <h4 class="le_page_name"><%= data.pageName %></h4>
     <%_ _%><%- include(data.viewFolderPath + "/form",{data:data.form.cols,isSavePage : true}) %>
     </div>
 </template>

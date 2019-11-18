@@ -147,6 +147,10 @@
         <%_ if(data.hasDialog && data.hasDialog == '1'){ _%>
         <le-dialog v-model = "dialogTag" title = "<%= data.tableTitle %>">
         <%_ _%><%- include(data.viewFolderPath + "/form",{data:data.form.cols,isSavePage:false}) %>
+            <div slot="button">
+                <le-button type="cancel" value="取消" @click = "dialogCancel"></le-button>
+                <le-button type="save" value="确定"  @click = "dialogConfirm"></le-button>   
+            </div>
         </le-dialog>
         <%_ } -%>
     </div>
@@ -191,6 +195,11 @@ export default {
             // <%= item.btnName %>按钮操作事件
         },
         <%_ }) -%>
+        <%_ if(data.hasDialog && data.hasDialog == '1'){ _%>
+            dialogConfirm(){},
+            dialogCancel(){},
+        <%_ } -%>
+            
         
     },
     mounted(){
