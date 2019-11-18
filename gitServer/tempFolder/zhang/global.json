@@ -1,23 +1,23 @@
 {
 	"router": [
 		{
-			"routerName": "asdsdasdasdasdasdasdAsdasdas",
-			"routerPath": "asdsdasdasdasdasdasd/asdasd/asdasdas",
+			"routerName": "moduleOneList",
+			"routerPath": "moduleOne/moduleOneSubname/list",
 			"type": "1"
 		},
 		{
-			"routerName": "asdsdasdasdasdasdasdAsdsdd",
-			"routerPath": "asdsdasdasdasdasdasd/asdasd/asdsdd",
+			"routerName": "moduleOneSave",
+			"routerPath": "moduleOne/moduleOneSubname/save",
 			"type": "2"
 		},
 		{
-			"routerName": "ASDASDASDASAsdasdasdas",
-			"routerPath": "ASDASDASDAS/asdasd/ASDASDASDAS",
-			"type": "2"
+			"routerName": "moduleTwoList",
+			"routerPath": "moduleTwo/moduleTwoSubname/list",
+			"type": "1"
 		}
 	],
 	"moduleList": [
-		"asdsdasdasdasdasdasd",
-		"ASDASDASDAS"
+		"moduleOne",
+		"moduleTwo"
 	]
 }

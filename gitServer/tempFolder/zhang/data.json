@@ -1,12 +1,12 @@
 [
 	[
 		{
-			"subName": "asdsdasdasdasdasdasd",
-			"pagePath": "asdasd",
-			"pageName": "asdasdas.vue",
+			"subName": "moduleOne",
+			"pagePath": "moduleOneSubname",
+			"pageName": "list.vue",
 			"pageOption": {
-				"fileName": "asdasdas",
-				"path": "asdasd",
+				"fileName": "list",
+				"path": "moduleOneSubname",
 				"type": "1",
 				"searchOpts": {
 					"search": {
@@ -15,36 +15,63 @@
 								"btnName": "搜索",
 								"btnType": "search",
 								"btnHandle": "search"
+							},
+							{
+								"btnName": "add",
+								"btnType": "create",
+								"btnHandle": "add"
 							}
 						],
-						"cols": []
+						"cols": [
+							{
+								"type": "select",
+								"key": "sex",
+								"label": "sex",
+								"labelWidth": "120",
+								"url": "/get/sex",
+								"dataSource": "sex",
+								"displayName": "name",
+								"displayValue": "code"
+							}
+						]
 					},
 					"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"shop\",val:\"商城\"},\n        {key:\"accessField\",val:\"封禁纬度\"}\n    ],\n    getUrl:() => {\n        return \"/risk/limit/black/user/query/list\";\n    },\n    pageOption:{\n        sizeKey:\"pageSize\",\n        indexKey:\"pageNum\",\n        index:1,\n        size:10\n    },\n    actions:[\n        {\n            key:\"update\",\n            val:\"编辑\",\n            action:this.edit\n        }\n    ]\n}\n                        ",
-					"tableTitle": "asdasd"
+					"tableTitle": "list"
 				},
 				"dialog": {
-					"hasDialog": "1",
+					"hasDialog": "",
 					"form": {
 						"cols": []
 					}
 				}
 			},
 			"pageType": "1",
-			"compName": "asdasd_asdasdas",
+			"compName": "moduleOneSubname_list",
 			"routerData": {
-				"routerName": "asdsdasdasdasdasdasdAsdasdas",
-				"routerPath": "asdsdasdasdasdasdasd/asdasd/asdasdas"
+				"routerName": "moduleOneList",
+				"routerPath": "moduleOne/moduleOneSubname/list"
 			},
 			"serverData": {
 				"store": {
 					"state": {
-						"dataSource": [],
+						"dataSource": [
+							"sex"
+						],
 						"entity": []
 					},
-					"action": [],
-					"mutation": []
+					"action": [
+						"getSex"
+					],
+					"mutation": [
+						"setSex"
+					]
 				},
 				"API": [
+					{
+						"url": "/get/sex",
+						"compName": "_get_sex",
+						"servicesName": "getSex"
+					},
 					{
 						"url": "removeUrl",
 						"compName": "removeAPI",
@@ -59,27 +86,44 @@
 			}
 		},
 		{
-			"subName": "asdsdasdasdasdasdasd",
-			"pagePath": "asdasd",
-			"pageName": "asdsdd.vue",
+			"subName": "moduleOne",
+			"pagePath": "moduleOneSubname",
+			"pageName": "save.vue",
 			"pageOption": {
-				"fileName": "asdsdd",
-				"path": "asdasd",
+				"fileName": "save",
+				"path": "moduleOneSubname",
 				"type": "2",
 				"form": {
-					"cols": []
+					"cols": [
+						{
+							"type": "text",
+							"key": "name",
+							"label": "name",
+							"labelWidth": "120",
+							"placeholder": "",
+							"url": "",
+							"dataSource": "",
+							"displayName": "",
+							"displayValue": "",
+							"tip": "",
+							"on": "",
+							"required": "",
+							"valifyType": "",
+							"msg": ""
+						}
+					]
 				},
 				"savePageInterface": {
-					"save": "asdas",
-					"detail": "asdasd",
-					"update": "sadsdasd"
+					"save": "/save",
+					"detail": "/detail",
+					"update": "/update"
 				}
 			},
 			"pageType": "2",
-			"compName": "asdasd_asdsdd",
+			"compName": "moduleOneSubname_save",
 			"routerData": {
-				"routerName": "asdsdasdasdasdasdasdAsdsdd",
-				"routerPath": "asdsdasdasdasdasdasd/asdasd/asdsdd"
+				"routerName": "moduleOneSave",
+				"routerPath": "moduleOne/moduleOneSubname/save"
 			},
 			"serverData": {
 				"store": {
@@ -92,17 +136,17 @@
 				},
 				"API": [
 					{
-						"url": "asdas",
+						"url": "/save",
 						"compName": "createAPI",
 						"servicesName": "doCreate"
 					},
 					{
-						"url": "asdasd",
+						"url": "/detail",
 						"compName": "infoAPI",
 						"servicesName": "getInfo"
 					},
 					{
-						"url": "sadsdasd",
+						"url": "/update",
 						"compName": "updateAPI",
 						"servicesName": "doUpdate"
 					},
@@ -122,27 +166,72 @@
 	],
 	[
 		{
-			"subName": "ASDASDASDAS",
-			"pagePath": "asdasd",
-			"pageName": "ASDASDASDAS.vue",
+			"subName": "moduleTwo",
+			"pagePath": "moduleTwoSubname",
+			"pageName": "list.vue",
 			"pageOption": {
-				"fileName": "ASDASDASDAS",
-				"path": "asdasd",
-				"type": "2",
-				"form": {
-					"cols": []
+				"fileName": "list",
+				"path": "moduleTwoSubname",
+				"type": "1",
+				"searchOpts": {
+					"search": {
+						"btn": [
+							{
+								"btnName": "搜索",
+								"btnType": "search",
+								"btnHandle": "search"
+							},
+							{
+								"btnName": "删除",
+								"btnType": "remove",
+								"btnHandle": "remove"
+							}
+						],
+						"cols": [
+							{
+								"type": "text",
+								"key": "name",
+								"label": "name",
+								"labelWidth": "120",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": ""
+							}
+						]
+					},
+					"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"shop\",val:\"商城\"},\n        {key:\"accessField\",val:\"封禁纬度\"}\n    ],\n    getUrl:() => {\n        return \"/risk/limit/black/user/query/list\";\n    },\n    pageOption:{\n        sizeKey:\"pageSize\",\n        indexKey:\"pageNum\",\n        index:1,\n        size:10\n    },\n    actions:[\n        {\n            key:\"update\",\n            val:\"编辑\",\n            action:this.edit\n        }\n    ]\n}\n                        ",
+					"tableTitle": "list"
 				},
-				"savePageInterface": {
-					"save": "DASD",
-					"detail": "ASD",
-					"update": "ASD"
+				"dialog": {
+					"hasDialog": "1",
+					"form": {
+						"cols": [
+							{
+								"type": "text",
+								"key": "name",
+								"label": "name",
+								"labelWidth": "120",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							}
+						]
+					}
 				}
 			},
-			"pageType": "2",
-			"compName": "asdasd_ASDASDASDAS",
+			"pageType": "1",
+			"compName": "moduleTwoSubname_list",
 			"routerData": {
-				"routerName": "ASDASDASDASAsdasdasdas",
-				"routerPath": "ASDASDASDAS/asdasd/ASDASDASDAS"
+				"routerName": "moduleTwoList",
+				"routerPath": "moduleTwo/moduleTwoSubname/list"
 			},
 			"serverData": {
 				"store": {
@@ -154,21 +243,6 @@
 					"mutation": []
 				},
 				"API": [
-					{
-						"url": "DASD",
-						"compName": "createAPI",
-						"servicesName": "doCreate"
-					},
-					{
-						"url": "ASD",
-						"compName": "infoAPI",
-						"servicesName": "getInfo"
-					},
-					{
-						"url": "ASD",
-						"compName": "updateAPI",
-						"servicesName": "doUpdate"
-					},
 					{
 						"url": "removeUrl",
 						"compName": "removeAPI",
