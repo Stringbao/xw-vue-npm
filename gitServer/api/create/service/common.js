@@ -25,9 +25,10 @@ module.exports =  {
     * @description 将一维数组根据指定的数字切分成二维数组
     * @param {Array} paddingArr 
     * @param {Number} limitNum 
+    * @returns 切割后的二维数组
     */
     groupBy(paddingArr,limitNum){
-        if(!paddingArr instanceof Array){
+        if(!this.isArr(paddingArr)){
             return paddingArr
         }
         let _len = paddingArr.length;
@@ -42,16 +43,17 @@ module.exports =  {
     /**
      * @description 一个字符串首字母大写，其余小写
      * @param {String} str 
+     * @returns 处理过后的数组
      */
     titleCase(str){
-        var temp=[];
         str=str.toLowerCase();//全部转换为小写
-        return str.substring(0,1).toUpperCase() + str.substring(1);
+        return this.toLowerCase(str).substring(0,1).toUpperCase() + this.toLowerCase(str).substring(1);
     },
     /**
      * @description 合并两个数组(并且去掉重复)；
      * @param {Array} arr 
      * @param {Array} pushArr 
+     * @returns 合并后的数组
      */
     concatArr(arr,pushArr){
         let newArr = [...arr,...pushArr];
@@ -76,6 +78,12 @@ module.exports =  {
         })
         return resultArr;
     },
+    /**
+     * @description 判断两个json是否完全一致
+     * @param {Object} item 
+     * @param {Object} checkItem
+     * @returns Boolean
+     */
     checkObjIsExist(item,checkItem){
         let itemLength = this.propertyLength(item);
         let checkItemLength = this.propertyLength(checkItem);
@@ -108,13 +116,14 @@ module.exports =  {
                 }
             }
             return count;
-        }else {
-            throw new Error("argunment can not be null;");
+        }else{
+            return 0;
         }
     },
     /**
      * @description 用于判断传入的值是否是一个对象
-     * @param {*} obj 
+     * @param {*} obj
+     * @returns Boolean
      */
     isObj(item) {
         return item && typeof (item) == 'object' && Object.prototype.toString.call(item).toLowerCase() == "[object object]";
@@ -122,6 +131,7 @@ module.exports =  {
     /**
      * @description 用于判断传入的值是否是一个数组
      * @param {*} item
+     * @returns Boolean
      */
     isArr(item) {
         return item && typeof (item) == 'object' && Object.prototype.toString.call(item).toLowerCase() == "[object array]";
@@ -129,6 +139,7 @@ module.exports =  {
     /**
      * @description 克隆obj
      * @param { Object } source 
+     * @returns clone之后的json
      */
     cloneObj(source){
         if(source){
@@ -138,6 +149,7 @@ module.exports =  {
     },
     /**
      * @description 获取当前运行环境
+     * @returns "Windows" || "Mac"
      */
     getRunningEnv(){
         let __Env = os.type();

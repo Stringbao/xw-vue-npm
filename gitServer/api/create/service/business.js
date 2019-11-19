@@ -7,6 +7,7 @@ module.exports = {
     /**
      * @description 是否包含dialog判断
      * @param {String} tag 
+     * @returns Boolean
      */
     isHasDialog(tag){
         return tag == this.isHasDialogTag;
@@ -14,6 +15,7 @@ module.exports = {
     /**
      * @description 处理datajson里面的数据 进行组装
      * @param {String} str
+     * @returns  组装好的数据
      */
     dealJsonData(str){
         let data =commonUtil.cloneObj(JSON.parse((str && str!="") ? str : "[]"));
@@ -60,13 +62,8 @@ module.exports = {
      * path = a/a name = null => a_a
      */
     getCompName(path,name){
-        if(name){
-            path = path.split("/").join("_");
-            return path + "_" + name;
-        }else{
-            path = path.split("/").join("_");
-            return path;
-        }
+        path = path.split("/").join("_");
+        return name ? (path + "_" + name) : path
     },
     /**
      * @description 截取window绝对路径 转换为 ejs可用路径
