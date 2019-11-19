@@ -47,7 +47,7 @@ module.exports =  {
      */
     titleCase(str){
         str=str.toLowerCase();//全部转换为小写
-        return this.toLowerCase(str).substring(0,1).toUpperCase() + this.toLowerCase(str).substring(1);
+        return str.substring(0,1).toUpperCase() + str.substring(1);
     },
     /**
      * @description 合并两个数组(并且去掉重复)；
