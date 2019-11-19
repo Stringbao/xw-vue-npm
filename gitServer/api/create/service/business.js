@@ -77,7 +77,7 @@ module.exports = {
                 resultStr += ":"+item;
             } 
         })
-        return resultStr.substring(1);
+        return resultStr.substring(1).replace("\\","/");
     },
      /**
      * @description 编写datajson的history

@@ -1,26 +1,5 @@
 const os = require("os");
 module.exports =  {
-     /**
-      * @description 根据指定字段名「checkTag」对比checkobj是否在arr中有所重复
-      * @param {Array} paddingArr 
-      * @param {Object} checkObj 
-      * @param {String} checkTag 
-      */
-    // isExistItem(paddingArr,checkObj,checkTag){
-    //     if(!this.isArr){
-    //         console.log("paddingArr必须是一个array");
-    //         return
-    //     }
-    //     if(!this.isObj(checkObj)){
-    //         console.log("checkObj必须是一个object");
-    //         return 
-    //     }
-    //     if(!checkTag || checkTag == ""){
-    //         console.log("checkTag不能为空");
-    //         return 
-    //     }
-    //     return this.isRepeatByItem(paddingArr,checkTag,checkObj[checkTag])
-    // },
    /**
     * @description 将一维数组根据指定的数字切分成二维数组
     * @param {Array} paddingArr 
@@ -182,6 +161,5 @@ module.exports =  {
         return paddingArr.some(item => {
             return item[checkTag] == checkValue;
         })
-    }
-    
+    },
 }
