@@ -144,6 +144,9 @@ const api = {
                             compName:business.getCompName(item.url.split(".")[0]),
                             servicesName : "get" + commonUtil.titleCase(item.dataSource)
                         });
+                    }
+                    // 有v-model的from或者dialog
+                    if(item.key){
                         _dataJson.serverData.store.state.entity.push(item.key);
                     }
                 })
@@ -160,6 +163,8 @@ const api = {
                         compName:business.getCompName(item.url.split(".")[0]),
                         servicesName : "get" + commonUtil.titleCase(item.dataSource)
                     });
+                }
+                if(item.key){
                     _dataJson.serverData.store.state.entity.push(item.key);
                 }
             })
