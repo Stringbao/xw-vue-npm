@@ -142,7 +142,7 @@
         <%_ }) _%>
         </div>
         <div class='le_table_container'>
-            <table-list title="<%= data.tableTitle %>" ref='black_list_table' :options='<%= data.tableOptionsName %>'></table-list>
+            <table-list title="<%= data.tableTitle %>" ref='<%= data.pageName %>_ref' :options='<%= data.tableOptionsName %>'></table-list>
         </div>
         <%_ if(data.hasDialog && data.hasDialog == '1'){ _%>
         <le-dialog v-model = "dialogTag" title = "<%= data.tableTitle %>">
