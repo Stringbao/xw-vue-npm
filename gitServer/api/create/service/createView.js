@@ -7,7 +7,7 @@ const CommonUtil = require("./common");
 module.exports = {
     createListView(projectPath, moduleName, data){
         let subPath = data.path ? ("/" + data.path):"";
-        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + subPath + "/" + data.fileName + ".vue";
+        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + subPath + (subPath != "" ? "/" : "" ) + data.fileName + ".vue";
         let listEjsPath = path.resolve(__dirname, _config.viewPath.listEjs);
         fsTool.createFile(viewPath);
         console.log(viewPath);
