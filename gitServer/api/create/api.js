@@ -105,7 +105,7 @@ const api = {
             "compName":_data.moduleName + (_data.page.path!="" ? "_":"") + business.getCompName(_data.page.path,_data.page.fileName),
             "routerData":{
                 "routerName":_data.moduleName + commonUtil.titleCase(_data.page.fileName),
-                "routerPath":_data.moduleName + "/" + _data.page.path + (_data.page.path=="" ? "/":"") + _data.page.fileName,
+                "routerPath":_data.moduleName + "/" + _data.page.path + (_data.page.path!="" ? "/":"") + _data.page.fileName,
             },
             "serverData":{
                 "store":{
