@@ -1,0 +1,1038 @@
+[
+	{
+		"subName": "paymentType",
+		"data": [
+			{
+				"subName": "paymentType",
+				"pagePath": "paymentType",
+				"pageName": "list.vue",
+				"pageOption": {
+					"fileName": "list",
+					"path": "paymentType",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "search",
+									"btnType": "search",
+									"btnHandle": "search"
+								}
+							],
+							"cols": [
+								{
+									"type": "text",
+									"key": "code",
+									"label": "Code",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								},
+								{
+									"type": "text",
+									"key": "name",
+									"label": "name",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								}
+							]
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"code\",val:\"Code\"},\n        {key:\"name\",val:\"Name\"}\n    ],\n    getUrl:() => {\n        return \"/api/paymentChannel/queryAll\";\n    },\n    pageOption:{\n        sizeKey:\"row\",\n        indexKey:\"page\",\n        index:1,\n        size:10\n    },\n    actions:[\n        \n    ]\n}\n                        ",
+						"tableTitle": "paymentType"
+					},
+					"dialog": {
+						"hasDialog": "",
+						"form": {
+							"cols": []
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "paymentType_list",
+				"routerData": {
+					"routerName": "paymentTypeList",
+					"routerPath": "paymentType/paymentType/list"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [],
+							"entity": []
+						},
+						"action": [],
+						"mutation": []
+					},
+					"API": [
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			}
+		]
+	},
+	{
+		"subName": "account",
+		"data": [
+			{
+				"subName": "account",
+				"pagePath": "account",
+				"pageName": "list.vue",
+				"pageOption": {
+					"fileName": "list",
+					"path": "account",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "search",
+									"btnType": "search",
+									"btnHandle": "search"
+								},
+								{
+									"btnName": "create",
+									"btnType": "create",
+									"btnHandle": "add"
+								}
+							],
+							"cols": [
+								{
+									"type": "text",
+									"key": "accountID",
+									"label": "Account ID",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								},
+								{
+									"type": "text",
+									"key": "accountName",
+									"label": "Account Name",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								},
+								{
+									"type": "select",
+									"key": "status",
+									"label": "Status",
+									"labelWidth": "",
+									"url": "/data/status",
+									"dataSource": "statusList",
+									"displayName": "name",
+									"displayValue": "code"
+								}
+							]
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"accountNo\",val:\"Account ID\"},\n        {key:\"name\",val:\"Account Name\"},        {key:\"status\",val:\"Status\"},                 {key:\"createTime\",val:\"Create Time\"},                 {key:\"updateTime\",val:\"Update Time\"},    ],\n    getUrl:() => {\n        return \"/api/paymentAccount/queryByCondition\";\n    },\n    pageOption:{\n        sizeKey:\"row\",\n        indexKey:\"page\",\n        index:1,\n        size:10\n    },\n    actions:[       {         key:\"disabled\",         val:\"disabled\",         action:this.doDisabled       },       {         key:\"update\",         val:\"edit\",         action:this.doEdit,       }\n    ]\n}\n                        ",
+						"tableTitle": "AccountList"
+					},
+					"dialog": {
+						"hasDialog": "",
+						"form": {
+							"cols": []
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "account_list",
+				"routerData": {
+					"routerName": "accountList",
+					"routerPath": "account/account/list"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"statusList"
+							],
+							"entity": []
+						},
+						"action": [
+							"getStatuslist"
+						],
+						"mutation": [
+							"setStatuslist"
+						]
+					},
+					"API": [
+						{
+							"url": "/data/status",
+							"compName": "_data_status",
+							"servicesName": "getStatuslist"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			}
+		]
+	},
+	{
+		"subName": "accountPayment",
+		"data": [
+			{
+				"subName": "accountPayment",
+				"pagePath": "accountPayment",
+				"pageName": "list.vue",
+				"pageOption": {
+					"fileName": "list",
+					"path": "accountPayment",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "search",
+									"btnType": "search",
+									"btnHandle": "search"
+								},
+								{
+									"btnName": "create",
+									"btnType": "create",
+									"btnHandle": "add"
+								}
+							],
+							"cols": [
+								{
+									"type": "select",
+									"key": "accountNo",
+									"label": "Account",
+									"labelWidth": "",
+									"url": "/api/accountChannel/queryAll",
+									"dataSource": "accountList",
+									"displayName": "accountName",
+									"displayValue": "accountNo"
+								},
+								{
+									"type": "select",
+									"key": "paymentChannelCode",
+									"label": "Payment Type",
+									"labelWidth": "",
+									"url": "/api/paymentChannel/queryAll",
+									"dataSource": "paymentList",
+									"displayName": "name",
+									"displayValue": "code"
+								},
+								{
+									"type": "select",
+									"key": "status",
+									"label": "Status",
+									"labelWidth": "",
+									"url": "/data/get",
+									"dataSource": "statusList",
+									"displayName": "name",
+									"displayValue": "code"
+								}
+							]
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"accountNo\",val:\"Account ID\"},\n        {key:\"accountName\",val:\"Account Name\"},        {key:\"paymentChanneName\",val:\"Payment Type\"}        {key:\"status\",val:\"Status\"},                 {key:\"createTime\",val:\"Create Time\"},                 {key:\"updateTime\",val:\"Update Time\"},    ],\n    getUrl:() => {\n        return \"/api/accountChannel/queryByCondition\";\n    },\n    pageOption:{\n        sizeKey:\"row\",\n        indexKey:\"page\",\n        index:1,\n        size:10\n    },\n    actions:[       {         key:\"disabled\",         val:\"disabled\",         action:this.doDisabled       },       {         key:\"update\",         val:\"edit\",         action:this.doEdit,       }\n    ]\n}\n                        ",
+						"tableTitle": "list"
+					},
+					"dialog": {
+						"hasDialog": "",
+						"form": {
+							"cols": []
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "accountPayment_list",
+				"routerData": {
+					"routerName": "accountPaymentList",
+					"routerPath": "accountPayment/accountPayment/list"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"accountList",
+								"paymentList",
+								"statusList"
+							],
+							"entity": []
+						},
+						"action": [
+							"getAccountlist",
+							"getPaymentlist",
+							"getStatuslist"
+						],
+						"mutation": [
+							"setAccountlist",
+							"setPaymentlist",
+							"setStatuslist"
+						]
+					},
+					"API": [
+						{
+							"url": "/api/accountChannel/queryAll",
+							"compName": "_api_accountChannel_queryAll",
+							"servicesName": "getAccountlist"
+						},
+						{
+							"url": "/api/paymentChannel/queryAll",
+							"compName": "_api_paymentChannel_queryAll",
+							"servicesName": "getPaymentlist"
+						},
+						{
+							"url": "/data/get",
+							"compName": "_data_get",
+							"servicesName": "getStatuslist"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			},
+			{
+				"subName": "accountPayment",
+				"pagePath": "accountPayment",
+				"pageName": "save.vue",
+				"pageOption": {
+					"fileName": "save",
+					"path": "accountPayment",
+					"type": "2",
+					"form": {
+						"cols": [
+							{
+								"type": "select",
+								"key": "accountNo",
+								"label": "Account",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "/api/paymentAccount/queryAll",
+								"dataSource": "accountList",
+								"displayName": "name",
+								"displayValue": "accountNo",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "select",
+								"key": "accountChannel",
+								"label": "Payment Type",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "/api/paymentChannel/queryAll",
+								"dataSource": "paymentTypeList",
+								"displayName": "name",
+								"displayValue": "code",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "select",
+								"key": "status",
+								"label": "Status",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "/api/get",
+								"dataSource": "statusList",
+								"displayName": "name",
+								"displayValue": "code",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "createTime",
+								"label": "Create Time",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "updateTime",
+								"label": "Update Time",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "displayName",
+								"label": "Display Name",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "label",
+								"label": "Label",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "checkboxList",
+								"key": "cardTypes",
+								"label": "Card Types",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "/api/cardType/queryAll",
+								"dataSource": "cardTypeList",
+								"displayName": "name",
+								"displayValue": "id",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "jaccsStoreId",
+								"label": "Store Number",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "jaccsCampaignStoreId",
+								"label": "Campaign Store  Number",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "jaccsRedirectUrl",
+								"label": "Redirect URL",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "jaccsTeleRedirectUrl",
+								"label": "TELE Redirect  URL",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "minAmoun",
+								"label": "Minimize Amount",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "maxAmount",
+								"label": "Maximize Amount",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							}
+						]
+					},
+					"savePageInterface": {
+						"save": "/api/cvsType/saveNew",
+						"detail": "/api/accountChannel/queryById",
+						"update": "/api/cvsType/update"
+					}
+				},
+				"pageType": "2",
+				"compName": "accountPayment_save",
+				"routerData": {
+					"routerName": "accountPaymentSave",
+					"routerPath": "accountPayment/accountPayment/save"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"accountList",
+								"paymentTypeList",
+								"statusList",
+								"cardTypeList"
+							],
+							"entity": [
+								"accountNo",
+								"accountChannel",
+								"status",
+								"cardTypes"
+							]
+						},
+						"action": [
+							"getAccountlist",
+							"getPaymenttypelist",
+							"getStatuslist",
+							"getCardtypelist"
+						],
+						"mutation": [
+							"setAccountlist",
+							"setPaymenttypelist",
+							"setStatuslist",
+							"setCardtypelist"
+						]
+					},
+					"API": [
+						{
+							"url": "/api/paymentAccount/queryAll",
+							"compName": "_api_paymentAccount_queryAll",
+							"servicesName": "getAccountlist"
+						},
+						{
+							"url": "/api/paymentChannel/queryAll",
+							"compName": "_api_paymentChannel_queryAll",
+							"servicesName": "getPaymenttypelist"
+						},
+						{
+							"url": "/api/get",
+							"compName": "_api_get",
+							"servicesName": "getStatuslist"
+						},
+						{
+							"url": "/api/cardType/queryAll",
+							"compName": "_api_cardType_queryAll",
+							"servicesName": "getCardtypelist"
+						},
+						{
+							"url": "/api/cvsType/saveNew",
+							"compName": "createAPI",
+							"servicesName": "doCreate"
+						},
+						{
+							"url": "/api/accountChannel/queryById",
+							"compName": "infoAPI",
+							"servicesName": "getInfo"
+						},
+						{
+							"url": "/api/cvsType/update",
+							"compName": "updateAPI",
+							"servicesName": "doUpdate"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			}
+		]
+	},
+	{
+		"subName": "convenienceStore",
+		"data": [
+			{
+				"subName": "convenienceStore",
+				"pagePath": "convenienceStore",
+				"pageName": "list.vue",
+				"pageOption": {
+					"fileName": "list",
+					"path": "convenienceStore",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "search",
+									"btnType": "search",
+									"btnHandle": "search"
+								},
+								{
+									"btnName": "create",
+									"btnType": "create",
+									"btnHandle": "add"
+								}
+							],
+							"cols": [
+								{
+									"type": "text",
+									"key": "name",
+									"label": "Store Name",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								},
+								{
+									"type": "text",
+									"key": "status",
+									"label": "Status",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								}
+							]
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"name\",val:\"Store Name\"},\n        {key:\"type\",val:\"Type\"},        {key:\"status\",val:\"status\"}    ],\n    getUrl:() => {\n        return \"/api/cvsType/queryAll\";\n    },\n    pageOption:{\n        sizeKey:\"row\",\n        indexKey:\"page\",\n        index:1,\n        size:10\n    },\n    actions:[       {         key:\"disabled\",         val:\"disabled\",         action:this.doDisabled       },       {         key:\"update\",         val:\"edit\",         action:this.doEdit,       }\n    ]\n}\n                        ",
+						"tableTitle": "list"
+					},
+					"dialog": {
+						"hasDialog": "1",
+						"form": {
+							"cols": [
+								{
+									"type": "text",
+									"key": "name",
+									"label": " Store Name",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": ""
+								},
+								{
+									"type": "select",
+									"key": "status",
+									"label": "Status",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "/get/api",
+									"dataSource": "statusList",
+									"displayName": "name",
+									"displayValue": "code",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": ""
+								},
+								{
+									"type": "text",
+									"key": "type",
+									"label": "Type",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": ""
+								}
+							]
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "convenienceStore_list",
+				"routerData": {
+					"routerName": "convenienceStoreList",
+					"routerPath": "convenienceStore/convenienceStore/list"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"statusList"
+							],
+							"entity": [
+								"status"
+							]
+						},
+						"action": [
+							"getStatuslist"
+						],
+						"mutation": [
+							"setStatuslist"
+						]
+					},
+					"API": [
+						{
+							"url": "/get/api",
+							"compName": "_get_api",
+							"servicesName": "getStatuslist"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			}
+		]
+	},
+	{
+		"subName": " CODFee",
+		"data": [
+			{
+				"subName": " CODFee",
+				"pagePath": " CODFee",
+				"pageName": "list.vue",
+				"pageOption": {
+					"fileName": "list",
+					"path": " CODFee",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "search",
+									"btnType": "search",
+									"btnHandle": "search"
+								},
+								{
+									"btnName": "create",
+									"btnType": "create",
+									"btnHandle": "add"
+								}
+							],
+							"cols": [
+								{
+									"type": "select",
+									"key": "status",
+									"label": "status",
+									"labelWidth": "",
+									"url": "/api/get",
+									"dataSource": "statusList",
+									"displayName": "name",
+									"displayValue": "code"
+								}
+							]
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"start\",val:\"Total Price Start >=\"},\n        {key:\"end\",val:\"Total Price End <=\"},        {key:\"fee\",val:\"Fee\"},        {key:\"status\",val:\"status\"}    ],\n    getUrl:() => {\n        return \"/api/codFee/queryAll\";\n    },\n    pageOption:{\n        sizeKey:\"row\",\n        indexKey:\"page\",\n        index:1,\n        size:10\n    },\n    actions:[       {         key:\"disabled\",         val:\"disabled\",         action:this.doDisabled       },    ]\n}\n                        ",
+						"tableTitle": "list"
+					},
+					"dialog": {
+						"hasDialog": "1",
+						"form": {
+							"cols": [
+								{
+									"type": "text",
+									"key": "start",
+									"label": " Total Price Start >=",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": ""
+								},
+								{
+									"type": "text",
+									"key": "end",
+									"label": "Total Price end <=",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": ""
+								},
+								{
+									"type": "text",
+									"key": "fee",
+									"label": "Fee",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": ""
+								}
+							]
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": " CODFee_list",
+				"routerData": {
+					"routerName": " CODFeeList",
+					"routerPath": " CODFee/ CODFee/list"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"statusList"
+							],
+							"entity": []
+						},
+						"action": [
+							"getStatuslist"
+						],
+						"mutation": [
+							"setStatuslist"
+						]
+					},
+					"API": [
+						{
+							"url": "/api/get",
+							"compName": "_api_get",
+							"servicesName": "getStatuslist"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			}
+		]
+	},
+	{
+		"subName": "bankNumber",
+		"data": [
+			{
+				"subName": "bankNumber",
+				"pagePath": "bankNumber",
+				"pageName": "list.vue",
+				"pageOption": {
+					"fileName": "list",
+					"path": "bankNumber",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "search",
+									"btnType": "search",
+									"btnHandle": "search"
+								},
+								{
+									"btnName": "create",
+									"btnType": "create",
+									"btnHandle": "add"
+								}
+							],
+							"cols": [
+								{
+									"type": "text",
+									"key": "bankNumber",
+									"label": "Virtual Bank  Number",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								},
+								{
+									"type": "select",
+									"key": "status",
+									"label": "Status",
+									"labelWidth": "",
+									"url": "/get/api",
+									"dataSource": "statusList",
+									"displayName": "name",
+									"displayValue": "code"
+								}
+							]
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"bankNo\",val:\"bankNo\"},\n        {key:\"status\",val:\"status\"},        {key:\"orderTime\",val:\"orderTime\"},        {key:\"orderNo\",val:\"orderNo\"},        {key:\"createTime\",val:\"createTime\"}    ],\n    getUrl:() => {\n        return \"/api/bankAccount/queryAll\";\n    },\n    pageOption:{\n        sizeKey:\"row\",\n        indexKey:\"page\",\n        index:1,\n        size:10\n    },\n    actions:[    ]\n}\n                        ",
+						"tableTitle": "Bank Number"
+					},
+					"dialog": {
+						"hasDialog": "",
+						"form": {
+							"cols": []
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "bankNumber_list",
+				"routerData": {
+					"routerName": "bankNumberList",
+					"routerPath": "bankNumber/bankNumber/list"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"statusList"
+							],
+							"entity": []
+						},
+						"action": [
+							"getStatuslist"
+						],
+						"mutation": [
+							"setStatuslist"
+						]
+					},
+					"API": [
+						{
+							"url": "/get/api",
+							"compName": "_get_api",
+							"servicesName": "getStatuslist"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			}
+		]
+	}
+]
