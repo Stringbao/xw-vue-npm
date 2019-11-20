@@ -1034,5 +1034,348 @@
 				}
 			}
 		]
+	},
+	{
+		"subName": "paymentType",
+		"data": [
+			{
+				"subName": "paymentType",
+				"pagePath": "",
+				"pageName": "list.vue",
+				"pageOption": {
+					"fileName": "list",
+					"path": "",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "搜索",
+									"btnType": "search",
+									"btnHandle": "search"
+								}
+							],
+							"cols": [
+								{
+									"type": "text",
+									"key": "name",
+									"label": "Name",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								},
+								{
+									"type": "text",
+									"key": "code",
+									"label": "Code",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								}
+							]
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"shop\",val:\"商城\"},\n        {key:\"accessField\",val:\"封禁纬度\"}\n    ],\n    getUrl:() => {\n        return \"/risk/limit/black/user/query/list\";\n    },\n    pageOption:{\n        sizeKey:\"pageSize\",\n        indexKey:\"pageNum\",\n        index:1,\n        size:10\n    },\n    actions:[\n        {\n            key:\"update\",\n            val:\"编辑\",\n            action:this.edit\n        }\n    ],\n    analysis:(data)=>{\n        if(data && data.data && data.data.data && data.data.data.dataList){\n            return {\n                data:data.data.data.dataList,\n                count:data.data.data.count\n            }\n        }else{\n            return {\n                data:[],\n                count:0\n            }\n        }\n    })\n}\n                        ",
+						"tableTitle": "paymentTypeList"
+					},
+					"dialog": {
+						"hasDialog": "",
+						"form": {
+							"cols": []
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "_list",
+				"routerData": {
+					"routerName": "paymentTypeList",
+					"routerPath": "paymentType//list"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [],
+							"entity": []
+						},
+						"action": [],
+						"mutation": []
+					},
+					"API": [
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			}
+		]
+	},
+	{
+		"subName": "accountPayment",
+		"data": [
+			{
+				"subName": "accountPayment",
+				"pagePath": "",
+				"pageName": "list.vue",
+				"pageOption": {
+					"fileName": "list",
+					"path": "",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "搜索",
+									"btnType": "search",
+									"btnHandle": "search"
+								},
+								{
+									"btnName": "新增",
+									"btnType": "create",
+									"btnHandle": "add"
+								}
+							],
+							"cols": [
+								{
+									"type": "select",
+									"key": "accountNo",
+									"label": "Account",
+									"labelWidth": "",
+									"url": "/api/accountChannel/queryAll",
+									"dataSource": "accountList",
+									"displayName": "accountName",
+									"displayValue": "accountNo"
+								},
+								{
+									"type": "select",
+									"key": "paymentChannelCode",
+									"label": "Payment Type",
+									"labelWidth": "",
+									"url": "/api/paymentChannel/queryAll",
+									"dataSource": "paymentTypeList",
+									"displayName": "name",
+									"displayValue": "code"
+								},
+								{
+									"type": "select",
+									"key": "status",
+									"label": "Status",
+									"labelWidth": "",
+									"url": "/data/get",
+									"dataSource": "statusList",
+									"displayName": "name",
+									"displayValue": "code"
+								}
+							]
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"shop\",val:\"商城\"},\n        {key:\"accessField\",val:\"封禁纬度\"}\n    ],\n    getUrl:() => {\n        return \"/risk/limit/black/user/query/list\";\n    },\n    pageOption:{\n        sizeKey:\"pageSize\",\n        indexKey:\"pageNum\",\n        index:1,\n        size:10\n    },\n    actions:[\n        {\n            key:\"update\",\n            val:\"编辑\",\n            action:this.edit\n        }\n    ],\n    analysis:(data)=>{\n        if(data && data.data && data.data.data && data.data.data.dataList){\n            return {\n                data:data.data.data.dataList,\n                count:data.data.data.count\n            }\n        }else{\n            return {\n                data:[],\n                count:0\n            }\n        }\n    })\n}\n                        ",
+						"tableTitle": "accountPaymentList"
+					},
+					"dialog": {
+						"hasDialog": "",
+						"form": {
+							"cols": []
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "_list",
+				"routerData": {
+					"routerName": "accountPaymentList",
+					"routerPath": "accountPayment//list"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"accountList",
+								"paymentTypeList",
+								"statusList"
+							],
+							"entity": []
+						},
+						"action": [
+							"getAccountlist",
+							"getPaymenttypelist",
+							"getStatuslist"
+						],
+						"mutation": [
+							"setAccountlist",
+							"setPaymenttypelist",
+							"setStatuslist"
+						]
+					},
+					"API": [
+						{
+							"url": "/api/accountChannel/queryAll",
+							"compName": "_api_accountChannel_queryAll",
+							"servicesName": "getAccountlist"
+						},
+						{
+							"url": "/api/paymentChannel/queryAll",
+							"compName": "_api_paymentChannel_queryAll",
+							"servicesName": "getPaymenttypelist"
+						},
+						{
+							"url": "/data/get",
+							"compName": "_data_get",
+							"servicesName": "getStatuslist"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			},
+			{
+				"subName": "accountPayment",
+				"pagePath": "",
+				"pageName": "save.vue",
+				"pageOption": {
+					"fileName": "save",
+					"path": "",
+					"type": "2",
+					"form": {
+						"cols": [
+							{
+								"type": "text",
+								"key": "createTime",
+								"label": "create time",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "1",
+								"required": "1",
+								"valifyType": "",
+								"msg": "not be null"
+							},
+							{
+								"type": "select",
+								"key": "status",
+								"label": "Status",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "/api/get",
+								"dataSource": "statusList",
+								"displayName": "name",
+								"displayValue": "code",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "checkboxList",
+								"key": "cardTypes",
+								"label": "Card Types",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "/api/cardType/queryAll",
+								"dataSource": "cardTypeList",
+								"displayName": "name",
+								"displayValue": "id",
+								"tip": "",
+								"on": "1",
+								"required": "1",
+								"valifyType": "",
+								"msg": "not be null"
+							}
+						]
+					},
+					"savePageInterface": {
+						"save": "/api/cvsType/saveNew",
+						"detail": "/api/accountChannel/queryById",
+						"update": "/api/cvsType/update"
+					}
+				},
+				"pageType": "2",
+				"compName": "_save",
+				"routerData": {
+					"routerName": "accountPaymentSave",
+					"routerPath": "accountPayment//save"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"statusList",
+								"cardTypeList"
+							],
+							"entity": [
+								"createTime",
+								"status",
+								"cardTypes"
+							]
+						},
+						"action": [
+							"getStatuslist",
+							"getCardtypelist"
+						],
+						"mutation": [
+							"setStatuslist",
+							"setCardtypelist"
+						]
+					},
+					"API": [
+						{
+							"url": "/api/get",
+							"compName": "_api_get",
+							"servicesName": "getStatuslist"
+						},
+						{
+							"url": "/api/cardType/queryAll",
+							"compName": "_api_cardType_queryAll",
+							"servicesName": "getCardtypelist"
+						},
+						{
+							"url": "/api/cvsType/saveNew",
+							"compName": "createAPI",
+							"servicesName": "doCreate"
+						},
+						{
+							"url": "/api/accountChannel/queryById",
+							"compName": "infoAPI",
+							"servicesName": "getInfo"
+						},
+						{
+							"url": "/api/cvsType/update",
+							"compName": "updateAPI",
+							"servicesName": "doUpdate"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			}
+		]
 	}
 ]

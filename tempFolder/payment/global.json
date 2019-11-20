@@ -2,46 +2,22 @@
 	"router": [
 		{
 			"routerName": "paymentTypeList",
-			"routerPath": "paymentType/paymentType/list",
-			"type": "1"
-		},
-		{
-			"routerName": "accountList",
-			"routerPath": "account/account/list",
+			"routerPath": "paymentType//list",
 			"type": "1"
 		},
 		{
 			"routerName": "accountPaymentList",
-			"routerPath": "accountPayment/accountPayment/list",
+			"routerPath": "accountPayment//list",
 			"type": "1"
 		},
 		{
 			"routerName": "accountPaymentSave",
-			"routerPath": "accountPayment/accountPayment/save",
+			"routerPath": "accountPayment//save",
 			"type": "2"
-		},
-		{
-			"routerName": "convenienceStoreList",
-			"routerPath": "convenienceStore/convenienceStore/list",
-			"type": "1"
-		},
-		{
-			"routerName": " CODFeeList",
-			"routerPath": " CODFee/ CODFee/list",
-			"type": "1"
-		},
-		{
-			"routerName": "bankNumberList",
-			"routerPath": "bankNumber/bankNumber/list",
-			"type": "1"
 		}
 	],
 	"moduleList": [
 		"paymentType",
-		"account",
-		"accountPayment",
-		"convenienceStore",
-		" CODFee",
-		"bankNumber"
+		"accountPayment"
 	]
 }
