@@ -46,7 +46,7 @@ module.exports = {
                 form:formList,
                 viewFolderPath: viewFolderPath,
                 tableTitle:data.searchOpts.tableTitle,
-                pageName : business.getCompName(data.path,data.fileName.split('.')[0])
+                pageName : moduleName + "_" + business.getCompName(data.path,data.fileName.split('.')[0])
             },
             moduleName,
         };
@@ -80,7 +80,7 @@ module.exports = {
                 form:formList,
                 action:filterAction,
                 viewFolderPath: viewFolderPath,
-                pageName : business.getCompName(data.path,data.fileName.split('.')[0]),
+                pageName : moduleName + "_" + business.getCompName(data.path,data.fileName.split('.')[0]),
             },
             moduleName,
         };

@@ -101,7 +101,7 @@ const api = {
             "pagePath":_data.page.path,
             "pageName":_data.page.fileName + ".vue",
             "pageOption":_data.page,
-            "pageType":_data.page.type,
+            "pageType":_data.page.type, 
             "compName":business.getCompName(_data.page.path,_data.page.fileName),
             "routerData":{
                 "routerName":_data.moduleName + commonUtil.titleCase(_data.page.fileName),
