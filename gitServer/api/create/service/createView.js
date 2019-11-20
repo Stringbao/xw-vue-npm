@@ -7,7 +7,7 @@ const CommonUtil = require("./common");
 module.exports = {
     createListView(projectPath, moduleName, data){
         let subPath = data.path ? ("/" + data.path):"";
-        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + subPath + (subPath != "" ? "/" : "" ) + data.fileName + ".vue";
+        let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + subPath + "/" + data.fileName + ".vue";
         let listEjsPath = path.resolve(__dirname, _config.viewPath.listEjs);
         fsTool.createFile(viewPath);
         console.log(viewPath);
@@ -46,7 +46,7 @@ module.exports = {
                 form:formList,
                 viewFolderPath: viewFolderPath,
                 tableTitle:data.searchOpts.tableTitle,
-                pageName : moduleName + "_" + business.getCompName(data.path,data.fileName.split('.')[0])
+                pageName : moduleName + (data.path!="" ? "_":"") + business.getCompName(data.path,data.fileName.split('.')[0])
             },
             moduleName,
         };
@@ -80,7 +80,7 @@ module.exports = {
                 form:formList,
                 action:filterAction,
                 viewFolderPath: viewFolderPath,
-                pageName : moduleName + "_" + business.getCompName(data.path,data.fileName.split('.')[0]),
+                pageName : moduleName + (data.path!="" ? "_":"") + business.getCompName(data.path,data.fileName.split('.')[0]),
             },
             moduleName,
         };
