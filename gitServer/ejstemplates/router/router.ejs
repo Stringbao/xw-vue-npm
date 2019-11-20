@@ -2,23 +2,23 @@ import Vue from 'vue';
 import Router from 'vue-router';
 Vue.use(Router);
 <%_ data.forEach(function(row){ -%>
-import <%= row.routerName %> from "../pages/<%= row.routerPath %>"
+import <%= row.routerName %> from "@pages/<%= row.routerPath %>"
 <%_ _%><% }) -%>
 let routers = [
     {
         path: '/',
         name: 'login',
-        component:() => import('../pages/login/login.vue')
+        component:() => import('@pages/login/login.vue')
     },
     {
         path: '/layout',
         name: 'layout',
-        component:() => import('../pages/layout/layout.vue'),
+        component:() => import('@pages/layout/layout.vue'),
         children:[
             {
                 path: '/layout',
                 name: 'test',
-                component:() => import('../pages/test.vue'),
+                component:() => import('@pages/test.vue'),
             },
             <%_ if(isLayoutModule){ -%>
                 children:[
