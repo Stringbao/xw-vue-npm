@@ -20,7 +20,7 @@ export default {
         },
     <%_ _%><% }) -%>  
         setEntity(state,d){
-            state.entity = d
+            state.entity = d;
         },
     },
     actions:{
@@ -28,34 +28,34 @@ export default {
         <%= row %>({state,commit,dispatch},d){
             Service.<%= row %>((t) => {
                 commit("set<%= data.extendField[index] %>",t);
-                d.cb && d.cb(d)
+                d.cb && d.cb(d);
             })
         },
     <%_ _%><% }) -%>  
         getInfo({state,commit,dispatch},d){
             Service.getInfo(d.params,(t) => {
                 commit("setEntity",t.data);
-                d.cb && d.cb(d)
+                d.cb && d.cb(d);
             })
         },
         doCreate({state,commit,dispatch},d){
             Service.doCreate(state.entity,(t) => {
-                d.cb && d.cb(t)
+                d.cb && d.cb(t);
             })
         },
         doUpdate({state,commit,dispatch},d){
             Service.doUpdate(state.entity,(t) => {
-                d.cb && d.cb(t)
+                d.cb && d.cb(t);
             })
         },
         doRemove({state,commit,dispatch},d){
             Service.doRemove(state.entity,(t) => {
-                d.cb && d.cb(t)
+                d.cb && d.cb(t);
             })
         },
         doGetList({state,commit,dispatch},d){
             Service.doRemove(state.entity,(t) => {
-                d.cb && d.cb(t)
+                d.cb && d.cb(t);
             })
         }
     }
