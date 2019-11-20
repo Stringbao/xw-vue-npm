@@ -26,6 +26,9 @@ export default {
     actions:{
     <%_ data.action.forEach(function(row,index){ -%>
         <%= row %>({state,commit,dispatch},d){
+            if(selectDataSource.<%= data.state.dataSource[index] %>.length > 0 ){
+                return;
+            }
             Service.<%= row %>((t) => {
                 commit("set<%= data.extendField[index] %>",t);
                 d.cb && d.cb(d);
