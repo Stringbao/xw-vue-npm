@@ -171,27 +171,32 @@ const api = {
                 url:_data.page.savePageInterface.save,
                 compName:"createAPI",
                 servicesName:"doCreate",
+                hasParams:"true",
             })
             _dataJson.serverData.API.push({
                 url:_data.page.savePageInterface.detail,
                 compName:"infoAPI",
                 servicesName:"getInfo",
+                hasParams:"true",
             })
             _dataJson.serverData.API.push({
                 url:_data.page.savePageInterface.update,
                 compName:"updateAPI",
                 servicesName:"doUpdate",
+                hasParams:"true",
             })
         }
         _dataJson.serverData.API.push({
             url:"removeUrl",
             compName:"removeAPI",
             servicesName:"doRemove",
+            hasParams:"true",
         })
         _dataJson.serverData.API.push({
             url:"listUrl",
             compName:"listAPI",
             servicesName:"doGetList",
+            hasParams:"true",
         })
         let jsonStr = fsTool.readFile(jsonDataPath);
         let jsonData = JSON.parse(jsonStr!= "" ? jsonStr : "[]");
