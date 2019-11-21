@@ -40,7 +40,6 @@ const api = {
         let projectPath = req.body.projectPath;
         let projectName = req.body.projectName;
         let isLayoutModule = (req.body.isLayout && req.body.isLayout == "1")  ? true:false;
-        console.log(isLayoutModule);
         let globalPath = path.resolve(__dirname,"../../global.json")
         let str = fsTool.readFile(globalPath);
         let _data = JSON.parse((str && str!="") ? str : "{router:[],moduleList:[]}");
