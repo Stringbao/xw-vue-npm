@@ -1,0 +1,17 @@
+{
+	"router": [
+		{
+			"routerName": "productList",
+			"routerPath": "product/list",
+			"type": "1"
+		},
+		{
+			"routerName": "productSave",
+			"routerPath": "product/save",
+			"type": "2"
+		}
+	],
+	"moduleList": [
+		"product"
+	]
+}

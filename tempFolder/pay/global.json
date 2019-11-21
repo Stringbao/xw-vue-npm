@@ -1,0 +1,28 @@
+{
+	"router": [
+		{
+			"routerName": "payList",
+			"routerPath": "pay/list",
+			"type": "1"
+		},
+		{
+			"routerName": "paySave",
+			"routerPath": "pay/save",
+			"type": "2"
+		},
+		{
+			"routerName": "pay2Pay2",
+			"routerPath": "pay2/pay2/pay2",
+			"type": "1"
+		},
+		{
+			"routerName": "pay2Save",
+			"routerPath": "pay2/pay2/save",
+			"type": "2"
+		}
+	],
+	"moduleList": [
+		"pay",
+		"pay2"
+	]
+}

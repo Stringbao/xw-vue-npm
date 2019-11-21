@@ -1,0 +1,807 @@
+[
+	{
+		"subName": "product",
+		"data": [
+			{
+				"subName": "product",
+				"pagePath": "",
+				"pageName": "list.vue",
+				"pageOption": {
+					"fileName": "list",
+					"path": "",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "搜索",
+									"btnType": "search",
+									"btnHandle": "search"
+								},
+								{
+									"btnName": "新增",
+									"btnType": "create",
+									"btnHandle": "add"
+								},
+								{
+									"btnName": "启用",
+									"btnType": "start",
+									"btnHandle": "enable"
+								},
+								{
+									"btnName": "停用",
+									"btnType": "stop",
+									"btnHandle": "stop"
+								}
+							],
+							"cols": [
+								{
+									"type": "text",
+									"key": "materialNumber",
+									"label": "物料号",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								},
+								{
+									"type": "text",
+									"key": "name",
+									"label": "产品名称",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								},
+								{
+									"type": "datepicker",
+									"key": "announceDate",
+									"label": "产品上线日期",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								},
+								{
+									"type": "datepicker",
+									"key": "publishStopDate",
+									"label": "截止日期",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								}
+							]
+						},
+						"tableOptions": "{    showCk:true,    map:[        {key:\"materialNumber\",val:\"物料号\"},        {key:\"name\",val:\"产品名称\"},        {key:\"announceDate\",val:\"产品上线日期\"},        {key:\"publishStopDate\",val:\"截止日期\"},        {key:\"manufactureDivisionCode\",val:\"制造部门代码\"},        {key:\"description\",val:\"产品描述\"},        {key:\"eccProductCode\",val:\"NECECC产品Code\"},        {key:\"fullImgPath\",val:\"全尺寸图像路径\"},        {key:\"smallImgPath\",val:\"小尺寸图像路径\"},        {key:\"middleImgPath\",val:\"中等图像路径\"},        {key:\"largeImgPath\",val:\"大尺寸图像路径\"},        {key:\"suitableId\",val:\"匹配的产品号\"},        {key:\"longDescription\",val:\"长描述信息\"},    ],    getUrl:() => {        return \"/risk/limit/black/user/query/list\";    },    pageOption:{        sizeKey:\"pageSize\",        indexKey:\"pageNum\",        index:1,        size:10    },    actions:[            ],    analysis:(data)=>{        if(data && data.data && data.data.data && data.data.data.dataList){            return {                data:data.data.data.dataList,                count:data.data.data.count            }        }else{            return {                data:[],                count:0            }        }    }}",
+						"tableTitle": "productList"
+					},
+					"dialog": {
+						"hasDialog": "",
+						"form": {
+							"cols": []
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "product_list",
+				"routerData": {
+					"routerName": "productList",
+					"routerPath": "product/list"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [],
+							"entity": []
+						},
+						"action": [],
+						"mutation": []
+					},
+					"API": [
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			},
+			{
+				"subName": "product",
+				"pagePath": "",
+				"pageName": "save.vue",
+				"pageOption": {
+					"fileName": "save",
+					"path": "",
+					"type": "2",
+					"form": {
+						"cols": [
+							{
+								"type": "select",
+								"key": "productType",
+								"label": "产品类型",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "/get/prodType",
+								"dataSource": "prodTypeList",
+								"displayName": "name",
+								"displayValue": "code",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "kitFlag",
+								"label": "产品标识",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "serviceFlag",
+								"label": "是否是服务产品",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "name",
+								"label": "产品名称",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "textarea",
+								"key": "description",
+								"label": "产品描述",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "manufactureDivisionCode",
+								"label": "制造部门代码",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "dateTimepicker",
+								"key": "shipmentStartDate",
+								"label": "装运开始日期",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "eccProductCode",
+								"label": "NECECC产品Code",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "serviceCompanyCode",
+								"label": "服务公司产品代码",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "openPriceFlag",
+								"label": "公开价格标识",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "dataSender",
+								"label": "数据来源",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "btoClassification",
+								"label": "是否是BTO",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "catalogPagePath",
+								"label": "目录页面路径",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "contractNumber",
+								"label": "合同号",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "productNecFlag",
+								"label": "NEC产品标识",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "manufactureName",
+								"label": "制造工程名称",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "catalogPageFlag",
+								"label": "目录页面标记",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "koSeiCode",
+								"label": "koSeiCode",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "serviceCompany",
+								"label": "服务公司名称",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "freeSelectionKind",
+								"label": "选择分类",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "fullImgPath",
+								"label": "全尺寸图像路径",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "smallImgPath",
+								"label": "小尺寸图像路径",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "middleImgPath",
+								"label": "中等图像路径",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "largeImgPath",
+								"label": "大尺寸图像路径",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "SearchFlag",
+								"label": "产品搜索标识",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "innerModelCode",
+								"label": "内部模型代码",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "ndWebbroFlg",
+								"label": "WEBBRO标识",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "shippingFlag",
+								"label": "运送分类",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "cashOnDelivery",
+								"label": "是否支持货到付款",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "relatedId",
+								"label": "关联ID",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "ware121CatalogPrice",
+								"label": "121ware目录价格",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "keyGroup",
+								"label": "虚拟产品产品组",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "keyType",
+								"label": "虚拟产品键类型",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "keysQty",
+								"label": "虚拟产品数量",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "longDescription",
+								"label": "长描述信息",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "shippingModel",
+								"label": "运输模型",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							}
+						]
+					},
+					"savePageInterface": {
+						"save": "/save",
+						"detail": "/detail",
+						"update": "/save"
+					}
+				},
+				"pageType": "2",
+				"compName": "product_save",
+				"routerData": {
+					"routerName": "productSave",
+					"routerPath": "product/save"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"prodTypeList"
+							],
+							"entity": [
+								"productType",
+								"kitFlag",
+								"serviceFlag",
+								"name",
+								"description",
+								"manufactureDivisionCode",
+								"shipmentStartDate",
+								"eccProductCode",
+								"serviceCompanyCode",
+								"openPriceFlag",
+								"dataSender",
+								"btoClassification",
+								"catalogPagePath",
+								"contractNumber",
+								"productNecFlag",
+								"manufactureName",
+								"catalogPageFlag",
+								"koSeiCode",
+								"serviceCompany",
+								"freeSelectionKind",
+								"fullImgPath",
+								"smallImgPath",
+								"middleImgPath",
+								"largeImgPath",
+								"SearchFlag",
+								"innerModelCode",
+								"ndWebbroFlg",
+								"shippingFlag",
+								"cashOnDelivery",
+								"relatedId",
+								"ware121CatalogPrice",
+								"keyGroup",
+								"keyType",
+								"keysQty",
+								"longDescription",
+								"shippingModel"
+							]
+						},
+						"action": [
+							"getProdtypelist"
+						],
+						"mutation": [
+							"setProdtypelist"
+						]
+					},
+					"API": [
+						{
+							"url": "/get/prodType",
+							"compName": "_get_prodType",
+							"servicesName": "getProdtypelist"
+						},
+						{
+							"url": "/save",
+							"compName": "createAPI",
+							"servicesName": "doCreate"
+						},
+						{
+							"url": "/detail",
+							"compName": "infoAPI",
+							"servicesName": "getInfo"
+						},
+						{
+							"url": "/save",
+							"compName": "updateAPI",
+							"servicesName": "doUpdate"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			}
+		]
+	}
+]
