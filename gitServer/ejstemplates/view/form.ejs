@@ -1,4 +1,4 @@
-            <le-form ref="saveForm">
+            <le-form ref="saveForm" labelWidth = "120" class = "formContent">
         <%_ data.forEach(function(col){ -%>
                 <%_ if(col.type == "text"){ -%>
                 <le-input<%  _%>
@@ -175,10 +175,4 @@
                         <%_ } -%>></le-date-time-picker>
                     <%_ } _%>
         <%_ }) -%>
-        <%_ if(isSavePage){ -%>
-            <div class="le_new_page_btn_group">
-                <le-button type = "back" value = "返回" @click = "goBack"></le-button>
-                <le-button type = "save" value = "保存" @click = "save"></le-button>
-            </div>
-        <%_ } -%>
             </le-form>

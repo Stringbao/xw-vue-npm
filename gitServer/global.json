@@ -1,0 +1,28 @@
+{
+	"router": [
+		{
+			"routerName": "aaaAsasa",
+			"routerPath": "aaa/asasa",
+			"type": "1"
+		},
+		{
+			"routerName": "aaaSasa",
+			"routerPath": "aaa/sasa",
+			"type": "2"
+		},
+		{
+			"routerName": "aaaasdasdDasdsdasasd",
+			"routerPath": "aaaasdasd/dasdsdasasd",
+			"type": "1"
+		},
+		{
+			"routerName": "aaaasdasdDasdasda",
+			"routerPath": "aaaasdasd/dasdasda",
+			"type": "2"
+		}
+	],
+	"moduleList": [
+		"aaa",
+		"aaaasdasd"
+	]
+}

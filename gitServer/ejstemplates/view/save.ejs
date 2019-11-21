@@ -2,6 +2,10 @@
     <div class="le_comps_core_css new_page_width">
         <h4 class="le_page_name"><%= data.pageName %></h4>
     <%_ _%><%- include(data.viewFolderPath + "/form",{data:data.form.cols,isSavePage : true}) %>
+        <div class="le_new_page_btn_group">
+            <le-button type = "back" value = "返回" @click = "goBack"></le-button>
+            <le-button type = "save" value = "保存" @click = "save"></le-button>
+        </div>
     </div>
 </template>
 <script>
@@ -16,10 +20,16 @@ export default {
         }
     },
     computed:{
-        ...mapState(["selectDataSource","entity"])
-    },
-    mounted(){
-        this.getDetail();
+        ...mapState(["selectDataSource","entity"]),
+        isEdit(){
+            return this.$route.params.tag == "edit";
+        },
+        isCreate(){
+            return this.$route.params.tag == "create";
+        },
+        isInfo(){
+            return this.$route.params.tag == "info";
+        },
     },
     methods:{
         ...mapActions([
@@ -64,6 +74,10 @@ export default {
     <%_ data.action.forEach(function(actionName){ -%>
             this.<%= actionName -%>();
     <%_ }) -%>
+        this.$refs.saveForm.reset();
+        if(this.isEdit && this.isInfo){
+            this.getDetail();
+        }
     }
 }
 </script>

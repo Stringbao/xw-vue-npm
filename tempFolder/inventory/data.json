@@ -1,0 +1,2010 @@
+[
+	{},
+	{
+		"subName": "inventory",
+		"data": [
+			{
+				"subName": "inventory",
+				"pagePath": "",
+				"pageName": "list.vue",
+				"pageOption": {
+					"fileName": "list",
+					"path": "",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "search",
+									"btnType": "search",
+									"btnHandle": "search"
+								},
+								{
+									"btnName": "create",
+									"btnType": "create",
+									"btnHandle": "create"
+								},
+								{
+									"btnName": "edit",
+									"btnType": "update",
+									"btnHandle": "edit"
+								},
+								{
+									"btnName": "delete",
+									"btnType": "remove",
+									"btnHandle": "remove"
+								},
+								{
+									"btnName": "import",
+									"btnType": "import",
+									"btnHandle": "importBtn"
+								},
+								{
+									"btnName": "export",
+									"btnType": "export",
+									"btnHandle": "exportBtn"
+								}
+							],
+							"cols": [
+								{
+									"type": "text",
+									"key": "productCode",
+									"label": "Product Code",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								},
+								{
+									"type": "select",
+									"key": "inventoryType",
+									"label": "Inventory Type",
+									"labelWidth": "",
+									"url": "/api/data",
+									"dataSource": "inventoryTypeList",
+									"displayName": "name",
+									"displayValue": "code"
+								}
+							]
+						},
+						"tableOptions": "{    showCk:true,    map:[        {key:\"productCode\",val:\"Product Code\"},        {key:\"inventoryType\",val:\"Inventory Type\"},        {key:\"restQuantity\",val:\"Rest Quantity\"},        {key:\"reserveQuantity\",val:\"Reserve Quantity\"},        {key:\"weeklyQuantity\",val:\"Weekly Quantity\"},        {key:\"originalQuantity\",val:\"Original Quantity\"},        {key:\"seccQuantitiy\",val:\"SECC Quantitiy\"},        {key:\"maxQty\",val:\"Max Qty\"},        {key:\"creationTime\",val:\"Creation Time\"},        {key:\"updatedTime\",val:\"Updated Time\"},    ],    getUrl:() => {        return \"/api/inventory/queryInventoryInfo\";    },    pageOption:{        sizeKey:\"pageSize\",        indexKey:\"limit\",        index:1,        size:10    },    actions:[           ],    analysis:(data)=>{        if(data && data.data && data.data.data && data.data.data.dataList){            return {                data:data.data.data.dataList,                count:data.data.data.count            }        }else{            return {                data:[],                count:0            }        }    }}",
+						"tableTitle": ""
+					},
+					"dialog": {
+						"hasDialog": "",
+						"form": {
+							"cols": [
+								{
+									"type": "text",
+									"key": "",
+									"label": "Product Code",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": "",
+									"selectDataSource": {
+										"typeDatsSource": [
+											{
+												"name": "text",
+												"code": "text"
+											},
+											{
+												"name": "select",
+												"code": "select"
+											},
+											{
+												"name": "radioList",
+												"code": "radioList"
+											},
+											{
+												"name": "checkboxList",
+												"code": "checkboxList"
+											},
+											{
+												"name": "asynTree",
+												"code": "asynTree"
+											},
+											{
+												"name": "textarea",
+												"code": "textarea"
+											},
+											{
+												"name": "upload",
+												"code": "upload"
+											},
+											{
+												"name": "datepicker",
+												"code": "datepicker"
+											},
+											{
+												"name": "timepicker",
+												"code": "timepicker"
+											},
+											{
+												"name": "dateTimepicker",
+												"code": "dateTimepicker"
+											}
+										],
+										"requiredDatsSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"onDataSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"valifyDataSource": [
+											{
+												"name": "数字或小数",
+												"code": "decimals"
+											},
+											{
+												"name": "数字",
+												"code": "number"
+											},
+											{
+												"name": "email",
+												"code": "email"
+											},
+											{
+												"name": "url",
+												"code": "url"
+											},
+											{
+												"name": "id",
+												"code": "身份证"
+											},
+											{
+												"name": "phone",
+												"code": "手机号"
+											},
+											{
+												"name": "password",
+												"code": "密码"
+											},
+											{
+												"name": "正整数",
+												"code": "positive"
+											},
+											{
+												"name": "正小数",
+												"code": "positiveDecimals"
+											},
+											{
+												"name": "负小数",
+												"code": "negativeDecimals"
+											},
+											{
+												"name": "负数",
+												"code": "negative"
+											},
+											{
+												"name": "汉字",
+												"code": "characters"
+											}
+										]
+									}
+								},
+								{
+									"type": "text",
+									"key": "",
+									"label": "Inventory Type",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": "",
+									"selectDataSource": {
+										"typeDatsSource": [
+											{
+												"name": "text",
+												"code": "text"
+											},
+											{
+												"name": "select",
+												"code": "select"
+											},
+											{
+												"name": "radioList",
+												"code": "radioList"
+											},
+											{
+												"name": "checkboxList",
+												"code": "checkboxList"
+											},
+											{
+												"name": "asynTree",
+												"code": "asynTree"
+											},
+											{
+												"name": "textarea",
+												"code": "textarea"
+											},
+											{
+												"name": "upload",
+												"code": "upload"
+											},
+											{
+												"name": "datepicker",
+												"code": "datepicker"
+											},
+											{
+												"name": "timepicker",
+												"code": "timepicker"
+											},
+											{
+												"name": "dateTimepicker",
+												"code": "dateTimepicker"
+											}
+										],
+										"requiredDatsSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"onDataSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"valifyDataSource": [
+											{
+												"name": "数字或小数",
+												"code": "decimals"
+											},
+											{
+												"name": "数字",
+												"code": "number"
+											},
+											{
+												"name": "email",
+												"code": "email"
+											},
+											{
+												"name": "url",
+												"code": "url"
+											},
+											{
+												"name": "id",
+												"code": "身份证"
+											},
+											{
+												"name": "phone",
+												"code": "手机号"
+											},
+											{
+												"name": "password",
+												"code": "密码"
+											},
+											{
+												"name": "正整数",
+												"code": "positive"
+											},
+											{
+												"name": "正小数",
+												"code": "positiveDecimals"
+											},
+											{
+												"name": "负小数",
+												"code": "negativeDecimals"
+											},
+											{
+												"name": "负数",
+												"code": "negative"
+											},
+											{
+												"name": "汉字",
+												"code": "characters"
+											}
+										]
+									}
+								},
+								{
+									"type": "text",
+									"key": "",
+									"label": "",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": "",
+									"selectDataSource": {
+										"typeDatsSource": [
+											{
+												"name": "text",
+												"code": "text"
+											},
+											{
+												"name": "select",
+												"code": "select"
+											},
+											{
+												"name": "radioList",
+												"code": "radioList"
+											},
+											{
+												"name": "checkboxList",
+												"code": "checkboxList"
+											},
+											{
+												"name": "asynTree",
+												"code": "asynTree"
+											},
+											{
+												"name": "textarea",
+												"code": "textarea"
+											},
+											{
+												"name": "upload",
+												"code": "upload"
+											},
+											{
+												"name": "datepicker",
+												"code": "datepicker"
+											},
+											{
+												"name": "timepicker",
+												"code": "timepicker"
+											},
+											{
+												"name": "dateTimepicker",
+												"code": "dateTimepicker"
+											}
+										],
+										"requiredDatsSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"onDataSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"valifyDataSource": [
+											{
+												"name": "数字或小数",
+												"code": "decimals"
+											},
+											{
+												"name": "数字",
+												"code": "number"
+											},
+											{
+												"name": "email",
+												"code": "email"
+											},
+											{
+												"name": "url",
+												"code": "url"
+											},
+											{
+												"name": "id",
+												"code": "身份证"
+											},
+											{
+												"name": "phone",
+												"code": "手机号"
+											},
+											{
+												"name": "password",
+												"code": "密码"
+											},
+											{
+												"name": "正整数",
+												"code": "positive"
+											},
+											{
+												"name": "正小数",
+												"code": "positiveDecimals"
+											},
+											{
+												"name": "负小数",
+												"code": "negativeDecimals"
+											},
+											{
+												"name": "负数",
+												"code": "negative"
+											},
+											{
+												"name": "汉字",
+												"code": "characters"
+											}
+										]
+									}
+								},
+								{
+									"type": "text",
+									"key": "",
+									"label": "",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": "",
+									"selectDataSource": {
+										"typeDatsSource": [
+											{
+												"name": "text",
+												"code": "text"
+											},
+											{
+												"name": "select",
+												"code": "select"
+											},
+											{
+												"name": "radioList",
+												"code": "radioList"
+											},
+											{
+												"name": "checkboxList",
+												"code": "checkboxList"
+											},
+											{
+												"name": "asynTree",
+												"code": "asynTree"
+											},
+											{
+												"name": "textarea",
+												"code": "textarea"
+											},
+											{
+												"name": "upload",
+												"code": "upload"
+											},
+											{
+												"name": "datepicker",
+												"code": "datepicker"
+											},
+											{
+												"name": "timepicker",
+												"code": "timepicker"
+											},
+											{
+												"name": "dateTimepicker",
+												"code": "dateTimepicker"
+											}
+										],
+										"requiredDatsSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"onDataSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"valifyDataSource": [
+											{
+												"name": "数字或小数",
+												"code": "decimals"
+											},
+											{
+												"name": "数字",
+												"code": "number"
+											},
+											{
+												"name": "email",
+												"code": "email"
+											},
+											{
+												"name": "url",
+												"code": "url"
+											},
+											{
+												"name": "id",
+												"code": "身份证"
+											},
+											{
+												"name": "phone",
+												"code": "手机号"
+											},
+											{
+												"name": "password",
+												"code": "密码"
+											},
+											{
+												"name": "正整数",
+												"code": "positive"
+											},
+											{
+												"name": "正小数",
+												"code": "positiveDecimals"
+											},
+											{
+												"name": "负小数",
+												"code": "negativeDecimals"
+											},
+											{
+												"name": "负数",
+												"code": "negative"
+											},
+											{
+												"name": "汉字",
+												"code": "characters"
+											}
+										]
+									}
+								},
+								{
+									"type": "text",
+									"key": "",
+									"label": "",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": "",
+									"selectDataSource": {
+										"typeDatsSource": [
+											{
+												"name": "text",
+												"code": "text"
+											},
+											{
+												"name": "select",
+												"code": "select"
+											},
+											{
+												"name": "radioList",
+												"code": "radioList"
+											},
+											{
+												"name": "checkboxList",
+												"code": "checkboxList"
+											},
+											{
+												"name": "asynTree",
+												"code": "asynTree"
+											},
+											{
+												"name": "textarea",
+												"code": "textarea"
+											},
+											{
+												"name": "upload",
+												"code": "upload"
+											},
+											{
+												"name": "datepicker",
+												"code": "datepicker"
+											},
+											{
+												"name": "timepicker",
+												"code": "timepicker"
+											},
+											{
+												"name": "dateTimepicker",
+												"code": "dateTimepicker"
+											}
+										],
+										"requiredDatsSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"onDataSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"valifyDataSource": [
+											{
+												"name": "数字或小数",
+												"code": "decimals"
+											},
+											{
+												"name": "数字",
+												"code": "number"
+											},
+											{
+												"name": "email",
+												"code": "email"
+											},
+											{
+												"name": "url",
+												"code": "url"
+											},
+											{
+												"name": "id",
+												"code": "身份证"
+											},
+											{
+												"name": "phone",
+												"code": "手机号"
+											},
+											{
+												"name": "password",
+												"code": "密码"
+											},
+											{
+												"name": "正整数",
+												"code": "positive"
+											},
+											{
+												"name": "正小数",
+												"code": "positiveDecimals"
+											},
+											{
+												"name": "负小数",
+												"code": "negativeDecimals"
+											},
+											{
+												"name": "负数",
+												"code": "negative"
+											},
+											{
+												"name": "汉字",
+												"code": "characters"
+											}
+										]
+									}
+								},
+								{
+									"type": "text",
+									"key": "",
+									"label": "",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": "",
+									"selectDataSource": {
+										"typeDatsSource": [
+											{
+												"name": "text",
+												"code": "text"
+											},
+											{
+												"name": "select",
+												"code": "select"
+											},
+											{
+												"name": "radioList",
+												"code": "radioList"
+											},
+											{
+												"name": "checkboxList",
+												"code": "checkboxList"
+											},
+											{
+												"name": "asynTree",
+												"code": "asynTree"
+											},
+											{
+												"name": "textarea",
+												"code": "textarea"
+											},
+											{
+												"name": "upload",
+												"code": "upload"
+											},
+											{
+												"name": "datepicker",
+												"code": "datepicker"
+											},
+											{
+												"name": "timepicker",
+												"code": "timepicker"
+											},
+											{
+												"name": "dateTimepicker",
+												"code": "dateTimepicker"
+											}
+										],
+										"requiredDatsSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"onDataSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"valifyDataSource": [
+											{
+												"name": "数字或小数",
+												"code": "decimals"
+											},
+											{
+												"name": "数字",
+												"code": "number"
+											},
+											{
+												"name": "email",
+												"code": "email"
+											},
+											{
+												"name": "url",
+												"code": "url"
+											},
+											{
+												"name": "id",
+												"code": "身份证"
+											},
+											{
+												"name": "phone",
+												"code": "手机号"
+											},
+											{
+												"name": "password",
+												"code": "密码"
+											},
+											{
+												"name": "正整数",
+												"code": "positive"
+											},
+											{
+												"name": "正小数",
+												"code": "positiveDecimals"
+											},
+											{
+												"name": "负小数",
+												"code": "negativeDecimals"
+											},
+											{
+												"name": "负数",
+												"code": "negative"
+											},
+											{
+												"name": "汉字",
+												"code": "characters"
+											}
+										]
+									}
+								},
+								{
+									"type": "text",
+									"key": "",
+									"label": "",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": "",
+									"selectDataSource": {
+										"typeDatsSource": [
+											{
+												"name": "text",
+												"code": "text"
+											},
+											{
+												"name": "select",
+												"code": "select"
+											},
+											{
+												"name": "radioList",
+												"code": "radioList"
+											},
+											{
+												"name": "checkboxList",
+												"code": "checkboxList"
+											},
+											{
+												"name": "asynTree",
+												"code": "asynTree"
+											},
+											{
+												"name": "textarea",
+												"code": "textarea"
+											},
+											{
+												"name": "upload",
+												"code": "upload"
+											},
+											{
+												"name": "datepicker",
+												"code": "datepicker"
+											},
+											{
+												"name": "timepicker",
+												"code": "timepicker"
+											},
+											{
+												"name": "dateTimepicker",
+												"code": "dateTimepicker"
+											}
+										],
+										"requiredDatsSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"onDataSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"valifyDataSource": [
+											{
+												"name": "数字或小数",
+												"code": "decimals"
+											},
+											{
+												"name": "数字",
+												"code": "number"
+											},
+											{
+												"name": "email",
+												"code": "email"
+											},
+											{
+												"name": "url",
+												"code": "url"
+											},
+											{
+												"name": "id",
+												"code": "身份证"
+											},
+											{
+												"name": "phone",
+												"code": "手机号"
+											},
+											{
+												"name": "password",
+												"code": "密码"
+											},
+											{
+												"name": "正整数",
+												"code": "positive"
+											},
+											{
+												"name": "正小数",
+												"code": "positiveDecimals"
+											},
+											{
+												"name": "负小数",
+												"code": "negativeDecimals"
+											},
+											{
+												"name": "负数",
+												"code": "negative"
+											},
+											{
+												"name": "汉字",
+												"code": "characters"
+											}
+										]
+									}
+								},
+								{
+									"type": "text",
+									"key": "",
+									"label": "",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": "",
+									"selectDataSource": {
+										"typeDatsSource": [
+											{
+												"name": "text",
+												"code": "text"
+											},
+											{
+												"name": "select",
+												"code": "select"
+											},
+											{
+												"name": "radioList",
+												"code": "radioList"
+											},
+											{
+												"name": "checkboxList",
+												"code": "checkboxList"
+											},
+											{
+												"name": "asynTree",
+												"code": "asynTree"
+											},
+											{
+												"name": "textarea",
+												"code": "textarea"
+											},
+											{
+												"name": "upload",
+												"code": "upload"
+											},
+											{
+												"name": "datepicker",
+												"code": "datepicker"
+											},
+											{
+												"name": "timepicker",
+												"code": "timepicker"
+											},
+											{
+												"name": "dateTimepicker",
+												"code": "dateTimepicker"
+											}
+										],
+										"requiredDatsSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"onDataSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"valifyDataSource": [
+											{
+												"name": "数字或小数",
+												"code": "decimals"
+											},
+											{
+												"name": "数字",
+												"code": "number"
+											},
+											{
+												"name": "email",
+												"code": "email"
+											},
+											{
+												"name": "url",
+												"code": "url"
+											},
+											{
+												"name": "id",
+												"code": "身份证"
+											},
+											{
+												"name": "phone",
+												"code": "手机号"
+											},
+											{
+												"name": "password",
+												"code": "密码"
+											},
+											{
+												"name": "正整数",
+												"code": "positive"
+											},
+											{
+												"name": "正小数",
+												"code": "positiveDecimals"
+											},
+											{
+												"name": "负小数",
+												"code": "negativeDecimals"
+											},
+											{
+												"name": "负数",
+												"code": "negative"
+											},
+											{
+												"name": "汉字",
+												"code": "characters"
+											}
+										]
+									}
+								},
+								{
+									"type": "text",
+									"key": "",
+									"label": "",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": "",
+									"selectDataSource": {
+										"typeDatsSource": [
+											{
+												"name": "text",
+												"code": "text"
+											},
+											{
+												"name": "select",
+												"code": "select"
+											},
+											{
+												"name": "radioList",
+												"code": "radioList"
+											},
+											{
+												"name": "checkboxList",
+												"code": "checkboxList"
+											},
+											{
+												"name": "asynTree",
+												"code": "asynTree"
+											},
+											{
+												"name": "textarea",
+												"code": "textarea"
+											},
+											{
+												"name": "upload",
+												"code": "upload"
+											},
+											{
+												"name": "datepicker",
+												"code": "datepicker"
+											},
+											{
+												"name": "timepicker",
+												"code": "timepicker"
+											},
+											{
+												"name": "dateTimepicker",
+												"code": "dateTimepicker"
+											}
+										],
+										"requiredDatsSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"onDataSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"valifyDataSource": [
+											{
+												"name": "数字或小数",
+												"code": "decimals"
+											},
+											{
+												"name": "数字",
+												"code": "number"
+											},
+											{
+												"name": "email",
+												"code": "email"
+											},
+											{
+												"name": "url",
+												"code": "url"
+											},
+											{
+												"name": "id",
+												"code": "身份证"
+											},
+											{
+												"name": "phone",
+												"code": "手机号"
+											},
+											{
+												"name": "password",
+												"code": "密码"
+											},
+											{
+												"name": "正整数",
+												"code": "positive"
+											},
+											{
+												"name": "正小数",
+												"code": "positiveDecimals"
+											},
+											{
+												"name": "负小数",
+												"code": "negativeDecimals"
+											},
+											{
+												"name": "负数",
+												"code": "negative"
+											},
+											{
+												"name": "汉字",
+												"code": "characters"
+											}
+										]
+									}
+								},
+								{
+									"type": "text",
+									"key": "",
+									"label": "",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": "",
+									"selectDataSource": {
+										"typeDatsSource": [
+											{
+												"name": "text",
+												"code": "text"
+											},
+											{
+												"name": "select",
+												"code": "select"
+											},
+											{
+												"name": "radioList",
+												"code": "radioList"
+											},
+											{
+												"name": "checkboxList",
+												"code": "checkboxList"
+											},
+											{
+												"name": "asynTree",
+												"code": "asynTree"
+											},
+											{
+												"name": "textarea",
+												"code": "textarea"
+											},
+											{
+												"name": "upload",
+												"code": "upload"
+											},
+											{
+												"name": "datepicker",
+												"code": "datepicker"
+											},
+											{
+												"name": "timepicker",
+												"code": "timepicker"
+											},
+											{
+												"name": "dateTimepicker",
+												"code": "dateTimepicker"
+											}
+										],
+										"requiredDatsSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"onDataSource": [
+											{
+												"name": "是",
+												"code": "1"
+											},
+											{
+												"name": "否",
+												"code": "0"
+											}
+										],
+										"valifyDataSource": [
+											{
+												"name": "数字或小数",
+												"code": "decimals"
+											},
+											{
+												"name": "数字",
+												"code": "number"
+											},
+											{
+												"name": "email",
+												"code": "email"
+											},
+											{
+												"name": "url",
+												"code": "url"
+											},
+											{
+												"name": "id",
+												"code": "身份证"
+											},
+											{
+												"name": "phone",
+												"code": "手机号"
+											},
+											{
+												"name": "password",
+												"code": "密码"
+											},
+											{
+												"name": "正整数",
+												"code": "positive"
+											},
+											{
+												"name": "正小数",
+												"code": "positiveDecimals"
+											},
+											{
+												"name": "负小数",
+												"code": "negativeDecimals"
+											},
+											{
+												"name": "负数",
+												"code": "negative"
+											},
+											{
+												"name": "汉字",
+												"code": "characters"
+											}
+										]
+									}
+								}
+							]
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "inventory_list",
+				"routerData": {
+					"routerName": "inventoryList",
+					"routerPath": "inventory/list"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"inventoryTypeList"
+							],
+							"entity": []
+						},
+						"action": [
+							"getInventorytypelist"
+						],
+						"mutation": [
+							"setInventorytypelist"
+						]
+					},
+					"API": [
+						{
+							"url": "/api/data",
+							"compName": "_api_data",
+							"servicesName": "getInventorytypelist"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			},
+			{
+				"subName": "inventory",
+				"pagePath": "",
+				"pageName": "save.vue",
+				"pageOption": {
+					"fileName": "save",
+					"path": "",
+					"type": "2",
+					"form": {
+						"cols": [
+							{
+								"type": "text",
+								"key": "productCode",
+								"label": "Product ID",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "select",
+								"key": "inventoryType",
+								"label": "Inventory Type",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "/api/get",
+								"dataSource": "inventoryTypeList",
+								"displayName": "name",
+								"displayValue": "code",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "restQuantity",
+								"label": "Rest Quantity",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "weeklyQuantity",
+								"label": "Weekly Quantity",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "originalQuantity",
+								"label": "Original Quantity",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "seccQuantity",
+								"label": "SECC Quantity",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "maxQty",
+								"label": "Line Item Max Qty",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "radioList",
+								"key": "available",
+								"label": "Available",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "/api/get",
+								"dataSource": "availableList",
+								"displayName": "name",
+								"displayValue": "code",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "radioList",
+								"key": "outOfStock",
+								"label": "Out of Stock",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "/api/get",
+								"dataSource": "outOfStockList",
+								"displayName": "name",
+								"displayValue": "code",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							},
+							{
+								"type": "text",
+								"key": "reservedQuantity",
+								"label": "Reserved Quantity",
+								"labelWidth": "",
+								"placeholder": "",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "",
+								"required": "",
+								"valifyType": "",
+								"msg": ""
+							}
+						]
+					},
+					"savePageInterface": {
+						"save": "/api/inventory/saveInventoryInfo",
+						"detail": "/api/inventory/queryInventoryById",
+						"update": "/api/inventory/updateInventoryInfo"
+					}
+				},
+				"pageType": "2",
+				"compName": "inventory_save",
+				"routerData": {
+					"routerName": "inventorySave",
+					"routerPath": "inventory/save"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"inventoryTypeList",
+								"availableList",
+								"outOfStockList"
+							],
+							"entity": [
+								"productCode",
+								"inventoryType",
+								"restQuantity",
+								"weeklyQuantity",
+								"originalQuantity",
+								"seccQuantity",
+								"maxQty",
+								"available",
+								"outOfStock",
+								"reservedQuantity"
+							]
+						},
+						"action": [
+							"getInventorytypelist",
+							"getAvailablelist",
+							"getOutofstocklist"
+						],
+						"mutation": [
+							"setInventorytypelist",
+							"setAvailablelist",
+							"setOutofstocklist"
+						]
+					},
+					"API": [
+						{
+							"url": "/api/get",
+							"compName": "_api_get",
+							"servicesName": "getInventorytypelist"
+						},
+						{
+							"url": "/api/get",
+							"compName": "_api_get",
+							"servicesName": "getAvailablelist"
+						},
+						{
+							"url": "/api/get",
+							"compName": "_api_get",
+							"servicesName": "getOutofstocklist"
+						},
+						{
+							"url": "/api/inventory/saveInventoryInfo",
+							"compName": "createAPI",
+							"servicesName": "doCreate"
+						},
+						{
+							"url": "/api/inventory/queryInventoryById",
+							"compName": "infoAPI",
+							"servicesName": "getInfo"
+						},
+						{
+							"url": "/api/inventory/updateInventoryInfo",
+							"compName": "updateAPI",
+							"servicesName": "doUpdate"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			}
+		]
+	},
+	{
+		"subName": "aaa",
+		"data": [
+			{
+				"subName": "aaa",
+				"pagePath": "",
+				"pageName": "asasa.vue",
+				"pageOption": {
+					"fileName": "asasa",
+					"path": "",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "搜索",
+									"btnType": "search",
+									"btnHandle": "search"
+								}
+							],
+							"cols": [
+								{
+									"type": "select",
+									"key": "",
+									"label": "",
+									"labelWidth": "",
+									"url": "/aaaa",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								}
+							]
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"shop\",val:\"商城\"},\n        {key:\"accessField\",val:\"封禁纬度\"}\n    ],\n    getUrl:() => {\n        return \"/risk/limit/black/user/query/list\";\n    },\n    pageOption:{\n        sizeKey:\"pageSize\",\n        indexKey:\"pageNum\",\n        index:1,\n        size:10\n    },\n    actions:[\n        {\n            key:\"update\",\n            val:\"编辑\",\n            action:this.edit\n        }\n    ],\n    analysis:(data)=>{\n        if(data && data.data && data.data.data && data.data.data.dataList){\n            return {\n                data:data.data.data.dataList,\n                count:data.data.data.count\n            }\n        }else{\n            return {\n                data:[],\n                count:0\n            }\n        }\n    }\n}\n                        ",
+						"tableTitle": ""
+					},
+					"dialog": {
+						"hasDialog": "1",
+						"form": {
+							"cols": []
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "aaa_asasa",
+				"routerData": {
+					"routerName": "aaaAsasa",
+					"routerPath": "aaa/asasa"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [],
+							"entity": []
+						},
+						"action": [],
+						"mutation": []
+					},
+					"API": [
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove",
+							"hasParams": "true"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList",
+							"hasParams": "true"
+						}
+					]
+				}
+			},
+			{
+				"subName": "aaa",
+				"pagePath": "",
+				"pageName": "sasa.vue",
+				"pageOption": {
+					"fileName": "sasa",
+					"path": "",
+					"type": "2",
+					"form": {
+						"cols": []
+					},
+					"savePageInterface": {
+						"save": "asdas",
+						"detail": "/dasa",
+						"update": "sdasd"
+					}
+				},
+				"pageType": "2",
+				"compName": "aaa_sasa",
+				"routerData": {
+					"routerName": "aaaSasa",
+					"routerPath": "aaa/sasa"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [],
+							"entity": []
+						},
+						"action": [],
+						"mutation": []
+					},
+					"API": [
+						{
+							"url": "asdas",
+							"compName": "createAPI",
+							"servicesName": "doCreate",
+							"hasParams": "true"
+						},
+						{
+							"url": "/dasa",
+							"compName": "infoAPI",
+							"servicesName": "getInfo",
+							"hasParams": "true"
+						},
+						{
+							"url": "sdasd",
+							"compName": "updateAPI",
+							"servicesName": "doUpdate",
+							"hasParams": "true"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove",
+							"hasParams": "true"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList",
+							"hasParams": "true"
+						}
+					]
+				}
+			}
+		]
+	},
+	{
+		"subName": "aaaasdasd",
+		"data": [
+			{
+				"subName": "aaaasdasd",
+				"pagePath": "",
+				"pageName": "dasdsdasasd.vue",
+				"pageOption": {
+					"fileName": "dasdsdasasd",
+					"path": "",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "搜索",
+									"btnType": "search",
+									"btnHandle": "search"
+								}
+							],
+							"cols": [
+								{
+									"type": "select",
+									"key": "asd",
+									"label": "asd",
+									"labelWidth": "asda",
+									"url": "asdasda",
+									"dataSource": "asdads",
+									"displayName": "asdasd",
+									"displayValue": "asdasda",
+									"placeholder": "asdasd"
+								},
+								{
+									"type": "radioList",
+									"key": "dasda",
+									"label": "asdadas",
+									"labelWidth": "asdasda",
+									"url": "qqq",
+									"dataSource": "asdasda",
+									"displayName": "dasdda",
+									"displayValue": "dasdad",
+									"placeholder": "asdasda"
+								},
+								{
+									"type": "text",
+									"key": "asdsdasdas",
+									"label": "asdasd",
+									"labelWidth": "asda",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"placeholder": "asda"
+								}
+							]
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"shop\",val:\"商城\"},\n        {key:\"accessField\",val:\"封禁纬度\"}\n    ],\n    getUrl:() => {\n        return \"/risk/limit/black/user/query/list\";\n    },\n    pageOption:{\n        sizeKey:\"pageSize\",\n        indexKey:\"pageNum\",\n        index:1,\n        size:10\n    },\n    actions:[\n        {\n            key:\"update\",\n            val:\"编辑\",\n            action:this.edit\n        }\n    ],\n    analysis:(data)=>{\n        if(data && data.data && data.data.data && data.data.data.dataList){\n            return {\n                data:data.data.data.dataList,\n                count:data.data.data.count\n            }\n        }else{\n            return {\n                data:[],\n                count:0\n            }\n        }\n    }\n}\n                        ",
+						"tableTitle": "dasdasd"
+					},
+					"dialog": {
+						"hasDialog": "",
+						"form": {
+							"cols": []
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "aaaasdasd_dasdsdasasd",
+				"routerData": {
+					"routerName": "aaaasdasdDasdsdasasd",
+					"routerPath": "aaaasdasd/dasdsdasasd"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"asdads",
+								"asdasda"
+							],
+							"entity": []
+						},
+						"action": [
+							"getAsdads",
+							"getAsdasda"
+						],
+						"mutation": [
+							"setAsdads",
+							"setAsdasda"
+						]
+					},
+					"API": [
+						{
+							"url": "asdasda",
+							"compName": "asdasda",
+							"servicesName": "getAsdads"
+						},
+						{
+							"url": "qqq",
+							"compName": "qqq",
+							"servicesName": "getAsdasda"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove",
+							"hasParams": "true"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList",
+							"hasParams": "true"
+						}
+					]
+				}
+			},
+			{
+				"subName": "aaaasdasd",
+				"pagePath": "",
+				"pageName": "dasdasda.vue",
+				"pageOption": {
+					"fileName": "dasdasda",
+					"path": "",
+					"type": "2",
+					"form": {
+						"cols": []
+					},
+					"savePageInterface": {
+						"save": "asdas,mapsoasfpokp",
+						"detail": "/dasdasd",
+						"update": "/a/aa/a"
+					}
+				},
+				"pageType": "2",
+				"compName": "aaaasdasd_dasdasda",
+				"routerData": {
+					"routerName": "aaaasdasdDasdasda",
+					"routerPath": "aaaasdasd/dasdasda"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [],
+							"entity": []
+						},
+						"action": [],
+						"mutation": []
+					},
+					"API": [
+						{
+							"url": "asdas,mapsoasfpokp",
+							"compName": "createAPI",
+							"servicesName": "doCreate",
+							"hasParams": "true"
+						},
+						{
+							"url": "/dasdasd",
+							"compName": "infoAPI",
+							"servicesName": "getInfo",
+							"hasParams": "true"
+						},
+						{
+							"url": "/a/aa/a",
+							"compName": "updateAPI",
+							"servicesName": "doUpdate",
+							"hasParams": "true"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove",
+							"hasParams": "true"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList",
+							"hasParams": "true"
+						}
+					]
+				}
+			}
+		]
+	}
+]

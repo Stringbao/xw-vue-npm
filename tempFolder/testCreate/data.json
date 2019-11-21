@@ -1,0 +1,65 @@
+[
+	{
+		"subName": "test",
+		"data": [
+			{
+				"subName": "test",
+				"pagePath": "",
+				"pageName": "abs.vue",
+				"pageOption": {
+					"fileName": "abs",
+					"path": "",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "搜索",
+									"btnType": "search",
+									"btnHandle": "search"
+								}
+							],
+							"cols": []
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"shop\",val:\"商城\"},\n        {key:\"accessField\",val:\"封禁纬度\"}\n    ],\n    getUrl:() => {\n        return \"/risk/limit/black/user/query/list\";\n    },\n    pageOption:{\n        sizeKey:\"pageSize\",\n        indexKey:\"pageNum\",\n        index:1,\n        size:10\n    },\n    actions:[\n        {\n            key:\"update\",\n            val:\"编辑\",\n            action:this.edit\n        }\n    ],\n    analysis:(data)=>{\n        if(data && data.data && data.data.data && data.data.data.dataList){\n            return {\n                data:data.data.data.dataList,\n                count:data.data.data.count\n            }\n        }else{\n            return {\n                data:[],\n                count:0\n            }\n        }\n    }\n}\n                        ",
+						"tableTitle": "aa"
+					},
+					"dialog": {
+						"hasDialog": "1",
+						"form": {
+							"cols": []
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "test_abs",
+				"routerData": {
+					"routerName": "testAbs",
+					"routerPath": "test/abs"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [],
+							"entity": []
+						},
+						"action": [],
+						"mutation": []
+					},
+					"API": [
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList"
+						}
+					]
+				}
+			}
+		]
+	}
+]

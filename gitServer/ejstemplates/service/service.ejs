@@ -5,7 +5,7 @@ let _vue_instance = CommonUtil.getVueInstance();
 
 export default {
 <%_ data.forEach(function(row){ -%>
-    <%= row.servicesName %>(cb){
+    <%= row.servicesName %>(<%_ if(row.hasParams){ _%>params,<%_ } _%>cb){
         API.<%= row.servicesName %>()
             .then(x => {
                 cb && cb(x.data);
