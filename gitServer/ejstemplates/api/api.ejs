@@ -8,7 +8,7 @@ let _map = {
 };
 export default {
 <%_ data.forEach(function(row){ -%>
-    <%= row.servicesName %>(){
+    <%= row.servicesName %>(<%_ if(row.hasParams){ _%>params<%_ } _%>){
         return _vue_instance.ajax.getFetch(_map.<%= row.compName %>);
     },
 <%_ _%><% }) -%>

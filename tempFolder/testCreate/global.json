@@ -1,0 +1,12 @@
+{
+	"router": [
+		{
+			"routerName": "testAbs",
+			"routerPath": "test/abs",
+			"type": "1"
+		}
+	],
+	"moduleList": [
+		"test"
+	]
+}

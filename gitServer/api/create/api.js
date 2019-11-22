@@ -40,7 +40,6 @@ const api = {
         let projectPath = req.body.projectPath;
         let projectName = req.body.projectName;
         let isLayoutModule = (req.body.isLayout && req.body.isLayout == "1")  ? true:false;
-        console.log(isLayoutModule);
         let globalPath = path.resolve(__dirname,"../../global.json")
         let str = fsTool.readFile(globalPath);
         let _data = JSON.parse((str && str!="") ? str : "{router:[],moduleList:[]}");
@@ -172,27 +171,32 @@ const api = {
                 url:_data.page.savePageInterface.save,
                 compName:"createAPI",
                 servicesName:"doCreate",
+                hasParams:"true",
             })
             _dataJson.serverData.API.push({
                 url:_data.page.savePageInterface.detail,
                 compName:"infoAPI",
                 servicesName:"getInfo",
+                hasParams:"true",
             })
             _dataJson.serverData.API.push({
                 url:_data.page.savePageInterface.update,
                 compName:"updateAPI",
                 servicesName:"doUpdate",
+                hasParams:"true",
             })
         }
         _dataJson.serverData.API.push({
             url:"removeUrl",
             compName:"removeAPI",
             servicesName:"doRemove",
+            hasParams:"true",
         })
         _dataJson.serverData.API.push({
             url:"listUrl",
             compName:"listAPI",
             servicesName:"doGetList",
+            hasParams:"true",
         })
         let jsonStr = fsTool.readFile(jsonDataPath);
         let jsonData = JSON.parse(jsonStr!= "" ? jsonStr : "[]");
@@ -218,5 +222,10 @@ const api = {
         return resEntity.setEneity({res:res});
      }
 }
+
+                        
+
+
+
 
 module.exports = api;

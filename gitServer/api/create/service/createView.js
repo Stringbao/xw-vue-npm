@@ -10,7 +10,6 @@ module.exports = {
         let viewPath = projectPath + "/" + _config.viewPath.view + "/"+ moduleName + subPath + "/" + data.fileName + ".vue";
         let listEjsPath = path.resolve(__dirname, _config.viewPath.listEjs);
         fsTool.createFile(viewPath);
-        console.log(viewPath);
         let ejsStr = fsTool.readFile(listEjsPath);
         data.searchOpts.search.colsCount = data.searchOpts.search.colsCount ? data.searchOpts.search.colsCount : 3;
         let action = [];
@@ -51,7 +50,6 @@ module.exports = {
             moduleName,
         };
 
-        console.log(ejsData);
         let _data = ejsTool.renderEjsTemplate(ejsStr,ejsData);
         fsTool.writeFile(viewPath,_data);
         console.log("写入listView成功");

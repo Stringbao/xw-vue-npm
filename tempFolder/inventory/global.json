@@ -1,0 +1,17 @@
+{
+	"router": [
+		{
+			"routerName": "inventoryList",
+			"routerPath": "inventory/list",
+			"type": "1"
+		},
+		{
+			"routerName": "inventorySave",
+			"routerPath": "inventory/save",
+			"type": "2"
+		}
+	],
+	"moduleList": [
+		"inventory"
+	]
+}
