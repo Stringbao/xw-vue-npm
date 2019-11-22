@@ -1,8 +1,9 @@
 import Service from "@service/<%= moduleName %>.js";
+import util from "@util";
 export default {
     namespaced: true,
     state:{
-        selectDataSource:{
+        dataSource:{
         <%_ data.state.dataSource.forEach(function(row){ -%>
             <%= row %>:[],
         <%_ _%><% }) -%>        
@@ -15,51 +16,32 @@ export default {
     },
     mutations:{
     <%_ data.mutation.forEach(function(row,index){ -%>
-        <%= row %>(state,val){
-            state.selectDataSource.<%= data.state.dataSource[index] %>=val;
+        <%= row.mutationName %>(state,val){
+            <%_ if(row.isSelect){ -%>
+            state.dataSource.<%= row.stateName %>=val;
+            <%_ } -%>
+            <%_ if(!row.isSelect){ -%>
+            state.<%= row.stateName %> = util.object.cloneObj(val);
+            <%_ } -%>
         },
-    <%_ _%><% }) -%>  
-        setEntity(state,d){
-            state.entity = d;
-        },
+    <%_ _%><% }) -%>
     },
     actions:{
     <%_ data.action.forEach(function(row,index){ -%>
-        <%= row %>({state,commit,dispatch},d){
-            if(state.selectDataSource.<%= data.state.dataSource[index] %>.length > 0 ){
+        <%= row.actionName %>({state,commit,dispatch},d){
+            <%_ if(row.checkDataSource && row.checkDataSource != ""){ -%>
+            if(state.dataSource.<%= row.checkDataSource %>.length > 0 ){
                 return;
             }
-            Service.<%= row %>((t) => {
-                commit("set<%= data.extendField[index] %>",t);
-                d.cb && d.cb(d);
+            <% } -%>
+            
+            Service.<%= row.actionName %>(<% if(!row.checkDataSource || row.checkDataSource == ""){ %>d.params,<% } %>(t) => {
+                <%_ if(row.commit && row.commit != ""){ -%>
+                commit("<%= row.commit %>",t);
+                <%_ } -%>
+                d && d.cb && d.cb(d);
             })
         },
     <%_ _%><% }) -%>  
-        getInfo({state,commit,dispatch},d){
-            Service.getInfo(d.params,(t) => {
-                commit("setEntity",t.data);
-                d.cb && d.cb(d);
-            })
-        },
-        doCreate({state,commit,dispatch},d){
-            Service.doCreate(state.entity,(t) => {
-                d.cb && d.cb(t);
-            })
-        },
-        doUpdate({state,commit,dispatch},d){
-            Service.doUpdate(state.entity,(t) => {
-                d.cb && d.cb(t);
-            })
-        },
-        doRemove({state,commit,dispatch},d){
-            Service.doRemove(d.params,(t) => {
-                d.cb && d.cb(t);
-            })
-        },
-        doGetList({state,commit,dispatch},d){
-            Service.doRemove(d.params,(t) => {
-                d.cb && d.cb(t);
-            })
-        }
     }
 }

@@ -16,7 +16,6 @@ const api = {
         let projectPath = req.body.projectPath;
         let projectName = req.body.projectName;
         let tempFolderPath = path.resolve(__dirname,"../../../tempFolder/"+ projectName);
-        console.log("tempFolderPath",tempFolderPath);
         let isExist = fsTool.exists(projectPath + "/src/pages/" + moduleName);
         if(!isExist){
             let isExistHistory = fsTool.exists(tempFolderPath);
@@ -56,10 +55,13 @@ const api = {
         let moduleName = req.body.moduleName;
         let projectPath = req.body.projectPath;
         let projectName = req.body.projectName;
+        let _interface = req.body.interface;
         let jsonDataPath = path.resolve(__dirname,"../../global.json");
-        let dataPath = path.resolve(__dirname,"../../data.json");
+        let dataPath = path.resolve(__dirname,"../../page.json");
+        let apiJsonPath = path.resolve(__dirname,"../../api.json");
+        let storeJsonPath = path.resolve(__dirname,"../../store.json");
         let dataStr = fsTool.readFile(path.resolve(__dirname,dataPath));
-        let _data = business.dealJsonData(dataStr);
+        let _data = business.dealPageData(dataStr);
         _data.pageOption.forEach(item => {
             if(item.type == "1"){
                 createListView(projectPath,moduleName,item);
@@ -67,11 +69,56 @@ const api = {
                 createSaveView(projectPath,moduleName,item);
             }
         })
-        createStoreModule(projectPath,moduleName,_data.storeData);
-        createService(projectPath,moduleName,_data.APIData);
-        createApi(projectPath,moduleName,_data.APIData);
+        
         let jsonStr = fsTool.readFile(jsonDataPath);
         let jsonData = JSON.parse(jsonStr!= "" ? jsonStr : "{}");
+
+
+        let storeDataStr = fsTool.readFile(storeJsonPath);
+        let defineStorePackage = {
+            "state":{
+                "dataSource":[],
+                "entity":[]
+            },
+            "action":[],
+            "mutation":[]
+        }
+        let apiDataStr = fsTool.readFile(apiJsonPath);
+        let apiDataJson = JSON.parse(apiDataStr!= "" ? apiDataStr : "[]");
+        let storeDataJson = (storeDataStr!= "" ? JSON.parse( storeDataStr) : defineStorePackage);
+        
+        _interface.forEach(item => {
+            if(item.url && item.url != ""){
+                storeDataJson.action.push({
+                    actionName:item.key,
+                    commit:item.key == "getDetail" ? "setEntity":"",
+                    checkDataSource:"",
+                });
+                if(item.key == "getDetail"){
+                    storeDataJson.mutation.push({
+                        mutationName:"setEntity",
+                        stateName:"entity",
+                        isSelect:false,
+                    });
+                }
+                apiDataJson.push({
+                    url:item.url,
+                    compName:business.getCompName(item.url.split(".")[0]),
+                    servicesName : item.key,
+                    type:(item.key == "getDetail" || item.key == "getList") ? "get" : "post",
+                    hasParams:true,
+                })
+            }
+        })
+        storeDataJson = business.dealStoreData(storeDataJson);
+        console.log("storeDataJson",JSON.stringify(storeDataJson));
+
+        createStoreModule(projectPath,moduleName,storeDataJson);
+        createService(projectPath,moduleName,commonUtil.concatArr(apiDataJson,[]));
+        createApi(projectPath,moduleName,commonUtil.concatArr(apiDataJson,[]));
+        fsTool.writeFile(apiJsonPath,"");
+        fsTool.writeFile(storeJsonPath,"");
+        // 创建modulelist和router
         let _json = {
             router:jsonData.router ? jsonData.router : [],
             moduleList:jsonData.moduleList ? jsonData.moduleList : [],
@@ -79,8 +126,9 @@ const api = {
         _json.router = commonUtil.concatArr(_json.router,_data.routerData);
         _json.moduleList = commonUtil.concatArr(_json.moduleList,_data.storeModuleNameList);
         fsTool.writeFile(jsonDataPath,JSON.stringify(_json,null,"\t"));
-        business.writeDataHistory(projectName,dataStr);
-
+        business.writePageHistory(projectName,dataStr);
+        business.writeStoreHistory(projectName,storeDataJson,moduleName);
+        business.writeApiHistory(projectName,apiDataJson,moduleName);
         // dataStr
         fsTool.writeFile(dataPath,"");
         return resEntity.setEneity({res:res});
@@ -93,8 +141,9 @@ const api = {
     // 保存页面
     savePage:(req,res) => { 
         let _data = req.body;
-        let jsonDataPath = path.resolve(__dirname,"../../data.json");
-        
+        let jsonDataPath = path.resolve(__dirname,"../../page.json");
+        let apiJsonPath = path.resolve(__dirname,"../../api.json");
+        let storeJsonPath = path.resolve(__dirname,"../../store.json");
         let _dataJson = {
             "subName":_data.moduleName,
             "pagePath":_data.page.path,
@@ -106,7 +155,9 @@ const api = {
                 "routerName":_data.moduleName + commonUtil.titleCase(_data.page.fileName),
                 "routerPath":_data.moduleName + "/" + _data.page.path + (_data.page.path!="" ? "/":"") + _data.page.fileName,
             },
-            "serverData":{
+        }
+        /**
+         * "serverData":{
                 "store":{
                     "state":{
                         "dataSource":[],
@@ -117,36 +168,70 @@ const api = {
                 },
                 "API":[],
             }
+         */
+        let storeDataStr = fsTool.readFile(storeJsonPath);
+
+        let defineStorePackage = {
+            "state":{
+                "dataSource":[],
+                "entity":[]
+            },
+            "action":[],
+            "mutation":[],
+            
         }
+        let apiDataStr = fsTool.readFile(apiJsonPath);
+        let apiDataJson = JSON.parse(apiDataStr!= "" ? apiDataStr : "[]");
+        let storeDataJson = (storeDataStr!= "" ? JSON.parse( storeDataStr) : defineStorePackage);
         if(_dataJson.pageType == "1"){
-            _data.page.searchOpts.search.cols && _data.page.searchOpts.search.cols.map(item => {
+            _data.page.searchOpts.search.cols && _data.page.searchOpts.search.cols.forEach(item => {
                 // 有datasource就必须要有url否则不添加
                 if(item.dataSource && item.dataSource != ""  && item.url && item.url != "") {
-                    _dataJson.serverData.store.state.dataSource.push(item.dataSource)
-                    _dataJson.serverData.store.action.push("get" + commonUtil.titleCase(item.dataSource))
-                    _dataJson.serverData.store.mutation.push("set" + commonUtil.titleCase(item.dataSource));
-                    _dataJson.serverData.API.push({
+                    storeDataJson.state.dataSource.push(item.dataSource)
+                    storeDataJson.action.push({
+                        actionName:"get" + commonUtil.titleCase(item.dataSource),
+                        commit:"set" + commonUtil.titleCase(item.dataSource),
+                        checkDataSource:item.dataSource,
+                    })
+                    storeDataJson.mutation.push({
+                        mutationName:"set" + commonUtil.titleCase(item.dataSource),
+                        stateName:item.dataSource,
+                        isSelect:true,
+                    });
+                    apiDataJson.push({
                         url:item.url,
                         compName: business.getCompName(item.url.split(".")[0]),
-                        servicesName : "get" + commonUtil.titleCase(item.dataSource)
+                        servicesName : "get" + commonUtil.titleCase(item.dataSource),
+                        type:"get",
+                        hasParams:false,
                     });
                 }
             })
             if(business.isHasDialog(_data.page.dialog.hasDialog)){
-                _data.page.dialog.form.cols && _data.page.dialog.form.cols.map(item => {
+                _data.page.dialog.form.cols && _data.page.dialog.form.cols.forEach(item => {
                     if(item.dataSource && item.dataSource != ""  && item.url && item.url != "") {
-                        _dataJson.serverData.store.state.dataSource.push(item.dataSource)
-                        _dataJson.serverData.store.action.push("get" + commonUtil.titleCase(item.dataSource))
-                        _dataJson.serverData.store.mutation.push("set" + commonUtil.titleCase(item.dataSource));
-                        _dataJson.serverData.API.push({
+                        storeDataJson.state.dataSource.push(item.dataSource)
+                        storeDataJson.action.push({
+                            actionName:"get" + commonUtil.titleCase(item.dataSource),
+                            commit:"set" + commonUtil.titleCase(item.dataSource),
+                            checkDataSource:item.dataSource,
+                        })
+                        storeDataJson.mutation.push({
+                            mutationName:"set" + commonUtil.titleCase(item.dataSource),
+                            stateName:item.dataSource,
+                            isSelect:true,
+                        });
+                        apiDataJson.push({
                             url:item.url,
                             compName:business.getCompName(item.url.split(".")[0]),
-                            servicesName : "get" + commonUtil.titleCase(item.dataSource)
+                            servicesName : "get" + commonUtil.titleCase(item.dataSource),
+                            type : "get",
+                            hasParams:false
                         });
                     }
                     // 有v-model的from或者dialog
                     if(item.key){
-                        _dataJson.serverData.store.state.entity.push(item.key);
+                        storeDataJson.state.entity.push(item.key);
                     }
                 })
             }
@@ -154,50 +239,32 @@ const api = {
         if(_dataJson.pageType == "2"){
             _data.page.form.cols && _data.page.form.cols.map(item => {
                 if(item.dataSource && item.dataSource != ""  && item.url && item.url != "") {
-                    _dataJson.serverData.store.state.dataSource.push(item.dataSource)
-                    _dataJson.serverData.store.action.push("get" + commonUtil.titleCase(item.dataSource))
-                    _dataJson.serverData.store.mutation.push("set" + commonUtil.titleCase(item.dataSource));
-                    _dataJson.serverData.API.push({
+                    storeDataJson.state.dataSource.push(item.dataSource)
+                    storeDataJson.action.push({
+                        actionName:"get" + commonUtil.titleCase(item.dataSource),
+                        commit:"set" +  commonUtil.titleCase(item.dataSource),
+                        checkDataSource:item.dataSource,
+                    })
+                    storeDataJson.mutation.push({
+                        mutationName:"set" + commonUtil.titleCase(item.dataSource),
+                        stateName:item.dataSource,
+                        isSelect:true,
+                    });
+                    apiDataJson.push({
                         url:item.url,
                         compName:business.getCompName(item.url.split(".")[0]),
-                        servicesName : "get" + commonUtil.titleCase(item.dataSource)
+                        servicesName : "get" + commonUtil.titleCase(item.dataSource),
+                        type:"get",
+                        hasParams:false,
                     });
                 }
                 if(item.key){
-                    _dataJson.serverData.store.state.entity.push(item.key);
+                    storeDataJson.state.entity.push(item.key);
                 }
             })
-            _dataJson.serverData.API.push({
-                url:_data.page.savePageInterface.save,
-                compName:"createAPI",
-                servicesName:"doCreate",
-                hasParams:"true",
-            })
-            _dataJson.serverData.API.push({
-                url:_data.page.savePageInterface.detail,
-                compName:"infoAPI",
-                servicesName:"getInfo",
-                hasParams:"true",
-            })
-            _dataJson.serverData.API.push({
-                url:_data.page.savePageInterface.update,
-                compName:"updateAPI",
-                servicesName:"doUpdate",
-                hasParams:"true",
-            })
+            
         }
-        _dataJson.serverData.API.push({
-            url:"removeUrl",
-            compName:"removeAPI",
-            servicesName:"doRemove",
-            hasParams:"true",
-        })
-        _dataJson.serverData.API.push({
-            url:"listUrl",
-            compName:"listAPI",
-            servicesName:"doGetList",
-            hasParams:"true",
-        })
+        
         let jsonStr = fsTool.readFile(jsonDataPath);
         let jsonData = JSON.parse(jsonStr!= "" ? jsonStr : "[]");
         if(commonUtil.isExistItem(jsonData,"compName",_dataJson["compName"])){
@@ -210,17 +277,24 @@ const api = {
         }
         jsonData.push(_dataJson);
         fsTool.writeFile(jsonDataPath,JSON.stringify(jsonData,null,"\t"));
+        fsTool.writeFile(apiJsonPath,JSON.stringify(apiDataJson,null,"\t"));
+        fsTool.writeFile(storeJsonPath,JSON.stringify(storeDataJson,null,"\t"));
         return resEntity.setEneity({res:res});
     },
     // 重置config文件
     resetConfig(req,res){
         let jsonDataPath = path.resolve(__dirname,"../../global.json");
-        let dataPath = path.resolve(__dirname,"../../data.json");
+        let dataPath = path.resolve(__dirname,"../../page.json");
+        let apiJsonPath = path.resolve(__dirname,"../../api.json");
+        let storeJsonPath = path.resolve(__dirname,"../../store.json");
         fsTool.writeFile(dataPath,"");
         fsTool.writeFile(jsonDataPath,"");
+        fsTool.writeFile(apiJsonPath,"");
+        fsTool.writeFile(storeJsonPath,"");
+
         console.log("清空配置成功");
         return resEntity.setEneity({res:res});
-     }
+     },
 }
 
                         

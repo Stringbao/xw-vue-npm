@@ -13,45 +13,41 @@ module.exports = {
         return tag == this.isHasDialogTag;
     },
     /**
-     * @description 处理datajson里面的数据 进行组装
+     * @description 处理pagejson里面的数据 进行组装
      * @param {String} str
      * @returns  组装好的数据
      */
-    dealJsonData(str){
+    dealPageData(str){
         let data =commonUtil.cloneObj(JSON.parse((str && str!="") ? str : "[]"));
-        let storeData = {
-            state:{
-                dataSource:[],
-                entity:[],
-            },
-            action:[],
-            mutation:[],
-            extendField:[]
-        }
-        let APIData =[]
         let routerData = [];
         let pageOption = [];
         let storeModuleNameList = [];
         data.map(item => {
             storeModuleNameList = commonUtil.concatArr(storeModuleNameList,[item.subName]);
-            storeData.state.dataSource = commonUtil.concatArr(storeData.state.dataSource,item.serverData.store.state.dataSource);
-            storeData.state.entity = commonUtil.concatArr(storeData.state.entity,item.serverData.store.state.entity);
-            storeData.action = commonUtil.concatArr(storeData.action,item.serverData.store.action);
-            storeData.mutation = commonUtil.concatArr(storeData.mutation,item.serverData.store.mutation);
             item.routerData.type = item.pageType;
             routerData = commonUtil.concatArr(routerData,[item.routerData]);
-            APIData = commonUtil.concatArr(APIData,item.serverData.API);
             pageOption = commonUtil.concatArr(pageOption,[item.pageOption]);
         })
-        storeData.state.dataSource.forEach(item => {
-            storeData.extendField.push(commonUtil.titleCase(item));
-        })
-        
         return {
-            storeData,routerData,APIData,pageOption,storeModuleNameList
+            routerData,pageOption,storeModuleNameList
 
         }
 
+    },
+    /**
+     * 处理storeJSON数据
+     * @param {Object} data 
+     * @returns 处理好的data
+     */
+    dealStoreData(data){
+        return {
+            state:{
+                dataSource:commonUtil.concatArr([],data.state.dataSource),
+                entity:commonUtil.concatArr([],data.state.entity),
+            },
+            action:commonUtil.concatArr([],data.action),
+            mutation:commonUtil.concatArr([],data.mutation),
+        }
     },
     /**
      * @description 组合两个名字或者一个名字
@@ -80,11 +76,11 @@ module.exports = {
         return resultStr.substring(1).replace("\\","/");
     },
      /**
-     * @description 编写datajson的history
+     * @description 编写page的history
      * @param {String} dataStr 
      */
-    writeDataHistory(moduleName,dataStr){
-        let tempFolderPath = path.resolve(__dirname,"../../../../tempFolder/"+moduleName + "/data.json");
+    writePageHistory(moduleName,dataStr){
+        let tempFolderPath = path.resolve(__dirname,"../../../../tempFolder/"+moduleName + "/page.json");
         if(!fsTool.exists(tempFolderPath)){
             fsTool.createFile(tempFolderPath);
         }
@@ -110,6 +106,48 @@ module.exports = {
             fsTool.createFile(tempFolderPath);
         }
         fsTool.writeFile(tempFolderPath,dataStr)
+    },
+    /**
+     * @description 编写store的history
+     * @param {String} dataStr 
+     */
+    writeStoreHistory(moduleName,dataJson,subName){
+        let tempFolderPath = path.resolve(__dirname,"../../../../tempFolder/"+moduleName + "/store.json");
+        if(!fsTool.exists(tempFolderPath)){
+            fsTool.createFile(tempFolderPath);
+        }
+        let _storeJsonHistoryStr = fsTool.readFile(tempFolderPath);
+        let _storeJsonHistoryJson = JSON.parse(_storeJsonHistoryStr != "" ? _storeJsonHistoryStr : "[]");
+        let fileStr = {
+        }
+        if(dataJson && dataJson!=""){
+            fileStr.subName = subName;
+            fileStr.data = dataJson;
+        }
+        console.log("fileStr",fileStr);
+        _storeJsonHistoryJson.push(fileStr);
+        fsTool.writeFile(tempFolderPath,JSON.stringify(_storeJsonHistoryJson,null,"\t"))
+    },
+    /**
+     * @description 编写api的history
+     * @param {String} dataStr 
+     */
+    writeApiHistory(moduleName,dataJson,subName){
+        let tempFolderPath = path.resolve(__dirname,"../../../../tempFolder/"+moduleName + "/api.json");
+        if(!fsTool.exists(tempFolderPath)){
+            fsTool.createFile(tempFolderPath);
+        }
+        let _apiJsonHistoryStr = fsTool.readFile(tempFolderPath);
+        let _apiJsonHistoryJson = JSON.parse(_apiJsonHistoryStr != "" ? _apiJsonHistoryStr : "[]");
+        let __dataJson = ((dataJson && dataJson!="") ? dataJson : []);
+        let fileStr = {
+        }
+        if(__dataJson.length>0){
+            fileStr.subName = subName;
+            fileStr.data = __dataJson;
+        }
+        _apiJsonHistoryJson.push(fileStr);
+        fsTool.writeFile(tempFolderPath,JSON.stringify(_apiJsonHistoryJson,null,"\t"))
     },
     
 }

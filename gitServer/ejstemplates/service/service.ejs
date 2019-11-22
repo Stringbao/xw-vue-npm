@@ -6,12 +6,12 @@ let _vue_instance = CommonUtil.getVueInstance();
 export default {
 <%_ data.forEach(function(row){ -%>
     <%= row.servicesName %>(<%_ if(row.hasParams){ _%>params,<%_ } _%>cb){
-        API.<%= row.servicesName %>()
+        API.<%= row.servicesName %>(<%_ if(row.hasParams){ _%>params<%_ } _%>)
             .then(x => {
                 cb && cb(x.data);
             })
             .catch(error => {
-                _vue_instance.alert.showAlert("error",e.data);
+                _vue_instance.alert.showAlert("error",error.data);
             })
     },
 <%_ _%><% }) -%>
