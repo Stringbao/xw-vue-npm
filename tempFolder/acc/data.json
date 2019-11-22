@@ -1,0 +1,169 @@
+[
+	{
+		"subName": "userGroup",
+		"data": [
+			{
+				"subName": "userGroup",
+				"pagePath": "",
+				"pageName": "list.vue",
+				"pageOption": {
+					"fileName": "list",
+					"path": "",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "搜索",
+									"btnType": "search",
+									"btnHandle": "search"
+								}
+							],
+							"cols": [
+								{
+									"type": "text",
+									"key": "custId",
+									"label": "Customer",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								},
+								{
+									"type": "text",
+									"key": "account",
+									"label": "Email",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								}
+							]
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"shop\",val:\"商城\"},\n        {key:\"accessField\",val:\"封禁纬度\"}\n    ],\n    getUrl:() => {\n        return \"/risk/limit/black/user/query/list\";\n    },\n    pageOption:{\n        sizeKey:\"pageSize\",\n        indexKey:\"pageNum\",\n        index:1,\n        size:10\n    },\n    actions:[\n        {\n            key:\"update\",\n            val:\"编辑\",\n            action:this.edit\n        }\n    ],\n    analysis:(data)=>{\n        if(data && data.data && data.data.data && data.data.data.dataList){\n            return {\n                data:data.data.data.dataList,\n                count:data.data.data.count\n            }\n        }else{\n            return {\n                data:[],\n                count:0\n            }\n        }\n    }\n}\n                        ",
+						"tableTitle": "User Group List"
+					},
+					"dialog": {
+						"hasDialog": "1",
+						"form": {
+							"cols": [
+								{
+									"type": "text",
+									"key": "custId",
+									"label": "Customer ID",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": ""
+								},
+								{
+									"type": "text",
+									"key": "account",
+									"label": "Account",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "1",
+									"required": "1",
+									"valifyType": "email",
+									"msg": "email not be null"
+								},
+								{
+									"type": "select",
+									"key": "groupCode",
+									"label": "Role",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "/accountAPI/codes",
+									"dataSource": "Roles",
+									"displayName": "name",
+									"displayValue": "code",
+									"tip": "",
+									"on": "1",
+									"required": "1",
+									"valifyType": "",
+									"msg": "Role not be null"
+								},
+								{
+									"type": "text",
+									"key": "partnerId",
+									"label": "Sold to",
+									"labelWidth": "",
+									"placeholder": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": "",
+									"tip": "",
+									"on": "",
+									"required": "",
+									"valifyType": "",
+									"msg": ""
+								}
+							]
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "userGroup_list",
+				"routerData": {
+					"routerName": "userGroupList",
+					"routerPath": "userGroup/list"
+				},
+				"serverData": {
+					"store": {
+						"state": {
+							"dataSource": [
+								"Roles"
+							],
+							"entity": [
+								"custId",
+								"account",
+								"groupCode",
+								"partnerId"
+							]
+						},
+						"action": [
+							"getRoles"
+						],
+						"mutation": [
+							"setRoles"
+						]
+					},
+					"API": [
+						{
+							"url": "/accountAPI/codes",
+							"compName": "_accountAPI_codes",
+							"servicesName": "getRoles"
+						},
+						{
+							"url": "removeUrl",
+							"compName": "removeAPI",
+							"servicesName": "doRemove",
+							"hasParams": "true"
+						},
+						{
+							"url": "listUrl",
+							"compName": "listAPI",
+							"servicesName": "doGetList",
+							"hasParams": "true"
+						}
+					]
+				}
+			}
+		]
+	}
+]

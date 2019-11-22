@@ -1,0 +1,12 @@
+{
+	"router": [
+		{
+			"routerName": "userGroupList",
+			"routerPath": "userGroup/list",
+			"type": "1"
+		}
+	],
+	"moduleList": [
+		"userGroup"
+	]
+}
