@@ -75,7 +75,7 @@ export default {
             this.<%= actionName -%>();
     <%_ }) -%>
         this.$refs.saveForm.reset();
-        if(this.isEdit && this.isInfo){
+        if(this.isEdit || this.isInfo){
             this.getDetail();
         }
     }
