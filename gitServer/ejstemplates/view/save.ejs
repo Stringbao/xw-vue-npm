@@ -41,7 +41,7 @@ export default {
     <%_ }) -%>
         ]),
         save(){
-            if(this.$route.tag == "create"){
+            if(this.isCreate){
                 this.doCreate({
                     context:this,
                     cb:(d)=>{
@@ -49,7 +49,7 @@ export default {
                     }
                 })
             }
-            if(this.$route.tag == "update"){
+            if(this.isEdit){
                 this.doUpdate({
                     context:this,
                     cb:(d) => {
