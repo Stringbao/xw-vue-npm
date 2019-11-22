@@ -41,19 +41,21 @@ export default {
     <%_ }) -%>
         ]),
         save(){
-            if(this.$route.tag == "create"){
+            if(this.isCreate){
                 this.doCreate({
                     context:this,
                     cb:(d)=>{
-
+                        this.alert.showAlert("success","新建成功");
+                        this.goBack();
                     }
                 })
             }
-            if(this.$route.tag == "update"){
+            if(this.isEdit){
                 this.doUpdate({
                     context:this,
                     cb:(d) => {
-
+                        this.alert.showAlert("success","修改成功");
+                        this.goBack();
                     }
                 })
             }
@@ -75,13 +77,16 @@ export default {
             this.<%= actionName -%>();
     <%_ }) -%>
         this.$refs.saveForm.reset();
-        if(this.isEdit && this.isInfo){
+        if(this.isEdit || this.isInfo){
             this.getDetail();
         }
     }
 }
 </script>
 <style scoped>
-    
+    .new_page_width{
+        width:80%;
+        margin:0 auto;
+    }
 </style>
     
