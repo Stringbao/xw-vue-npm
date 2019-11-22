@@ -45,7 +45,8 @@ export default {
                 this.doCreate({
                     context:this,
                     cb:(d)=>{
-
+                        this.alert.showAlert("success","新建成功");
+                        this.goBack();
                     }
                 })
             }
@@ -53,7 +54,8 @@ export default {
                 this.doUpdate({
                     context:this,
                     cb:(d) => {
-
+                        this.alert.showAlert("success","修改成功");
+                        this.goBack();
                     }
                 })
             }
