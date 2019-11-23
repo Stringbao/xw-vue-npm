@@ -10,7 +10,7 @@ let _map = {
 export default {
 <%_ data.forEach(function(row){ -%>
     <%= row.servicesName %>(<%_ if(row.hasParams){ _%>params<%_ } _%>){
-        return _vue_instance.ajax.<%= row.type %>Fetch(proxy.interfaceAPI + _map.<%= row.compName %><% if(row.type=="get" && row.hasParams){ %> + "?" +CommonUtil.toQueryString(params)<%}%><% if(row.type=="post" && row.hasParams){ %>,params<% } %>);
+        return _vue_instance.ajax.<%= row.type %>Fetch(proxy.<%= proxyDefaultKey %> + _map.<%= row.compName %><% if(row.type=="get" && row.hasParams){ %> + "?" +CommonUtil.toQueryString(params)<%}%><% if(row.type=="post" && row.hasParams){ %>,params<% } %>);
     },
 <%_ _%><% }) -%>
 }

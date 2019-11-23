@@ -29,12 +29,12 @@ module.exports = {
         inline: true, //检测文件变化，实时构建并刷新浏览器
         port: "9985",
         proxy: {
-            <% data.forEach((item)=>{ -%>
-            '/<%= item.proxyKey %>':{
-                target: '<%= item.proxyValue %>',
+            <%_ data.forEach((item)=>{ -%>
+            '/<%= item.key %>':{
+                target: '<%= item.url %>',
                 secure: false,
                 changeOrigin: true
-            }
+            },
            <%_ })  -%>
             
         },

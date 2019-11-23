@@ -149,5 +149,12 @@ module.exports = {
         _apiJsonHistoryJson.push(fileStr);
         fsTool.writeFile(tempFolderPath,JSON.stringify(_apiJsonHistoryJson,null,"\t"))
     },
+    writeProxyHistory(moduleName,dataStr){
+        let tempFolderPath = path.resolve(__dirname,"../../../../tempFolder/"+moduleName + "/proxy.json");
+        if(!fsTool.exists(tempFolderPath)){
+            fsTool.createFile(tempFolderPath);
+        }
+        fsTool.writeFile(tempFolderPath,dataStr)
+    },
     
 }

@@ -130,3 +130,27 @@ global.json
 		"module的名字",
 	]
 }
+
+proxy.json
+    保存所有proxy
+   [{
+       key : proxy的key(第一个作为默认,生成的所有文件以这个key为基准),
+       url : proxy代理的地址
+   }]
+
+
+
+
+生成顺序步骤：
+1、选择一个项目
+2、配置proxy，生成proxyUrl.js 和 webpack。config。js，写入proxy的记录
+3、添加子模块、创建子模块文件夹
+4、配置页面以及保存
+5、页面配置完成，保存子模块，生成globejson，写如page、api、store的history
+6、接着下一个模块配置 循环345
+7、所有模块配置完成，保存整个模块，生成storeIndex和router的index页面，写入globe的history
+8、配置完成
+
+清空所有配置
+清空当前的pagejson、globaljson、apijson、storejson、proxyjson 但是不清空history
+

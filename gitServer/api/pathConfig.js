@@ -16,6 +16,7 @@ let ConfigClass = {
     apiPath:{
         api:"/src/api",
         ejs:"../../../ejstemplates/api/api.ejs",
+        proxyUrlEjs:"../../../ejstemplates/api/proxyUrl.ejs"
     },
     servicePath:{
         service:"/src/service",
@@ -24,7 +25,10 @@ let ConfigClass = {
     storePath:{
         store:"/src/store/",
         ejs:"../../../ejstemplates/store/",
-
+    },
+    webpackPath:{
+        webpack:"webpack.config.js",
+        ejs:"../../../ejstemplates/webpack/webpack.ejs"
     }
 }
 
