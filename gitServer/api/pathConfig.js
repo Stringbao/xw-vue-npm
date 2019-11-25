@@ -27,7 +27,7 @@ let ConfigClass = {
         ejs:"../../../ejstemplates/store/",
     },
     webpackPath:{
-        webpack:"webpack.config.js",
+        webpack:"/config/webpack.development.js",
         ejs:"../../../ejstemplates/webpack/webpack.ejs"
     }
 }
