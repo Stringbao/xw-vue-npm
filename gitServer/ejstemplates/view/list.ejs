@@ -201,15 +201,15 @@ export default {
         },
         <%_ }) -%>
         <%_ if(data.hasDialog && data.hasDialog == '1'){ _%>
-            dialogConfirm(){},
-            dialogCancel(){},
+        dialogConfirm(){},
+        dialogCancel(){},
         <%_ } -%>
             
 
     },
     mounted(){
         <%_ data.action.forEach(function(actionName){ -%>
-                this.<%= actionName -%>();
+        this.<%= actionName -%>();
         <%_ }) -%>
     }
 }
