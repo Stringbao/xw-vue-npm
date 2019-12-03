@@ -32,7 +32,7 @@ export default {
             return new Promise((resolve,reject) => {
                 <%_ if(row.checkDataSource && row.checkDataSource != ""){ -%>
                 if(state.dataSource.<%= row.checkDataSource %>.length > 0 ){
-                    return;
+                    return resolve(state.dataSource.<%= row.checkDataSource %>);
                 }
                 <% } -%>
                 
