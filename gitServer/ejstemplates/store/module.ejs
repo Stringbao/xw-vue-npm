@@ -29,18 +29,25 @@ export default {
     actions:{
     <%_ data.action.forEach(function(row,index){ -%>
         <%= row.actionName %>({state,commit,dispatch},d){
-            <%_ if(row.checkDataSource && row.checkDataSource != ""){ -%>
-            if(state.dataSource.<%= row.checkDataSource %>.length > 0 ){
-                return;
-            }
-            <% } -%>
-            
-            Service.<%= row.actionName %>(<% if(!row.checkDataSource || row.checkDataSource == ""){ %>d.params,<% } %>(t) => {
-                <%_ if(row.commit && row.commit != ""){ -%>
-                commit("<%= row.commit %>",t);
-                <%_ } -%>
-                d && d.cb && d.cb(d);
+            return new Promise((resolve,reject) => {
+                <%_ if(row.checkDataSource && row.checkDataSource != ""){ -%>
+                if(state.dataSource.<%= row.checkDataSource %>.length > 0 ){
+                    return;
+                }
+                <% } -%>
+                
+                Service.<%= row.actionName %>(<% if(!row.checkDataSource || row.checkDataSource == ""){ %>d.params<% } %>)
+                    .then((t) => {
+                        <%_ if(row.commit && row.commit != ""){ -%>
+                        commit("<%= row.commit %>",t);
+                        <%_ } -%>
+                        resolve(t)
+                    })
+                    .catch(error => {
+                        reject(error);
+                    })
             })
+            
         },
     <%_ _%><% }) -%>  
     }

@@ -27,8 +27,8 @@ export default {
         isCreate(){
             return this.$route.params.tag == "create";
         },
-        isInfo(){
-            return this.$route.params.tag == "info";
+        isDetail(){
+            return this.$route.params.tag == "detail";
         },
     },
     methods:{
@@ -42,22 +42,18 @@ export default {
         ]),
         save(){
             if(this.isCreate){
-                this.doCreate({
-                    context:this,
-                    cb:(d)=>{
+                this.doCreate()
+                    .then((d)=>{
                         this.alert.showAlert("success","新建成功");
                         this.goBack();
-                    }
-                })
+                    })
             }
             if(this.isEdit){
-                this.doUpdate({
-                    context:this,
-                    cb:(d) => {
+                this.doUpdate()
+                    .then((d) => {
                         this.alert.showAlert("success","修改成功");
                         this.goBack();
-                    }
-                })
+                    })
             }
         },
         getDetail(){
@@ -77,7 +73,7 @@ export default {
             this.<%= actionName -%>();
     <%_ }) -%>
         this.$refs.saveForm.reset();
-        if(this.isEdit || this.isInfo){
+        if(this.isEdit || this.isDetail){
             this.getDetail();
         }
     }
