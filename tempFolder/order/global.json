@@ -1,4 +1,17 @@
 {
-	"router": [],
-	"moduleList": []
+	"router": [
+		{
+			"routerName": "ListList1",
+			"routerPath": "List/list1",
+			"type": "1"
+		},
+		{
+			"routerName": "ListList2",
+			"routerPath": "List/list2",
+			"type": "2"
+		}
+	],
+	"moduleList": [
+		"List"
+	]
 }

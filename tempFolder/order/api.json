@@ -1,3 +1,43 @@
 [
-	{}
+	{},
+	{
+		"subName": "List",
+		"data": [
+			{
+				"url": "/api/sv",
+				"compName": "_api_sv",
+				"servicesName": "doSave",
+				"type": "post",
+				"hasParams": true
+			},
+			{
+				"url": "/api/sv",
+				"compName": "_api_sv",
+				"servicesName": "getDetail",
+				"type": "get",
+				"hasParams": true
+			},
+			{
+				"url": "/api/sv",
+				"compName": "_api_sv",
+				"servicesName": "doRemove",
+				"type": "post",
+				"hasParams": true
+			},
+			{
+				"url": "/api/sv",
+				"compName": "_api_sv",
+				"servicesName": "doUpdate",
+				"type": "post",
+				"hasParams": true
+			},
+			{
+				"url": "/api/sv",
+				"compName": "_api_sv",
+				"servicesName": "doGetList",
+				"type": "post",
+				"hasParams": true
+			}
+		]
+	}
 ]

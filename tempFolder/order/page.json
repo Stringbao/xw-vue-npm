@@ -1,3 +1,96 @@
 [
-	{}
+	{},
+	{
+		"subName": "List",
+		"data": [
+			{
+				"subName": "List",
+				"pagePath": "",
+				"pageName": "list1.vue",
+				"pageOption": {
+					"fileName": "list1",
+					"path": "",
+					"type": "1",
+					"searchOpts": {
+						"search": {
+							"btn": [
+								{
+									"btnName": "搜索",
+									"btnType": "search",
+									"btnHandle": "search"
+								},
+								{
+									"btnName": "新增",
+									"btnType": "create",
+									"btnHandle": "create"
+								}
+							],
+							"cols": [
+								{
+									"type": "text",
+									"key": "name",
+									"label": "Name",
+									"labelWidth": "",
+									"url": "",
+									"dataSource": "",
+									"displayName": "",
+									"displayValue": ""
+								}
+							]
+						},
+						"tableOptions": "{\n    showCk:true,\n    map:[\n        {key:\"shop\",val:\"商城\"},\n        {key:\"accessField\",val:\"封禁纬度\"}\n    ],\n    getUrl:() => {\n        return \"/risk/limit/black/user/query/list\";\n    },\n    pageOption:{\n        sizeKey:\"pageSize\",\n        indexKey:\"pageNum\",\n        index:1,\n        size:10\n    },\n    actions:[\n        {\n            key:\"update\",\n            val:\"编辑\",\n            action:this.edit\n        },\n        {\n            key:\"remove\",\n            val:\"删除\",\n            action:this.doRemove\n        }\n    ],\n    analysis:(data)=>{\n        if(data && data.data && data.data.data && data.data.data.dataList){\n            return {\n                data:data.data.data.dataList,\n                count:data.data.data.count\n            }\n        }else{\n            return {\n                data:[],\n                count:0\n            }\n        }\n    }\n}\n                        ",
+						"tableTitle": "Table数据"
+					},
+					"dialog": {
+						"hasDialog": "",
+						"form": {
+							"cols": []
+						}
+					}
+				},
+				"pageType": "1",
+				"compName": "List_list1",
+				"routerData": {
+					"routerName": "ListList1",
+					"routerPath": "List/list1"
+				}
+			},
+			{
+				"subName": "List",
+				"pagePath": "",
+				"pageName": "list2.vue",
+				"pageOption": {
+					"fileName": "list2",
+					"path": "",
+					"type": "2",
+					"form": {
+						"cols": [
+							{
+								"type": "text",
+								"key": "name",
+								"label": "Name",
+								"labelWidth": "",
+								"placeholder": "请输入name",
+								"url": "",
+								"dataSource": "",
+								"displayName": "",
+								"displayValue": "",
+								"tip": "",
+								"on": "1",
+								"required": "1",
+								"valifyType": "number",
+								"msg": "只能输入数字"
+							}
+						]
+					}
+				},
+				"pageType": "2",
+				"compName": "List_list2",
+				"routerData": {
+					"routerName": "ListList2",
+					"routerPath": "List/list2"
+				}
+			}
+		]
+	}
 ]

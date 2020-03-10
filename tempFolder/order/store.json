@@ -9,5 +9,50 @@
 			"action": [],
 			"mutation": []
 		}
+	},
+	{
+		"subName": "List",
+		"data": {
+			"state": {
+				"dataSource": [],
+				"entity": [
+					"name"
+				]
+			},
+			"action": [
+				{
+					"actionName": "doSave",
+					"commit": "",
+					"checkDataSource": ""
+				},
+				{
+					"actionName": "getDetail",
+					"commit": "setEntity",
+					"checkDataSource": ""
+				},
+				{
+					"actionName": "doRemove",
+					"commit": "",
+					"checkDataSource": ""
+				},
+				{
+					"actionName": "doUpdate",
+					"commit": "",
+					"checkDataSource": ""
+				},
+				{
+					"actionName": "doGetList",
+					"commit": "",
+					"checkDataSource": ""
+				}
+			],
+			"mutation": [
+				{
+					"mutationName": "setEntity",
+					"stateName": "entity",
+					"isSelect": false
+				}
+			]
+		}
 	}
 ]
